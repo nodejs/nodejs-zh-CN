@@ -24,3 +24,4 @@
 * [@patr0nus](https://github.com/patr0nus)
 * [@imsobear](https://github.com/imsobear)
 * [@stiekel](https://github.com/stiekel)
+* [@iissnan](https://github.com/iissnan)
