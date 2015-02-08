@@ -5,6 +5,7 @@ iojs-cn
 
 ___iojs-cn 组织成立的目的是为了推进 [io.js](https://iojs.org/) 在中国的普及，并及时同步英文社区的最新资讯。___
 
+
 ## 主要内容
 
 - [io.js 官方网站翻译](https://github.com/iojs/website/tree/i18n-static/public/i18n/cn)
@@ -44,3 +45,5 @@ ___iojs-cn 组织成立的目的是为了推进 [io.js](https://iojs.org/) 在�
 * [@patr0nus](https://github.com/patr0nus)
 * [@imsobear](https://github.com/imsobear)
 * [@stiekel](https://github.com/stiekel)
+* [@XadillaX](https://github.com/XadillaX)
+* [@iissnan](https://github.com/iissnan)
