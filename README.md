@@ -25,6 +25,10 @@ ___iojs-cn 组织成立的目的是为了推进 [io.js](https://iojs.org/) 在�
 
 请直接前往 [issue 列表](https://github.com/iojs/iojs-cn/issues)找到你感兴趣的 issue，然后参与讨论，或者提交 PR。请按照上述的工作流程执行，避免浪费人力做相同的事情。
 
+为了保持一致性，提升文档的质量，在着手工作之前，建议先查阅下：
+
+- [中英文排版规范](https://github.com/sparanoid/chinese-copywriting-guidelines)
+
 ## 社交媒体帐号
 
 可以关注下列社交媒体帐号来获取 iojs-cn 的最新资讯。
