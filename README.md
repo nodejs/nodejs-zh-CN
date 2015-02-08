@@ -24,8 +24,8 @@ ___iojs-cn 组织成立的目的是为了推进 [io.js](https://iojs.org/) 在�
 
 可以关注下列社交媒体帐号来获取 iojs-cn 的最新资讯。
 
-- Twitter[@iojs_cn](https://twitter.com/iojs_cn)
-- 微博[@iojs_cn](http://weibo.com/iojscn)
+- Twitter: [@iojs_cn](https://twitter.com/iojs_cn)
+- 微博: [@iojs_cn](http://weibo.com/iojscn)
 
 ## 团队成员
 
