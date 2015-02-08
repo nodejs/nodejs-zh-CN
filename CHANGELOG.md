@@ -450,81 +450,82 @@ For a detailed overview of how streams3 interact, [see this diagram](https://clo
 
 https://iojs.org/api/timers.html
 
-- Removed `process.maxTickDepth`, allowing `process.nextTick` to be used recursively without limit.
-- Updated `setImmediate` to process the full queue each turn of the event loop, instead of one per queue.
+- 移除 `process.maxTickDepth`, 允许 `process.nextTick` 被无限迭代调用
+- 更新 `setImmediate` 允许在一次事件循环处理完整队列, 而不是每次一个.
 
 ### tls
 
 https://iojs.org/api/tls.html
 
-- Added `detailed` boolean flag to `getPeerCertificate` to return detailed certificate information (with raw DER bytes).
-- Added `renegotiate(options, callback)` method for session renegotiation.
-- Added `setMaxSendFragment` method for varying TLS fragment size.
-- Added a `dhparam` option for DH ciphers.
-- Added a `ticketKeys` option for TLS ticket AES encryption keys setup.
-- Added async OCSP-stapling callback.
-- Added async session storage events.
-- Added async SNI callback.
-- Added multi-key server support (for example, ECDSA+RSA server).
-- Added optional callback to `checkServerIdentity` for manual certificate validation in user-land.
-- Added support for ECDSA/ECDHE cipher.
-- Implemented TLS streams in C++, boosting their performance.
-- Moved `createCredentials` to `tls` and renamed it to `createSecureContext`.
-- Removed SSLv2 and SSLv3 support.
+- 添加 `detailed` 布尔标志到 `getPeerCertificate` 来返回详细的认证信息 (带有原始 DER 字节).
+- 添加 `renegotiate(options, callback)` 方法用于回话 renegotiation.
+- 添加 `setMaxSendFragment` 方法用以调整 TLS 碎片大小.
+- 添加 `dhparam` 选项 到 DH 密码.
+- 添加 `ticketKeys` 选项到 TLS ticket AES 加密钥匙设置.
+- 添加异步 OCSP-stapling 回调.
+- 添加异步会话存储事件
+- 添加异步 SNI 回调.
+- 添加多 key 服务器支持 (例如, ECDSA+RSA 服务器).
+- 添加可选回调到 `checkServerIdentity` 来让用户手动认证验证
+- 添加对 ECDSA/ECDHE 密码支持.
+- 用 C++ 实现 TLS 流, 从而提升性能.
+- 把 `createCredentials` 移到 `tls` 并重命名为 `createSecureContext`.
+- 移除对 SSLv2 和 SSLv3 的支持.
 
 ### url
 
 https://iojs.org/api/url.html
 
-- Improved escaping of certain characters.
-- Improved parsing speed.
+- 优化特殊字符的转义.
+- 提升解析速度
 
 ### util
 
 https://iojs.org/api/util.html
 
-- Added `util.debuglog`.
-- Added a plethora of new type-testing methods. See [the docs](https://iojs.org/api/util.html).
-- Updated `util.format` to receive several changes:
-  - `-0` is now displayed as such, instead of as `0`.
-  - Anything that is `instanceof Error` is now formatted as an error.
-  - Circular references in JavaScript objects are now handled for the `%j` specifier.
-  - Custom `inspect` functions are now allowed to return an object.
-  - Custom `inspect` functions now receive any arguments passed to `util.inspect`.
+- 添加 `util.debuglog`.
+- 添加多个类型检测方法. 查看[文档](https://iojs.org/api/util.html).
+- 对 `util.format` 进行了几处更新:
+  - `-0` 原样打印, 而不是 `0`.
+  - 所有 error 实例 `instanceof Error` 都会被格式化成 error.
+  - JavaScript 中的循环引用, 现在被处理为 `%j` 说明符. (TO REVIEW)
+  - 允许自定义 `inspect` 方法返回一个对象.
+  - 自定义 `inspect` 方法现在会接受所有传给 `util.inspect` 的参数.
 
 ## v8
 
 https://iojs.org/api/v8.html
 
-`v8` is a new core module for interfacing directly with the V8 engine.
+`v8` 是一个全新的核心模块, 用于直接同 V8 引擎交互.
 
 ### vm
 
 https://iojs.org/api/vm.html
 
-The `vm` module has been rewritten to work better, based on the excellent [Contextify](https://github.com/brianmcd/contextify) native module. All of the functionality of Contextify is now in core, with improvements!
+`vm` 被基于卓越的[Contextify](https://github.com/brianmcd/contextify) native 模块完全重写, 从而工作的更好,
+Contextify 所有的功能被加入到了核心模块中, 并进行了优化.
 
-- Added `vm.isContext(object)` method to determine whether `object` has been contextified.
-- Added `vm.runInDebugContext(code)` method to compile and execute `code` inside the V8 debug context.
-- Updated `vm.createContext(sandbox)` to "contextify" the sandbox, making it suitable for use as a global for `vm` scripts, and then return it. It no longer creates a separate context object.
-- Updated most `vm` and `vm.Script` methods to accept an `options` object, allowing you to configure a timeout for the script, the error display behavior, and sometimes the filename (for stack traces).
-- Updated the supplied sandbox object to be used directly as the global, remove error-prone copying of properties back and forth between the supplied sandbox object and the global that appears inside the scripts run by the `vm` module.
-
-For more information, see the `vm` documentation linked above.
+- 添加 `vm.isContext(object)` 方法来确定一个`object` 是否被 contextified.
+- 添加 `vm.runInDebugContext(code)` 方法用以在 V8 调试环境编译和执行 `code`.
+- 更新 `vm.createContext(sandbox)` 来 "contextify" 沙盒, 使它能够作为 `vm` 脚本的全局环境, 然后返回它. 它不会创建单独的 context 对象
+- 更新 `vm` 和 `vm.Script` 的大部分方法, 能接受一个 `options` 对象, 允许用户为脚本自定义 timeout, 错误的展示方式, 以及文件名 (用户栈追踪).
+- 修改提供的沙盒对象, 从而可直接用做全局环境, 去除提供的沙盒对象和通过运行 `vm` 模块出现在脚本内部的全局对象之间的错误试探性属性拷贝
+关于详细信息, 参看上面的文档链接
 
 ### zlib
 
 https://iojs.org/api/zlib.html
 
-- Added support for `zlib.flush` to specify a particular flush method (defaulting to `Z_FULL_FLUSH`).
-- Added support for `zlib.params` to dynamically update the compression level and strategy when deflating.
-- Added synchronous versions of the zlib methods.
+- 添加支持 `zlib.flush` 指定特殊的 flush 方法 (默认为 `Z_FULL_FLUSH`).
+- 添加支持 `zlib.params` 来在压缩时动态更新压缩级别和策略.
+- 添加同步版本的 zlib 方法.
 
 ### C++ API Changes
 
 https://iojs.org/api/addons.html
 
-In general it is recommended that you use [NAN](https://github.com/rvagg/nan) as a compatibility layer for your addons. This will also help with future changes in the V8 and Node/io.js C++ API. Most of the following changes are already handled by NAN-specific wrappers.
+通常情况下, 建议使用 [NAN](https://github.com/rvagg/nan) 作为 addons 的兼容层, 未来他也会帮助处理 V8, 以及 Node/io.js C++ API 的变化.
+下面的大部分修改 NAN 都有对应的 wrapper 进行处理.
 
 #### V8 highlights
 
@@ -546,8 +547,9 @@ In general it is recommended that you use [NAN](https://github.com/rvagg/nan) as
 
 #### Node / io.js
 
-- Updated `node::Buffer::New()` to return a `Handle` directly so you no longer need to fetch the `handle_` property.
-- Updated `node::MakeCallback()` to require an `Isolate*` as the first argument. Generally `Isolate::GetCurrent()` will be OK for this.
+- 更新 `node::Buffer::New()` 来直接返回一个 `Handle`, 这样就没有必要再去获取 `handle_` 属性.
+- 更新 `node::MakeCallback()` 它需要 `Isolate*` 作为第一个参数. 通常情况 `Isolate::GetCurrent()` 就已经够用.
+
 
 
 --------------------------------------
