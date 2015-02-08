@@ -11,14 +11,13 @@
 
 ## 团队成员
 目前成员有(按加入时间排序)：
-[@adamme](https://github.com/adamme)
-[@dead-horse](https://github.com/dead-horse)
-[@fengmk2](https://github.com/fengmk2)
-[@popomore](https://github.com/popomore)
-[@xudafeng](https://github.com/xudafeng)
-[@Pana](https://github.com/Pana)
-[@patr0nus](https://github.com/patr0nus)
-[@imsobear](https://github.com/imsobear)
-[@stiekel](https://github.com/stiekel)
 
-
+* [@adamme](https://github.com/adamme)
+* [@dead-horse](https://github.com/dead-horse)
+* [@fengmk2](https://github.com/fengmk2)
+* [@popomore](https://github.com/popomore)
+* [@xudafeng](https://github.com/xudafeng)
+* [@Pana](https://github.com/Pana)
+* [@patr0nus](https://github.com/patr0nus)
+* [@imsobear](https://github.com/imsobear)
+* [@stiekel](https://github.com/stiekel)
