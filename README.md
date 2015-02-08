@@ -7,9 +7,9 @@ ___iojs-cn 组织成立的目的是为了推进 [io.js](https://iojs.org/) 在�
 
 ## 主要内容
 
-- [iojs 官方网站翻译](https://github.com/iojs/website/tree/i18n-static/public/i18n/cn)
+- [io.js 官方网站翻译](https://github.com/iojs/website/tree/i18n-static/public/i18n/cn)
 - [官方 twitter 帐号等新闻的转发](https://twitter.com/official_iojs)
-- [iojs CHANGELOG 翻译](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md)
+- [io.js CHANGELOG 翻译](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md)
 - [io.js Weekly 翻译](https://medium.com/@iojs)
 - [more...](https://github.com/iojs/iojs-cn/issues)
 
@@ -28,8 +28,8 @@ ___iojs-cn 组织成立的目的是为了推进 [io.js](https://iojs.org/) 在�
 
 可以关注下列社交媒体帐号来获取 iojs-cn 的最新资讯。
 
-- Twitter: [@iojs_cn](https://twitter.com/iojs_cn)
-- 微博: [@iojs_cn](http://weibo.com/iojscn)
+- Twitter [@iojs_cn](https://twitter.com/iojs_cn)
+- 微博 [@iojs_cn](http://weibo.com/iojscn)
 
 ## 团队成员
 
