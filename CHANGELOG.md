@@ -1,37 +1,37 @@
-# io.js ChangeLog
+# io.js 更新记录
 
-## 2015-02-03, Version 1.1.0, @chrisdickinson
+## 2015-02-03, 版本 1.1.0, @chrisdickinson
 
-### Notable changes
+### 主要更新
 
-* debug: fix v8 post-mortem debugging.
-* crypto: publicEncrypt now supports password-protected private keys.
-* crypto: ~30% speedup on hashing functions.
-* crypto: added privateEncrypt/publicDecrypt functions.
+* debug: 修复 v8 post-mortem 调试 bug.
+* crypto: publicEncrypt 开始支持受密码保护的私钥.
+* crypto: 哈希方法提速 ~30%.
+* crypto: 添加 privateEncrypt/publicDecrypt 方法.
 * errors
-  - better formatting via util.inspect
-  - more descriptive errors from fs. This necessitated a `NODE_MODULE_VERSION` bump.
-  - more descriptive errors from http.setHeader
-* dep updates:
-  - npm: upgrade to 2.4.1
-  - http-parser: rollback to 2.3.0
-  - libuv: update to 1.3.0
-  - v8: update to 4.1.0.14
-* http.request: inherited properties on options are now respected
-* add iterable interface to buffers (`for (let byte of buffer.values()) { }`)
-* fs: fix fd leak on `fs.createReadStream`. See 497fd72 for details.
-* installer: on Windows, emit WM_SETTINGCHANGE after install to make other running
-  processes aware of the PATH changes.
-* Added new collaborators:
+  - 优化 util.inspect 格式化结果
+  - fs 抛出的错误, 添加更详细的描述. 这需要一个 `NODE_MODULE_VERSION` bump.
+  - http.setHeader 抛出的错误, 添加更详细的描述
+* 依赖更新:
+  - npm: 更新到 2.4.1
+  - http-parser: 回滚到 2.3.0
+  - libuv: 更新到 1.3.0
+  - v8: 更新到 4.1.0.14
+* http.request: 从选项中继承属性
+* buffers 添加可迭代接口 (`for (let byte of buffer.values()) { }`)
+* fs: 修复 `fs.createReadStream` 的 fd 泄露. 详情参看 497fd72.
+* installer: Windows 平台完成安装后, 触发 WM_SETTINGCHANGE 事件,
+    用以让其他运行中进程知晓 PATH 的变化
+* 添加贡献者:
   - Vladimir Kurchatkin (@vkurchatkin)
   - Micleușanu Nicu (@micnic)
 
-### Known issues
+### 已知问题
 
-* Surrogate pair in REPL can freeze terminal (https://github.com/iojs/io.js/issues/690)
-* Not possible to build io.js as a static library (https://github.com/iojs/io.js/issues/686)
+* REPL 中的 Surrogate pair 会导致终端僵死 (https://github.com/iojs/io.js/issues/690)
+* io.js 无法作为静态库编译 (https://github.com/iojs/io.js/issues/686)
 
-### Commits
+### 提交历史
 
 * df48faf - tools: add release tool and docs, remove old tools (Rod Vagg)
 * 14684d3 - v8abbr: ASCIISTRINGTAG => ONEBYTESTRINGTAG (Fedor Indutny)
@@ -98,27 +98,24 @@
 * 50ac4b7 - Working on 1.0.5 (Rod Vagg)
 * d1fc9c6 - 2015-01-24 io.js v1.0.4 Release (Rod Vagg)
 
-## 2015-01-24, Version 1.0.4, @rvagg
+## 2015-01-24, 版本 1.0.4, @rvagg
 
-### Notable changes
+### 主要更新
 
-* npm upgrade to 2.3.0 fixes Windows "uid is undefined" errors
-* crypto.pseudoRandomBytes() is now an alias for crypto.randomBytes()
-  and will block if there is insufficient entropy to produce secure
-  values. See https://github.com/iojs/io.js/commit/e5e5980 for details.
-* Patch for V8 to properly detect ARMv6; binaries now work again on
-  ARMv6 (Raspberry Pi etc.)
-* Minor V8 upgrade from 4.1.0.7 to 4.1.0.12
-* 'punycode' core module bumped from stability level 2-Unstable,
-  to 3-Stable
-* Added new collaborators:
+* npm 更新到 2.3.0 修复 Windows "uid is undefined" 错误
+* crypto.pseudoRandomBytes() 现在是 crypto.randomBytes() 的别名方法,
+  如果没有足够的 entropy 用以产生安全的值则会阻塞. 详情参看 https://github.com/iojs/io.js/commit/e5e5980.
+* 给 V8 打补丁, 用于检测 ARMv6; 使程序又能在 ARMv6 上运行 (Raspberry Pi 等.)
+* V8 小幅更新 4.1.0.7 to 4.1.0.12
+* 'punycode' 核心模块状态, 从不稳定变为稳定
+* 添加贡献者:
   - Thorsten Lorenz (@thlorenz)
   - Stephen Belanger (@qard)
   - Jeremiah Senkpiel (@fishrock123)
   - Evan Lucas (@evanlucas)
   - Brendan Ashworth (@brendanashworth)
 
-### Commits
+### 提交历史
 
 * bb766d2 - doc: update "net" section in node to io.js changes (Andres Suarez)
 * 73ddaa6 - tools: remove old updateAuthors.awk script (Rod Vagg)
@@ -166,21 +163,23 @@
 * 767ee73 - test: strip copyright boilerplate (Ben Noordhuis)
 * 86eda17 - fs: define constants with const (cjihrig)
 
-## 2015-01-20, Version 1.0.3, @rvagg
 
-### Notable changes
+## 2015-01-20, 版本 1.0.3, @rvagg
 
-* V8 upgrade from 3.31 to 4.1, this is not a major upgrade, the version number "4.1" signifies tracking towards Chrome 41. The 3.31 branch is now not tracking towards a stable release.
-* Re-enable Windows XP / 2003 support
-* npm upgrade to 2.2.0
-* Improved FreeBSD support
+### 主要更新
 
-### Known issues
+* V8 从 3.31 升级到 4.1, 这并不是一个大版本升级, 版本号 "4.1" 表示
+ 与 Chrome 41 保持同步. 3.31 分支 没有与稳定版本保持同步.
+* 重新支持 Windows XP / 2003
+* npm 更新 2.2.0
+* 提高 FreeBSD 支持
 
-* ARMv6 builds still not working, there is a hold-up in V8 on this, issue #283
-* Template strings can cause segfaults in V8 4.1, https://codereview.chromium.org/857433004, also issue #333
+### 已知问题
 
-### Commits
+* ARMv6 平台仍然无法编译, V8 的 this 有一个停顿(hold-up), 问题 #283
+* Template strings 在 V8 4.1 会导致segfaults, https://codereview.chromium.org/857433004, 问题 #333
+
+### 提交历史
 
 * 9419e1f - src: fix inconsistency between a check and error (toastynerd)
 * 03ee4d8 - fs: add error code on null byte paths (cjihrig)
@@ -216,16 +215,16 @@
 * 8b22df1 - doc: add python-gflags LICENSE block (Shigeki Ohtsu)
 * 6242229 - tools: add python-gflags module (Shigeki Ohtsu)
 
-## 2015-01-16, Version 1.0.2, @rvagg
+## 2015-01-16, 版本 1.0.2, @rvagg
 
-### Notable changes
+### 主要更新
 
-* Windows installer fixes
-* Bundled node-gyp fixes for Windows
-* [http_parser v2.4.1 upgrade](https://github.com/joyent/http-parser/compare/v2.3...v2.4.1)
-* [libuv v1.2.1 upgrade](https://github.com/libuv/libuv/compare/v1.2.0...v1.2.1)
+* Windows 安装包问题修复
+* windows 安装包的 node-gyp 问题修复
+* [http_parser v2.4.1 升级](https://github.com/joyent/http-parser/compare/v2.3...v2.4.1)
+* [libuv v1.2.1 升级](https://github.com/libuv/libuv/compare/v1.2.0...v1.2.1)
 
-### Commits
+### 提交历史
 
 * 265cb76 - build: add new installer config for OS X (Rod Vagg)
 * 8cf6079 - doc: update AUTHORS list (Rod Vagg)
@@ -248,20 +247,19 @@
 * 3dd7ebb - doc: update cluster entry in CHANGELOG (Ben Noordhuis)
 * 0c5de1f - doc: fix double smalloc example (Mathias Buus)
 
-## 2015-01-14, Version 1.0.1, @rvagg
+## 2015-01-14, 版本 1.0.1, @rvagg
 
-Rebuild due to stale build slave git reflogs for 1.0.0 release
+因为 1.0 版的旧的编译 slave git reflogs 重新编译
 
-* doc: improve write style consistency (Rui Marinho)
-* win,msi: correct doc website link (Bert Belder)
+* doc: 提高书写一致性 (Rui Marinho)
+* win,msi: 修复文档网址链接 (Bert Belder)
 
 --------------------------------------
 
-Below is a summary of the user-facing changes to be found in the io.js v1.0.0 release as compared to the
-current _stable_ Node.js release, v0.10.35. At the time of the v1.0.0 release, the latest _unstable_
-Node.js release is v0.11.14 with much progress made towards a v0.11.15 release. The io.js codebase inherits
-the majority of the changes found in the v0.11 branch of the [joyent/node](https://github.com/joyent/node)
-repository and therefore can be seen as an extension to v0.11.
+以下是 io.js v1.0.0 相较于 Node.js 当时稳定版本 v0.10.35 的对用户而言比较明显的变更总结.
+v1.0.0 发布时 Node.js 的开发版本为 v0.11.14, 并正在准备发布 v0.11.15. io.js 继承了 [joyent/node](https://github.com/joyent/node) 项目 v0.11 分支的主要代码,
+因此可以被认为是v0.11 的扩展.
+
 
 ## Summary of changes from Node.js v0.10.35 to io.js v1.0.0
 
