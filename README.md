@@ -4,8 +4,8 @@
 
 ## 加入讨论
 
-- Twitter: [@iojs_cn](https://twitter.com/iojs_cn)
-- 微博: [@iojs_cn](http://weibo.com/iojscn)
+- Twitter：[@iojs_cn](https://twitter.com/iojs_cn)
+- 微博：[@iojs_cn](http://weibo.com/iojscn)
 
 ## 如何参与
 
@@ -24,4 +24,5 @@
 * [@patr0nus](https://github.com/patr0nus)
 * [@imsobear](https://github.com/imsobear)
 * [@stiekel](https://github.com/stiekel)
+* [@XadillaX](https://github.com/XadillaX)
 * [@iissnan](https://github.com/iissnan)
