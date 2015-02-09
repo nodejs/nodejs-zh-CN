@@ -38,4 +38,4 @@ iojs-cn
 
 ## 贡献者
 
-见[贡献者列表](https://github.com/iojs/iojs-cn/blob/master/CONTRIBUTORS.md)
+见[贡献者列表](https://github.com/iojs/iojs-cn/blob/master/docs/CONTRIBUTORS.md)
