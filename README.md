@@ -1,7 +1,7 @@
 iojs-cn
 ----------
 
-[![Join the chat at https://gitter.im/iojs/iojs-cn](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iojs/iojs-cn?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://iojs-cn.slack.com](https://iojs-cn.herokuapp.com/badge.svg)](https://iojs-cn.herokuapp.com)
 
 > iojs-cn 组织成立的目的是为了推进 [io.js](https://iojs.org/) 在中国的普及，并及时同步英文社区的最新资讯。
 
