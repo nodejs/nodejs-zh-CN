@@ -382,38 +382,35 @@ https://iojs.org/api/os.html
 
 https://iojs.org/api/path.html
 
-- Added `path.isAbsolute` and `path.parse` methods.
-- Added `path.win32` and `path.posix` objects that contain platform-specific versions of the various `path` functions.
-- Improved `path.join` performance.
+- 增加了 `path.isAbsolute` 和 `path.parse` 方法。
+- 增加了 `path.win32` 和 `path.posix` 对象，他们分别包含了对应平台的 `path` 的实现。
+- 提升了 `path.join` 的性能。
 
 ### process
 
 https://iojs.org/api/process.html
 
-- Added `beforeExit` event.
-- Added `process.mainModule` and `process.exitCode`.
+- 增加了 `beforeExit` 事件。
+- 增加了 `process.mainModule` 和 `process.exitCode`。
 
 ### querystring
 
 https://iojs.org/api/querystring.html
 
-- Added the ability to pass custom versions of `encodeURIComponent` and `decodeURIComponent` when stringifying or parsing a querystring.
-- Fixed several issues with the formatting of query strings in edge cases.
+- stringifying 或者 parsing 一个 query string 的时候可传入自定义的 `encodeURIComponent` 和 `decodeURIComponent` 方法。
+- 修复了几个格式化 query string 边缘场景下的问题。
 
 ### smalloc
 
 https://iojs.org/api/smalloc.html
 
-`smalloc` is a new core module for doing (external) raw memory allocation/deallocation/copying in JavaScript.
+`smalloc` 是一个新的核心模块， 用于在 javascript 中 分配、释放和复制(外部的)内存空间。
 
 ### streams
 
 https://iojs.org/api/stream.html
 
-The changes to streams are not as drastic as the transition from streams1 to streams2: they are a
-refinement of existing ideas, and should make the API slightly less surprising for humans and faster
-for computers. As a whole the changes are referred to as "streams3", but the changes should largely go
-unnoticed by the majority of stream consumers and implementers.
+streams 的变化没有从 stream1 到 stream2 那样剧烈：它们是对现有想法的改进，让 API 更加友好，同时运行速度更快。所有的这些变更也称为 "stream3"，但是这些变更对大多数使用者来说是透明的，大都不需要太关心。
 
 #### Readable streams
 
