@@ -256,49 +256,46 @@
 
 --------------------------------------
 
-以下是 io.js v1.0.0 相较于 Node.js 当时稳定版本 v0.10.35 的对用户而言比较明显的变更总结.
-v1.0.0 发布时 Node.js 的开发版本为 v0.11.14, 并正在准备发布 v0.11.15. io.js 继承了 [joyent/node](https://github.com/joyent/node) 项目 v0.11 分支的主要代码,
-因此可以被认为是v0.11 的扩展.
+以下是当前_稳定版_的 Node.js(v0.10.35) 到 io.js(v1.0.0) 的变更概要。v1.0.0 发布时 Node.js 最新的_非稳定版_为 v0.11.14，并正在准备发布 v0.11.15。io.js 的代码是源于 [joyent/node](https://github.com/joyent/node) v0.11 分支，包括其中的大部分变更，因此可视为 v0.11 的扩充。
 
-
-## Summary of changes from Node.js v0.10.35 to io.js v1.0.0
+## Node.js v0.10.35 到 io.js v1.0.0 的变更概要
 
 ### General
 
-- The V8 JavaScript engine bundled with io.js was upgraded dramatically, from version 3.14.5.9 in Node.js v0.10.35 and 3.26.33 in Node.js v0.11.14 to 3.31.74.1 for io.js v1.0.0. This brings along many fixes and performance improvements, as well as additional support for new ES6 language features! For more information on this, check out [the io.js ES6 page](https://iojs.org/es6.html).
-- Other bundled technologies were upgraded:
-  - c-ares: 1.9.0-DEV to 1.10.0-DEV
-  - http_parser: 1.0 to 2.3
-  - libuv: 0.10.30 to 1.2.0
-  - npm: 1.4.28 to 2.1.18
-  - openssl: 1.0.1j to 1.0.1k
-  - punycode: 1.2.0 to 1.3.2.
-- Performance and stability improvements on all platforms.
+- io.js 内置的 V8 引擎升级幅度很大，从 Node.js v0.10.35 的 3.14.5.9 和 Node.js v0.11.14 升级到 io.js v1.0.0 的 3.31.74.1。他修复了很多 bug 且提升了性能，而且额外增加了新的 ES6 特性。获取更多信息请查看 [io.js ES6 页面](https://iojs.org/es6.html)
+- 其他内置的模块也相应升级了：
+  - c-ares: 1.9.0-DEV 升级到 1.10.0-DEV
+  - http_parser: 1.0 升级到 2.3
+  - libuv: 0.10.30 升级到 1.2.0
+  - npm: 1.4.28 升级到 2.1.18
+  - openssl: 1.0.1j 升级到 1.0.1k
+  - punycode: 1.2.0 升级到 1.3.2.
+- 所有平台优化了性能和稳定性
 
 ### buffer
 
 https://iojs.org/api/buffer.html
 
-- Added `buf.writeUIntLE`, `buf.writeUIntBE`, `buf.writeIntLE`, `buf.writeIntBE`, `buf.readUIntLE`, `buf.readUIntBE`, `buf.readIntLE` and `buf.readIntBE` methods that read and write value up to 6 bytes.
-- Added `Buffer.compare()` which does a `memcmp()` on two Buffer instances. Instances themselves also have a `compare()`.
-- Added `buffer.equals()` that checks equality of Buffers by their contents.
-- Added `new Buffer(otherBuffer)` constructor.
-- Tweaked `SlowBuffer`'s semantics.
-- Updated the output of `buffer.toJSON()` to not be the same as an array. Instead it is an object specifically tagged as a buffer, which can be recovered by passing it to (a new overload of) the `Buffer` constructor.
+- 添加了 `buf.writeUIntLE`, `buf.writeUIntBE`, `buf.writeIntLE`, `buf.writeIntBE`, `buf.readUIntLE`, `buf.readUIntBE`, `buf.readIntLE` and `buf.readIntBE` 方法，支持6个字节读写。
+- 添加了 `Buffer.compare()` 方法，使用 `memcmp()` 对比两个 Buffer 实例的内存区域，实例也有一个 `compare()` 方法。
+- 添加了 `buffer.equals()` 方法，对比 Buffer 的内容是否一致。
+- 添加了 `new Buffer(otherBuffer)` 构造函数。
+- 调整了 `SlowBuffer` 的语义
+- 更新了 `buffer.toJSON()` 的输出，不再输出数组而是输出一个对象。此对象可被标记为一个 buffer 并且可以传入到 Buffer 构建函数中重新实例化。
 
 ### child_process
 
 https://iojs.org/api/child_process.html
 
-- Added a `shell` option to `child_process.exec`.
-- Added synchronous counterparts for the child process functions: `child_process.spawnSync`, `child_process.execSync`, and `child_process.execFileSync`.
-- Added the path to any `ENOENT` errors, for easier debugging.
+- `child_process.exec` 添加了一个 `shell` 的参数。
+- 添加了一系列同步的方法：`child_process.spawnSync`, `child_process.execSync`, and `child_process.execFileSync`。
+- 给 `ENOENT` 错误添加了路径，方便调试。
 
 ### console
 
 https://iojs.org/api/console.html
 
-- Added an `options` parameter to `console.dir`.
+- `console.dir` 添加了一个 `options` 参数。
 
 ### cluster
 
