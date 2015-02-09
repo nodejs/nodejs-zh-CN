@@ -287,15 +287,15 @@ https://iojs.org/api/buffer.html
 
 https://iojs.org/api/child_process.html
 
-- Added a `shell` option to `child_process.exec`.
-- Added synchronous counterparts for the child process functions: `child_process.spawnSync`, `child_process.execSync`, and `child_process.execFileSync`.
-- Added the path to any `ENOENT` errors, for easier debugging.
+- `child_process.exec` 添加了一个 `shell` 的参数。
+- 添加了一系列同步的方法：`child_process.spawnSync`, `child_process.execSync`, and `child_process.execFileSync`。
+- 给 `ENOENT` 错误添加了路径，方便调试。
 
 ### console
 
 https://iojs.org/api/console.html
 
-- Added an `options` parameter to `console.dir`.
+- `console.dir` 添加了一个 `options` 参数。
 
 ### cluster
 
