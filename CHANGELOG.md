@@ -336,44 +336,44 @@ https://iojs.org/api/dns.html
 
 https://iojs.org/api/events.html
 
-- Added chaining support to `EventEmitter.setMaxListeners`.
-- Updated `require('events')` to return the `EventEmitter` constructor, allowing the module to be used like `var EventEmitter = require('events')` instead of `var EventEmitter = require('events').EventEmitter`.
+- 新增 `EventEmitter.setMaxListeners` 的链式调用
+- `require('events')` 直接返回 `EventEmitter` 构造函数，可直接使用这个模块，如 `var EventEmitter = require('events')` 而不是 `var EventEmitter = require('events').EventEmitter`。
 
 ### fs
 
 https://iojs.org/api/fs.html
 
-- Added `fs.access`, and deprecated `fs.exists`. Please read the documentation carefully.
-- Added more informative errors and method call site details when the `NODE_DEBUG` environment is set to ease debugging.
-- Added option to `fs.watch` for recursive sub-directory support (OS X only).
-- Fixed missing callbacks errors just being printed instead of thrown.
+- 新增 `fs.access`，弃用 `fs.exists`，请仔细阅读文档。
+- NODE_DEBUG 的值非空时显示更多的错误信息以及方法调用的具体位置来优化调试。
+- 新增 `fs.watch` 的参数支持子目录递归（只支持 OS X）。
+- 修复 callback 不存在会异常的情况，只打印错误。
 
 ### http
 
 https://iojs.org/api/http.html
 
-- Added support for `response.write` and `response.end` to receive a callback to know when the operation completes.
-- Added support for 308 status code (see RFC 7238).
-- Added `http.METHODS` array, listing the HTTP methods supported by the parser.
-- Added `request.flush` method.
-- Added `response.getHeader('header')` method that may be used before headers are flushed.
-- Added `response.statusMessage` property.
-- Added Client Keep-Alive behavior.  Set `keepAlive:true` in request options to reuse connections indefinitely.
-- Added `rawHeaders` and `rawTrailers` members on incoming message.
-- Removed default chunked encoding on `DELETE` and `OPTIONS`.
+- 新增支持 `response.write` 和 `response.end` 接受一个 callback，当操作完成后被执行。
+- 新增 308 状态码的支持（详见 RFC 7238）。
+- 新增 `http.METHODS` 数组，列出所有解析器支持的 HTTP 方法。
+- 新增 `request.flush` 方法。
+- 新增 `response.getHeader('header')` 方法，可以在发送响应头之前调用。
+- 新增 `response.statusMessage` 属性。
+- 新增客户端 Keep-Alive 行为，在 request 的 options 设置 `keepAlive:true` 可无限重用连接。
+- 在 incoming message 新增 `rawHeaders` 和 `rawTrailers` 属性。
+- 删除 `DELETE` 和 `OPTIONS` 默认的分块编码。
 
 ### net
 
 https://iojs.org/api/net.html
 
-- Changed `net.Server.listen` such that, when the bind address is omitted, IPv6 is tried first, and IPv4 is used as a fallback.
+- `net.Server.listen` 变更，当绑定的地址被忽略后，先尝试 IPv6，如果失败再尝试 IPv4。
 
 ### os
 
 https://iojs.org/api/os.html
 
-- Added MAC addresses, netmasks and scope IDs for IPv6 addresses to `os.networkInterfaces` method output.
-- Updated `os.tmpdir` on Windows to use the `%SystemRoot%` or `%WINDIR%` environment variables instead of the hard-coded value of `c:\windows` when determining the temporary directory location.
+- `os.networkInterfaces` 方法新增 IPv6 的 MAC 地址，网络掩码和范围 ID。
+- 更新 Windows 平台的 `os.tmpdir`，当定义临时目录的时候，使用 `%SystemRoot%` 或 `%WINDIR%` 环境变量，而不是硬编码的 `c:\windows`。
 
 ### path
 
