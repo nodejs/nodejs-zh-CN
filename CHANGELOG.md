@@ -304,9 +304,9 @@ https://iojs.org/api/console.html
 
 https://iojs.org/api/cluster.html
 
-- Updated `cluster` to use round-robin load balancing by default on non-Windows platforms. The scheduling policy is configurable however.
-- `--debug` has been made cluster-aware.
-- Many bug fixes.
+- 更新了 cluster 模块，在非 Windows 平台默认使用 round-robin 负载均衡算法，该项可以配置。
+- 支持了 `--debug` 调试
+- 修复了很多 bug
 
 ### crypto
 
@@ -325,15 +325,15 @@ https://iojs.org/api/crypto.html
 
 https://iojs.org/api/dgram.html
 
-- Added support for receiving empty UDP packets.
+- 新增支持接受 UDP 空包。
 
 ### dns
 
 https://iojs.org/api/dns.html
 
-- Added `dns.resolveSoa`, `dns.getServers`, and `dns.setServers` methods.
-- Added `hostname` on error messages when available.
-- Improved error handling consistency.
+- 新增 `dns.resolveSoa`, `dns.getServers`, and `dns.setServers` 方法。
+- 在错误信息上添加 `hostname`
+- 优化错误处理的一致性
 
 ### events
 
