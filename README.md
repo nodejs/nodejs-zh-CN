@@ -29,6 +29,20 @@ iojs-cn
 
 - [中英文排版规范](https://github.com/sparanoid/chinese-copywriting-guidelines)
 
+我们还会翻译一些 io.js 相关的文章，如果你有阅读到好的文章也欢迎提交。根据上面的工作流程提交 Issue，并以 PR 的形式提交原文，格式如下
+
+```
+# 标题
+
+- Authors: 原作者名
+- Referer: 原文地址
+
+===
+
+原文内容
+
+```
+
 ## 社交媒体帐号
 
 可以关注下列社交媒体帐号来获取 iojs-cn 的最新资讯。
