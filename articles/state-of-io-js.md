@@ -1,11 +1,11 @@
-# State of io.js
+# io.js 的现状
 
 - Authors: @mikeal
 - Referer: https://medium.com/node-js-javascript/state-of-io-js-2b3094e6f923
 
 ===
 
-The most successful open source initiative in living memory.
+io.js 是我有生之年经历过的最积极主动的开源项目。
 
 A lot has happened in the few months since io.js was announced. An ambitious release date was set for January 13th, **Fedor’s Birthday**, and after a lot of hard work from a remarkable number of people we made it with just a few timezones to spare ☺
 
