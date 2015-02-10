@@ -7,22 +7,22 @@
 * debug: 修复 v8 post-mortem 调试 bug.
 * crypto: publicEncrypt 开始支持受密码保护的私钥.
 * crypto: 哈希方法提速 ~30%.
-* crypto: 添加 privateEncrypt/publicDecrypt 方法.
+* crypto: 新增 privateEncrypt/publicDecrypt 方法.
 * errors
   - 优化 util.inspect 格式化结果
-  - fs 抛出的错误, 添加更详细的描述. 这需要一个 `NODE_MODULE_VERSION` bump.
-  - http.setHeader 抛出的错误, 添加更详细的描述
+  - fs 抛出的错误, 新增更详细的描述. 这需要一个 `NODE_MODULE_VERSION` bump.
+  - http.setHeader 抛出的错误, 新增更详细的描述
 * 依赖更新:
   - npm: 更新到 2.4.1
   - http-parser: 回滚到 2.3.0
   - libuv: 更新到 1.3.0
   - v8: 更新到 4.1.0.14
 * http.request: 从选项中继承属性
-* buffers 添加可迭代接口 (`for (let byte of buffer.values()) { }`)
+* buffers 新增了可迭代接口 (`for (let byte of buffer.values()) { }`)
 * fs: 修复 `fs.createReadStream` 的 fd 泄露. 详情参看 497fd72.
 * installer: Windows 平台完成安装后, 触发 WM_SETTINGCHANGE 事件,
     用以让其他运行中进程知晓 PATH 的变化
-* 添加贡献者:
+* 新增贡献者:
   - Vladimir Kurchatkin (@vkurchatkin)
   - Micleușanu Nicu (@micnic)
 
@@ -108,7 +108,7 @@
 * 给 V8 打补丁, 用于检测 ARMv6; 使程序又能在 ARMv6 上运行 (Raspberry Pi 等.)
 * V8 小幅更新 4.1.0.7 to 4.1.0.12
 * 'punycode' 核心模块状态, 从不稳定变为稳定
-* 添加贡献者:
+* 新增贡献者:
   - Thorsten Lorenz (@thlorenz)
   - Stephen Belanger (@qard)
   - Jeremiah Senkpiel (@fishrock123)
@@ -276,26 +276,26 @@
 
 https://iojs.org/api/buffer.html
 
-- 添加了 `buf.writeUIntLE`, `buf.writeUIntBE`, `buf.writeIntLE`, `buf.writeIntBE`, `buf.readUIntLE`, `buf.readUIntBE`, `buf.readIntLE` and `buf.readIntBE` 方法，支持6个字节读写。
-- 添加了 `Buffer.compare()` 方法，使用 `memcmp()` 对比两个 Buffer 实例的内存区域，实例也有一个 `compare()` 方法。
-- 添加了 `buffer.equals()` 方法，对比 Buffer 的内容是否一致。
-- 添加了 `new Buffer(otherBuffer)` 构造函数。
-- 调整了 `SlowBuffer` 的语义
-- 更新了 `buffer.toJSON()` 的输出，不再输出数组而是输出一个对象。此对象可被标记为一个 buffer 并且可以传入到 Buffer 构建函数中重新实例化。
+- 新增 `buf.writeUIntLE`, `buf.writeUIntBE`, `buf.writeIntLE`, `buf.writeIntBE`, `buf.readUIntLE`, `buf.readUIntBE`, `buf.readIntLE` and `buf.readIntBE` 方法，支持6个字节读写。
+- 新增 `Buffer.compare()` 方法，使用 `memcmp()` 对比两个 Buffer 实例的内存区域，实例也有一个 `compare()` 方法。
+- 新增 `buffer.equals()` 方法，对比 Buffer 的内容是否一致。
+- 新增 `new Buffer(otherBuffer)` 构造函数。
+- 调整 `SlowBuffer` 的语义
+- 更新 `buffer.toJSON()` 的输出，不再输出数组而是输出一个对象。此对象可被标记为一个 buffer 并且可以传入到 Buffer 构建函数中重新实例化。
 
 ### child_process
 
 https://iojs.org/api/child_process.html
 
-- `child_process.exec` 添加了一个 `shell` 的参数。
-- 添加了一系列同步的方法：`child_process.spawnSync`, `child_process.execSync`, and `child_process.execFileSync`。
-- 给 `ENOENT` 错误添加了路径，方便调试。
+- `child_process.exec` 新增了一个 `shell` 的参数。
+- 新增一系列同步的方法：`child_process.spawnSync`, `child_process.execSync`, and `child_process.execFileSync`。
+- 给 `ENOENT` 错误新增了路径，方便调试。
 
 ### console
 
 https://iojs.org/api/console.html
 
-- `console.dir` 添加了一个 `options` 参数。
+- `console.dir` 新增了一个 `options` 参数。
 
 ### cluster
 
@@ -451,17 +451,17 @@ https://iojs.org/api/timers.html
 
 https://iojs.org/api/tls.html
 
-- 添加 `detailed` 布尔标志到 `getPeerCertificate` 来返回详细的认证信息 (带有原始 DER 字节).
-- 添加 `renegotiate(options, callback)` 方法用于回话 renegotiation.
-- 添加 `setMaxSendFragment` 方法用以调整 TLS 碎片大小.
-- 添加 `dhparam` 选项 到 DH 密码.
-- 添加 `ticketKeys` 选项到 TLS ticket AES 加密钥匙设置.
-- 添加异步 OCSP-stapling 回调.
-- 添加异步会话存储事件
-- 添加异步 SNI 回调.
-- 添加多 key 服务器支持 (例如, ECDSA+RSA 服务器).
-- 添加可选回调到 `checkServerIdentity` 来让用户手动认证验证
-- 添加对 ECDSA/ECDHE 密码支持.
+- 新增 `detailed` 布尔标志到 `getPeerCertificate` 来返回详细的认证信息 (带有原始 DER 字节).
+- 新增 `renegotiate(options, callback)` 方法用于回话 renegotiation.
+- 新增 `setMaxSendFragment` 方法用以调整 TLS 碎片大小.
+- 新增 `dhparam` 选项 到 DH 密码.
+- 新增 `ticketKeys` 选项到 TLS ticket AES 加密钥匙设置.
+- 新增异步 OCSP-stapling 回调.
+- 新增异步会话存储事件
+- 新增异步 SNI 回调.
+- 新增多 key 服务器支持 (例如, ECDSA+RSA 服务器).
+- 新增可选回调到 `checkServerIdentity` 来让用户手动认证验证
+- 新增对 ECDSA/ECDHE 密码支持.
 - 用 C++ 实现 TLS 流, 从而提升性能.
 - 把 `createCredentials` 移到 `tls` 并重命名为 `createSecureContext`.
 - 移除对 SSLv2 和 SSLv3 的支持.
@@ -477,8 +477,8 @@ https://iojs.org/api/url.html
 
 https://iojs.org/api/util.html
 
-- 添加 `util.debuglog`.
-- 添加多个类型检测方法. 查看[文档](https://iojs.org/api/util.html).
+- 新增 `util.debuglog`.
+- 新增多个类型检测方法. 查看[文档](https://iojs.org/api/util.html).
 - 对 `util.format` 进行了几处更新:
   - `-0` 原样打印, 而不是 `0`.
   - 所有 error 实例 `instanceof Error` 都会被格式化成 error.
@@ -499,8 +499,8 @@ https://iojs.org/api/vm.html
 `vm` 被基于卓越的[Contextify](https://github.com/brianmcd/contextify) native 模块完全重写, 从而工作的更好,
 Contextify 所有的功能被加入到了核心模块中, 并进行了优化.
 
-- 添加 `vm.isContext(object)` 方法来确定一个`object` 是否被 contextified.
-- 添加 `vm.runInDebugContext(code)` 方法用以在 V8 调试环境编译和执行 `code`.
+- 新增 `vm.isContext(object)` 方法来确定一个`object` 是否被 contextified.
+- 新增 `vm.runInDebugContext(code)` 方法用以在 V8 调试环境编译和执行 `code`.
 - 更新 `vm.createContext(sandbox)` 来 "contextify" 沙盒, 使它能够作为 `vm` 脚本的全局环境, 然后返回它. 它不会创建单独的 context 对象
 - 更新 `vm` 和 `vm.Script` 的大部分方法, 能接受一个 `options` 对象, 允许用户为脚本自定义 timeout, 错误的展示方式, 以及文件名 (用户栈追踪).
 - 修改提供的沙盒对象, 从而可直接用做全局环境, 去除提供的沙盒对象和通过运行 `vm` 模块出现在脚本内部的全局对象之间的错误试探性属性拷贝
@@ -510,9 +510,9 @@ Contextify 所有的功能被加入到了核心模块中, 并进行了优化.
 
 https://iojs.org/api/zlib.html
 
-- 添加支持 `zlib.flush` 指定特殊的 flush 方法 (默认为 `Z_FULL_FLUSH`).
-- 添加支持 `zlib.params` 来在压缩时动态更新压缩级别和策略.
-- 添加同步版本的 zlib 方法.
+- 新增支持 `zlib.flush` 指定特殊的 flush 方法 (默认为 `Z_FULL_FLUSH`).
+- 新增支持 `zlib.params` 来在压缩时动态更新压缩级别和策略.
+- 新增同步版本的 zlib 方法.
 
 ### C++ API Changes
 
