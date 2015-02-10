@@ -7,3 +7,6 @@ npm-debug.log
 .idea/*
 Thumbs.db
 .project
+_site
+.jekyll
+.sass-cache

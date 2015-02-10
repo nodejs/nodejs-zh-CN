@@ -53,3 +53,9 @@ iojs-cn
 ## 贡献者
 
 见[贡献者列表](https://github.com/iojs/iojs-cn/graphs/contributors)
+
+## 本地服务
+
+- 安装 Jekyll `gem install github-pages`
+- 启动服务 `jekyll serve`
+- 访问 http://127.0.0.1:4000/iojs-cn
