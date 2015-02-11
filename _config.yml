@@ -6,7 +6,6 @@ footer-links:
   rss: "on"
   twitter: iojs_cn
 
-disqus:
 google_analytics:
 url: "http://iojs.github.io/iojs-cn"
 baseurl: "/iojs-cn"
