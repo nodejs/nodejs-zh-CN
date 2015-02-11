@@ -6,6 +6,16 @@ layout: default
   <h1>{{ page.title }}</h1>
 
   <div class="entry">
+    {% if page.author || page.reference %}
+    <div class="source">
+      {% if page.author %}
+      <p><span>原文作者</span>{{ page.author }}</p>
+      {% endif %}
+      {% if page.reference %}
+      <p><span>内容出处</span><a href="{{ page.reference }}">{{ page.reference }}</a></p>
+      {% endif %}
+    </div>
+    {% endif %}
     {{ content }}
   </div>
 
