@@ -1,46 +1,47 @@
 # io.js 更新记录
 
 
-## 2015-02-10, 版本 1.2.0, @rvagg
+## 2015-02-10, Version 1.2.0, @rvagg
 
-### 主要更新
+### Notable changes
 
 * **stream**:
-  - 简化 stream 构造方法, 详情参看 [readable-stream/issues#102](https://github.com/iojs/readable-stream/issues/102). 并且扩展了streams 的基础对象, 来让他们的构造方法接受默认的实现方法, 减少创建自定义stream 所需的模板(通用)代码. 一个更新版的 readable-stream 最终也会发布来匹配 core 的该变化. (@sonewman)
+  - Simpler stream construction, see [readable-stream/issues#102](https://github.com/iojs/readable-stream/issues/102) for details. This extends the streams base objects to make their constructors accept default implementation methods, reducing the boilerplate required to implement custom streams. An updated version of readable-stream will eventually be released to match this change in core. (@sonewman)
 * **dns**:
-  - `lookup()` 增加支持 `'all'` 布尔选项, 默认为 `false`, 如果设为 true, 方法会返回一个 *all* 地址解析过的域名数组, 参看, [#744](https://github.com/iojs/io.js/pull/744) (@silverwind)
+  - `lookup()` now supports an `'all'` boolean option, default to `false` but when turned on will cause the method to return an array of *all* resolved names for an address, see, [#744](https://github.com/iojs/io.js/pull/744) (@silverwind)
 * **assert**:
-  - 去除 `deepEqual()` 比较结果的 `prototype` 属性 , 这被认为是 bug, 参看 [#636](https://github.com/iojs/io.js/pull/636) (@vkurchatkin)
-  - 添加方法 `deepStrictEqual()` 功能同 `deepEqual()` 类似, 只是在原型比较时进行严格相等比较, 参看 [#639](https://github.com/iojs/io.js/pull/639) (@vkurchatkin)
+  - Remove `prototype` property comparison in `deepEqual()`, considered a bugfix, see [#636](https://github.com/iojs/io.js/pull/636) (@vkurchatkin)
+  - Introduce a `deepStrictEqual()` method to mirror `deepEqual()` but performs strict equality checks on primitives, see [#639](https://github.com/iojs/io.js/pull/639) (@vkurchatkin)
 * **tracing**:
-  - 如果编译时开启 `--with-lttng` 选项, 则会同时编译 [LTTng](http://lttng.org/) (Linux 下一代 Trace 工具). Trace 分数同 DTrace 和 ETW 相匹配. [#702](https://github.com/iojs/io.js/pull/702) (@thekemkid)
+  - Add [LTTng](http://lttng.org/) (Linux Trace Toolkit Next Generation) when compiled with the  `--with-lttng` option. Trace points match those available for DTrace and ETW. [#702](https://github.com/iojs/io.js/pull/702) (@thekemkid)
 * **docs**:
-  - 大量文档更新, 具体查看相应提交
-  - 新 **Errors** 文档描述了 JavaScript 错误, V8 specifics, 和 io.js specific 错误详情. (@chrisdickinson)
-* **npm** 更新到 2.5.1, 简要更新日志:
-  - [npm/0e8d473](https://github.com/npm/npm/commit/0e8d4736a1cbdda41ae8eba8a02c7ff7ce80c2ff) [#7281](https://github.com/npm/npm/issues/7281) `npm-registry-mock@1.0.0`: 清空 API, 设置 `connection: close`, 从而使测试在 io.js 1.1.x 通过.
+  - Lots of doc updates, see individual commits
+  - New **Errors** page discussing JavaScript errors, V8 specifics, and io.js specific error details. (@chrisdickinson)
+* **npm** upgrade to 2.5.1, short changelog:
+  - [npm/0e8d473](https://github.com/npm/npm/commit/0e8d4736a1cbdda41ae8eba8a02c7ff7ce80c2ff) [#7281](https://github.com/npm/npm/issues/7281) `npm-registry-mock@1.0.0`: Clean up API, set `connection: close`, which makes tests pass on io.js 1.1.x.
   ([@robertkowalski](https://github.com/robertkowalski))
   - [npm/f9313a0](https://github.com/npm/npm/commit/f9313a066c9889a0ee898d8a35676e40b8101e7f)
-  [#7226](https://github.com/npm/npm/issues/7226) 确保所有的请求设置被复制到代理中.
+  [#7226](https://github.com/npm/npm/issues/7226) Ensure that all request
+  settings are copied onto the agent.
   ([@othiym23](https://github.com/othiym23))
    - [npm/fec4c96](https://github.com/npm/npm/commit/fec4c967ee235030bf31393e8605e9e2811f4a39)
-  在环境中允许 `--no-proxy` 覆盖 `HTTP_PROXY` 设置.
+  Allow `--no-proxy` to override `HTTP_PROXY` setting in environment.
   ([@othiym23](https://github.com/othiym23))
   - [npm/9d61e96](https://github.com/npm/npm/commit/9d61e96fb1f48687a85c211e4e0cd44c7f95a38e)
-  `npm outdated --long` 添加一列显示依赖的类型.
+  `npm outdated --long` now includes a column showing the type of dependency.
   ([@watilde](https://github.com/watilde))
-* **libuv** 升级到 1.4.0, 详情参看 [libuv 更新日志](https://github.com/libuv/libuv/blob/v1.x/ChangeLog)
-* 添加贡献者:
+* **libuv** upgrade to 1.4.0, see [libuv ChangeLog](https://github.com/libuv/libuv/blob/v1.x/ChangeLog)
+* Add new collaborators:
   - Aleksey Smolenchuk (@lxe)
   - Shigeki Ohtsu (@shigeki)
 
-### 已知问题
+### Known issues
 
-* REPL 中的 Surrogate pair 会导致终端僵死 [#690](https://github.com/iojs/io.js/issues/690)
-* io.js 无法作为静态库编译 [#686](https://github.com/iojs/io.js/issues/686)
-* `process.send()` 行为并非如文档所说的同步, 该问题是在 1.0.2 引入的, 参看 [#760](https://github.com/iojs/io.js/issues/760) 和 修复 [#774](https://github.com/iojs/io.js/issues/774) 将会在下个版本发布.
+* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
+* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774) that should appear in the next patch release.
 
-### 提交历史
+### Commits
 
 * [7e2235a] - doc: add error documentation (Chris Dickinson)
 * [d832be4] - doc: update AUTHORS list (Rod Vagg)
