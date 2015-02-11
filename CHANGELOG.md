@@ -1,5 +1,92 @@
 # io.js 更新记录
 
+# io.js ChangeLog
+
+## 2015-02-10, 版本 1.2.0, @rvagg
+
+### 主要更新
+
+* **stream**:
+  - 简化 stream 构造方法, 详情参看 [readable-stream/issues#102](https://github.com/iojs/readable-stream/issues/102). 并且扩展了streams 的基础对象, 来让他们的构造方法接受默认的实现方法, 减少创建自定义stream 所需的模板(通用)代码. 一个更新版的 readable-stream 最终也会发布来匹配 core 的该变化. (@sonewman)
+* **dns**:
+  - `lookup()` 增加支持 `'all'` 布尔选项, 默认为 `false`, 如果设为 true, 方法会返回一个 *all* 地址解析过的域名数组, 参看, [#744](https://github.com/iojs/io.js/pull/744) (@silverwind)
+* **assert**:
+  - 去除 `deepEqual()` 比较结果的 `prototype` 属性 , 这被认为是 bug, 参看 [#636](https://github.com/iojs/io.js/pull/636) (@vkurchatkin)
+  - 添加方法 `deepStrictEqual()` 功能同 `deepEqual()` 类似, 只是在原型比较时进行严格相等比较, 参看 [#639](https://github.com/iojs/io.js/pull/639) (@vkurchatkin)
+* **tracing**:
+  - 如果编译时开启 `--with-lttng` 选项, 则会同时编译 [LTTng](http://lttng.org/) (Linux 下一代 Trace 工具). Trace 分数同 DTrace 和 ETW 相匹配. [#702](https://github.com/iojs/io.js/pull/702) (@thekemkid)
+* **docs**:
+  - 大量文档更新, 具体查看相应提交
+  - 新 **Errors** 文档描述了 JavaScript 错误, V8 specifics, 和 io.js specific 错误详情. (@chrisdickinson)
+* **npm** 更新到 2.5.1, 简要更新日志:
+  - [npm/0e8d473](https://github.com/npm/npm/commit/0e8d4736a1cbdda41ae8eba8a02c7ff7ce80c2ff) [#7281](https://github.com/npm/npm/issues/7281) `npm-registry-mock@1.0.0`: 清空 API, 设置 `connection: close`, 从而使测试在 io.js 1.1.x 通过.
+  ([@robertkowalski](https://github.com/robertkowalski))
+  - [npm/f9313a0](https://github.com/npm/npm/commit/f9313a066c9889a0ee898d8a35676e40b8101e7f)
+  [#7226](https://github.com/npm/npm/issues/7226) 确保所有的请求设置被复制到代理中.
+  ([@othiym23](https://github.com/othiym23))
+   - [npm/fec4c96](https://github.com/npm/npm/commit/fec4c967ee235030bf31393e8605e9e2811f4a39)
+  在环境中允许 `--no-proxy` 覆盖 `HTTP_PROXY` 设置.
+  ([@othiym23](https://github.com/othiym23))
+  - [npm/9d61e96](https://github.com/npm/npm/commit/9d61e96fb1f48687a85c211e4e0cd44c7f95a38e)
+  `npm outdated --long` 添加一列显示依赖的类型.
+  ([@watilde](https://github.com/watilde))
+* **libuv** 升级到 1.4.0, 详情参看 [libuv 更新日志](https://github.com/libuv/libuv/blob/v1.x/ChangeLog)
+* 添加贡献者:
+  - Aleksey Smolenchuk (@lxe)
+  - Shigeki Ohtsu (@shigeki)
+
+### 已知问题
+
+* REPL 中的 Surrogate pair 会导致终端僵死 [#690](https://github.com/iojs/io.js/issues/690)
+* io.js 无法作为静态库编译 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 行为并非如文档所说的同步, 该问题是在 1.0.2 引入的, 参看 [#760](https://github.com/iojs/io.js/issues/760) 和 修复 [#774](https://github.com/iojs/io.js/issues/774) 将会在下个版本发布.
+
+### 提交历史
+
+* [7e2235a] - doc: add error documentation (Chris Dickinson)
+* [d832be4] - doc: update AUTHORS list (Rod Vagg)
+* [aea9b89] - doc: add shigeki as collaborator (Shigeki Ohtsu)
+* [e653080] - fs: improve `readFile` performance (Vladimir Kurchatkin)
+* [9681fca] - deps: update libuv to 1.4.0 (Saúl Ibarra Corretgé)
+* [5e825d1] - tracing: add lttng support for tracing on linux (Glen Keane)
+* [b677b84] - events: optimize various functions (Brian White)
+* [c86e383] - test: fix test failure with shared openssl (Shigeki Ohtsu)
+* [1151016] - doc: fix typo in crypto (Haoliang Gao)
+* [7c56868] - doc: change the order of crypto.publicDecrypt (Haoliang Gao)
+* [3f473ef] - assert: introduce `deepStrictEqual` (Vladimir Kurchatkin)
+* [828d19a] - doc: fix dns.lookup options example (Roman Reiss)
+* [90d2b35] - doc: update antiquated process.versions output (Ben Noordhuis)
+* [789bbb9] - doc: update node.js references in api docs (Ben Noordhuis)
+* [c22e5ac] - https: simpler argument check (Michaël Zasso)
+* [b9d3928] - util: simplify `isPrimitive` (Vladimir Kurchatkin)
+* [2c3121c] - benchmark: bump eventemitter number of iterations (Ben Noordhuis)
+* [633a990] - dns: allow dns.lookup() to return all addresses (Roman Reiss)
+* [1cd1d7a] - buffer: don't compare same buffers (Vladimir Kurchatkin)
+* [847b9d2] - benchmark: add more EventEmitter benchmarks (Brian White)
+* [96597bc] - doc: add lxe as collaborator (Aleksey Smolenchuk)
+* [7a301e2] - deps: make node-gyp work again on windows (Bert Belder)
+* [b188a34] - deps: make node-gyp fetch tarballs from iojs.org (Ben Noordhuis)
+* [af1bf49] - deps: upgrade npm to 2.5.1 (Forrest L Norvell)
+* [9dc9ec3] - lib: make debug client connect to 127.0.0.1 (Ben Noordhuis)
+* [e7573f9] - assert: don't compare object `prototype` property (Vladimir Kurchatkin)
+* [8d11799] - asyncwrap: fix nullptr parent check (Trevor Norris)
+* [62512bb] - test: accept EPROTONOSUPPORT ipv6 error (Ben Noordhuis)
+* [05f4dff] - asyncwrap: fix constructor condition for early ret (Trevor Norris)
+* [10277d2] - docs: include mention of new crypto methods (Calvin Metcalf)
+* [9a8f186] - child_process: add debug and error details (Zach Bruggeman)
+* [6f7a978] - crypto: clear error on return in TLS methods (Fedor Indutny)
+* [50daee7] - stream: simpler stream constructon (Sam Newman)
+* [e0730ee] - benchmark: allow compare via fine-grained filters (Brian White)
+* [96ffcb9] - src: reduce cpu profiler overhead (Ben Noordhuis)
+* [3e675e4] - benchmark: don't use template strings (Evan Lucas)
+* [8ac8b76] - doc: simplified pure consensus seeking (Mikeal Rogers)
+* [0a54b6a] - doc: update streams wg charter (Chris Dickinson)
+* [b8ead4a] - Adjusting for feedback in the PR. (Mikeal Rogers)
+* [3af7f30] - Initial documentation for working groups. (Mikeal Rogers)
+* [513724e] - doc: add GPG fingerprint for chrisdickinson (Chris Dickinson)
+* [4168198] - doc: add TC meeting 2015-01-28 minutes (Rod Vagg)
+
+
 ## 2015-02-03, 版本 1.1.0, @chrisdickinson
 
 ### 主要更新
