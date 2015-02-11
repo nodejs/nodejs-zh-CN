@@ -1,6 +1,5 @@
 # io.js 更新记录
 
-# io.js ChangeLog
 
 ## 2015-02-10, 版本 1.2.0, @rvagg
 
