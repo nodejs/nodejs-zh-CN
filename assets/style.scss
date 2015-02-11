@@ -252,6 +252,15 @@ nav {
 }
 
 .post {
+  .source {
+    background-color: #f1f1f1;
+    font-size: 14px;
+    padding: 0.1em 2em;
+    span {
+      margin-right: 10px;
+    }
+  }
+
   blockquote {
     margin: 1.8em .8em;
     border-left: 2px solid $gray;
