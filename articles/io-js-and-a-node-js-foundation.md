@@ -1,18 +1,18 @@
-# io.js and a node.js Foundation
+# io.js 和 node.js 基金会
 
 - Authors: @iojs
 - Referer: https://medium.com/@iojs/io-js-and-a-node-js-foundation-4e14699fb7be
 
 ---
 
-The current state of reconciliation.
+调解的现状。
 
-One week ago Scott Hammond, CEO of Joyent, invited the io.js TC (Technical Committee) to a private meeting where he expressed his intention to start a node.js Foundation and his desire to bring io.js back to the node.js project.
+一周前，Joyent 的 CEO Scott Hammond 邀请 io.js 的 TC（技术委员会）团队参加私人会面，他计划要建立 node.js 基金会，并且希望 io.js 回到 node.js 项目。
 
-In only a few months io.js has grown to 23 active core team members, several working groups, 27 language localization teams, and has been able to release quality software at a good pace with the support of an exceptional community. We’ve been able to accomplish this through an open governance structure that has rejuvenated the community and drawn more contributors to the project than we’ve ever had in the history of node.js.
+就在最近几个月，io.js 已经成长为由 23 个活跃的核心成员，一系列工作组，27 个本地化团队组成。得益于这样优秀社区的支持，我们有能力按更好的节奏来发布高质量的软件。通过开放的运作模式使社区焕发青春，让更多的贡献者加入这个项目，这些我们已经做到了，而在 node.js 的发展历程中是从没发生过的。
 
-The only thing that could make io.js better is putting to rest the questions hanging over the future of our split with node.js. We are eager to put this all behind us but we can’t sacrifice the progress we’ve made or the principals and open governance that got us here.
+唯一能让 io.js 更好发展的是解决与 node.js 决裂之后所带来的的问题。我们迫切地想要把这些抛在过去，但我们不能舍弃已经拥有的成就，以及让我们坚持到现在的原则和开放的运作模式。
 
-Talks with Joyent are ongoing. Once the foundation has a technical governance model you will see an issue on io.js’ GitHub about whether io.js should join which will be discussed and voted on openly in a public TC meeting following the governance rules we’ve already built.
+和 Joyent 的谈判还在继续，如果基金会一旦拥有了技术管理模型，TC（技术委员会）会在 io.js 的 Github issue 中公开讨论和投票是否应该加入其中，而且会遵守我们正在使用的运作模式。
 
-For the community, nothing has changed. Please continue to send your pull requests to io.js, join one of the 27 language localization teams, contribute to io.js’ working groups (streams, website, evangelism, tracing, build, roadmap), and continue to adopt io.js in your applications. We intend to continue releasing and improving io.js even if the name might change some day ☺
+对社区而言并没有变化，请继续给 io.js 提交 PR，加入 27 个本地化小组的其中之一，为 io.js 的工作组（streams, website, evangelism, tracing, build, roadmap）做出贡献，并且继续在你的应用中使用 io.js。就算有一天 io.js 的名字可能变化，我们也打算继续发布和优化 io.js☺
