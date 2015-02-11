@@ -116,7 +116,6 @@ img {
 }
 
 .date {
-  font-style: italic;
   color: $gray;
 }
 
@@ -252,11 +251,20 @@ nav {
 }
 
 .post {
+  font-size: 16px;
+  line-height: 1.8em;
+  h1 {
+    line-height: 1.4em;
+  }
   .source {
-    background-color: #f1f1f1;
+    background-color: #f9f8f0;
+    border-radius: 6px;
     font-size: 14px;
     padding: 0.1em 2em;
+    line-height: 1.0em;
     span {
+      color: #393106;
+      font-weight: bold;
       margin-right: 10px;
     }
   }
