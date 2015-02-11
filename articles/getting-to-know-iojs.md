@@ -1,5 +1,10 @@
 # Getting to know io.js
 
+- Authors: @Ralph Whitbeck
+- Referer: [https://developer.atlassian.com/blog/2015/01/getting-to-know-iojs/](https://developer.atlassian.com/blog/2015/01/getting-to-know-iojs/)
+
+===
+
 上个星期, Twitter 上许多在讨论 [io.js](http://iojs.org) 的最初版本. io.js 是一个 npm 平台兼容、 源于 Node.js 并且是 Joyent's [Node.js](http://nodejs.org/) 的 fork 版本.
 
 ## 为什么 fork Node.js?
@@ -41,9 +46,9 @@ io.js 将 V8 JavaScript 引擎更新到了 3.31.74.1，而该版本的 V8 是最
 
 ### 新 modules
 
-io.js 提供了一些新的实验性的内置 modules:
+io.js 提供了一些新的实验性的内置模块 (modules):
 
-*   [smalloc](https://iojs.org/api/smalloc.html): 允许你在 JavaScript 中手动进行 raw 内存的分配/释放/拷贝
+*   [smalloc](https://iojs.org/api/smalloc.html): 允许你在 JavaScript 中手动进行 raw 内存的分配/释放/拷贝。
 *   [v8](https://iojs.org/api/v8.html): 暴露 io.js 中 V8 的事件和接口。
 
 你可以在 [io.js 更新日志](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md) 中看到详细的变动.
@@ -78,11 +83,11 @@ io.js
 
 ## Trying it out
 
-想要通过 [Atlassian Connect](https://developer.atlassian.com/static/connect/docs/index.html)  add-on 来测试 io.js? 你可以快速获得 HipChat add-on 来上io.js运行，并按照以下简单步骤利用如 Generators 的 ES6 新特性：
+想要通过 [Atlassian Connect](https://developer.atlassian.com/static/connect/docs/index.html)  扩展来测试 io.js? 你可以快速使用 io.js 运行 HipChat 扩展，并按照以下简单步骤利用如 Generators 的 ES6 新特性：
 
-1.  来到 [HipChat add-on 入门指南](https://www.hipchat.com/docs/apiv2/quick_start?utm_source=dac&amp;utm_medium=blog&amp;utm_campaign=getting-to-know-iojs)and follow the instructions to get a add-on up and running with the[atlassianlabs/ac-koa-hipchat](https://bitbucket.org/atlassianlabs/ac-koa-hipchat?utm_source=dac&amp;utm_medium=blog&amp;utm_campaign=getting-to-know-iojs)framework
+1.  来到 [HipChat 扩展入门指南](https://www.hipchat.com/docs/apiv2/quick_start?utm_source=dac&amp;utm_medium=blog&amp;utm_campaign=getting-to-know-iojs) 根据教程构建扩展，并运行 [atlassianlabs/ac-koa-hipchat](https://bitbucket.org/atlassianlabs/ac-koa-hipchat?utm_source=dac&amp;utm_medium=blog&amp;utm_campaign=getting-to-know-iojs) 框架（详见入门指南）
 
-2.  `vagrant ssh` into 步骤1中设置的 vagrant server. 你可以通过下列命令来安装 nvm:
+2.  `vagrant ssh` 连接到步骤1中设置的 vagrant 服务器. 你可以通过下列命令来安装 nvm:
 
 
     curl https://raw.githubusercontent.com/creationix/nvm/v0.23.0/install.sh | bash
@@ -101,14 +106,14 @@ io.js
 
     $ cd project && npm start web
 
-该命令会 start the Koa HipChat add-on server 然后你可以通过下列 URL来注册你的 add-onwith a HipChat 聊天室:
+该命令会开启使用 Koa 的 HipChat 扩展服务器，然后你可以通过下列 URL 来给你的扩展注册一个 HipChat 聊天室:
 
      `https://xxxxxxxx.ngrok.com/addon/capabilities`
 
       where `xxxxxxxx.ngrok.com` is the url specified in the shell after the  server starts up.
 
-如果你可以在聊天框中输入 `/hello` 之后获得 HipChat add-on 回答的 "Hi" 那么恭喜! 你现在正在利用如 Generators 的 ES6 新特性运行一个 io.js 应用.
+如果你可以在聊天框中输入 `/hello` 之后获得 HipChat 扩展回答的 "Hi" 那么恭喜! 你现在正在利用如 Generators 的 ES6 新特性运行一个 io.js 应用.
 
 ## 你会使用 io.js 吗?
 
-你可能会问自己，现在我会用 io.js 来运行我的 Node add-ons 吗？眼下 io.js 的年龄刚过一周，在写这篇文章时的最新版本 V1.0.3 仍被贴上“不稳定”的标签。像 nvm 这样的服务还存在 bug。还没有运营商宣布支持它。现在，如果你是一个早期采用者，并希望看到一个“稳定”版的 io.js，欢迎使用 io.js 测试你的 add-on 并发现 [issues](https://github.com/iojs/io.js/issues)。归根结底，现在切换到 io.js 还太早，但它值得关注，说不定它会成为最流行的服务端JavaScript平台。
+你可能会问自己，现在我会用 io.js 来运行我的 Node 扩展吗？眼下 io.js 的年龄刚过一周，在写这篇文章时的最新版本 V1.0.3 仍被贴上“不稳定”的标签。像 nvm 这样的服务还存在 bug。还没有运营商宣布支持它。现在，如果你支持 io.js，并希望看到一个“稳定”版的 io.js，欢迎使用 io.js 测试你的扩展并发现 [issues](https://github.com/iojs/io.js/issues)。归根结底，现在切换到 io.js 还太早，但它值得关注，说不定它会成为最流行的服务端JavaScript平台。
