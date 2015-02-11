@@ -11,6 +11,8 @@ google_analytics:
 url: "http://iojs.github.io/iojs-cn"
 baseurl: "/iojs-cn"
 
+excerpt_separator: "<!--more-->"
+
 #
 # !! You don't need to change any of the configuration flags below !!
 #
