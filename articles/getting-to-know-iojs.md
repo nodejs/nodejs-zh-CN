@@ -85,24 +85,24 @@ io.js
 
 想要通过 [Atlassian Connect](https://developer.atlassian.com/static/connect/docs/index.html)  扩展来测试 io.js? 你可以快速使用 io.js 运行 HipChat 扩展，并按照以下简单步骤利用如 Generators 的 ES6 新特性：
 
-1.  来到 [HipChat 扩展入门指南](https://www.hipchat.com/docs/apiv2/quick_start?utm_source=dac&amp;utm_medium=blog&amp;utm_campaign=getting-to-know-iojs) 根据教程构建扩展，并运行 [atlassianlabs/ac-koa-hipchat](https://bitbucket.org/atlassianlabs/ac-koa-hipchat?utm_source=dac&amp;utm_medium=blog&amp;utm_campaign=getting-to-know-iojs) 框架（详见入门指南）
+1.来到 [HipChat 扩展入门指南](https://www.hipchat.com/docs/apiv2/quick_start?utm_source=dac&amp;utm_medium=blog&amp;utm_campaign=getting-to-know-iojs) 根据教程构建扩展，并运行 [atlassianlabs/ac-koa-hipchat](https://bitbucket.org/atlassianlabs/ac-koa-hipchat?utm_source=dac&amp;utm_medium=blog&amp;utm_campaign=getting-to-know-iojs) 框架（详见入门指南）
 
-2.  `vagrant ssh` 连接到步骤1中设置的 vagrant 服务器. 你可以通过下列命令来安装 nvm:
-
+2.`vagrant ssh` 连接到步骤1中设置的 vagrant 服务器. 你可以通过下列命令来安装 nvm:
 
     curl https://raw.githubusercontent.com/creationix/nvm/v0.23.0/install.sh | bash
 
 
 该命令会安装 nvm 并更新你的 shell. 接下来你需要输入 `exit` 命令来关闭 ssh 连接并重启 shell.
 
-3.  打开 `package.json` 并编辑 web 选项的脚本，来使用 io.js 替代 Node.js:
+
+3.打开 `package.json` 并编辑 web 选项的脚本，来使用 io.js 替代 Node.js:
 
     "scripts": {
      "web": "iojs web.js",
      "web-dev": "nodemon --harmony -e js,json,css,hbs web.js"
     },
 
-4.  再次运行 `vagrant ssh` 来重启服务器 shell 并且运行下面的命令来启动应用:
+4.再次运行 `vagrant ssh` 来重启服务器 shell 并且运行下面的命令来启动应用:
 
     $ cd project && npm start web
 
