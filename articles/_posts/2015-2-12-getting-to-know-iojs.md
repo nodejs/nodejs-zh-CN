@@ -1,15 +1,15 @@
-# Getting to know io.js
-
-- Authors: @Ralph Whitbeck
-- Referer: [https://developer.atlassian.com/blog/2015/01/getting-to-know-iojs/](https://developer.atlassian.com/blog/2015/01/getting-to-know-iojs/)
-
-===
+---
+layout: post
+title: Getting to know io.js
+author: Ralph Whitbeck
+reference: https://developer.atlassian.com/blog/2015/01/getting-to-know-iojs/
+---
 
 上个星期, Twitter 上许多在讨论 [io.js](http://iojs.org) 的最初版本. io.js 是一个 npm 平台兼容、 源于 Node.js 并且是 Joyent's [Node.js](http://nodejs.org/) 的 fork 版本.
 
 ## 为什么 fork Node.js?
 
-io.js 开发团队主要由 Node.js 的[关键的贡献者](https://github.com/iojs/io.js/blob/v1.x/README.md#current-project-team-members)组成. 在八月份的时候, 该团队创建了 [Node Forward](http://nodeforward.org/), 目的是尝试通过社区来帮助改善Node.js. 
+io.js 开发团队主要由 Node.js 的[关键的贡献者](https://github.com/iojs/io.js/blob/v1.x/README.md#current-project-team-members)组成. 在八月份的时候, 该团队创建了 [Node Forward](http://nodeforward.org/), 目的是尝试通过社区来帮助改善Node.js.
 
 > 一个致力于通过开放合作改善 Node，JavaScript 和其生态系统的社区。
 
@@ -19,7 +19,7 @@ io.js 开发团队主要由 Node.js 的[关键的贡献者](https://github.com/i
 
 结果是, 由于 Node 商标权的限制该社区所做的贡献不能发布, 于是他们决定 fork node.js，然后 io.js 便诞生了.
 
-[Isaac Schlueter](https://twitter.com/izs) 是核心贡献者, [provides a lot of the backstory behind the decision to fork on his personal blog](http://blog.izs.me/post/104685388058/io-js). 一个重要的信息是, io.js 的意图是两个项目能在未来某个时候合并. 
+[Isaac Schlueter](https://twitter.com/izs) 是核心贡献者, [provides a lot of the backstory behind the decision to fork on his personal blog](http://blog.izs.me/post/104685388058/io-js). 一个重要的信息是, io.js 的意图是两个项目能在未来某个时候合并.
 
 ## io.js 做了什么新改动?
 
