@@ -1,5 +1,91 @@
 # io.js 更新记录
 
+## 2015-02-10, Version 1.2.0, @rvagg
+
+### Notable changes
+
+* **stream**:
+  - Simpler stream construction, see [readable-stream/issues#102](https://github.com/iojs/readable-stream/issues/102) for details. This extends the streams base objects to make their constructors accept default implementation methods, reducing the boilerplate required to implement custom streams. An updated version of readable-stream will eventually be released to match this change in core. (@sonewman)
+* **dns**:
+  - `lookup()` now supports an `'all'` boolean option, default to `false` but when turned on will cause the method to return an array of *all* resolved names for an address, see, [#744](https://github.com/iojs/io.js/pull/744) (@silverwind)
+* **assert**:
+  - Remove `prototype` property comparison in `deepEqual()`, considered a bugfix, see [#636](https://github.com/iojs/io.js/pull/636) (@vkurchatkin)
+  - Introduce a `deepStrictEqual()` method to mirror `deepEqual()` but performs strict equality checks on primitives, see [#639](https://github.com/iojs/io.js/pull/639) (@vkurchatkin)
+* **tracing**:
+  - Add [LTTng](http://lttng.org/) (Linux Trace Toolkit Next Generation) when compiled with the  `--with-lttng` option. Trace points match those available for DTrace and ETW. [#702](https://github.com/iojs/io.js/pull/702) (@thekemkid)
+* **docs**:
+  - Lots of doc updates, see individual commits
+  - New **Errors** page discussing JavaScript errors, V8 specifics, and io.js specific error details. (@chrisdickinson)
+* **npm** upgrade to 2.5.1, short changelog:
+  - [npm/0e8d473](https://github.com/npm/npm/commit/0e8d4736a1cbdda41ae8eba8a02c7ff7ce80c2ff) [#7281](https://github.com/npm/npm/issues/7281) `npm-registry-mock@1.0.0`: Clean up API, set `connection: close`, which makes tests pass on io.js 1.1.x.
+  ([@robertkowalski](https://github.com/robertkowalski))
+  - [npm/f9313a0](https://github.com/npm/npm/commit/f9313a066c9889a0ee898d8a35676e40b8101e7f)
+  [#7226](https://github.com/npm/npm/issues/7226) Ensure that all request
+  settings are copied onto the agent.
+  ([@othiym23](https://github.com/othiym23))
+   - [npm/fec4c96](https://github.com/npm/npm/commit/fec4c967ee235030bf31393e8605e9e2811f4a39)
+  Allow `--no-proxy` to override `HTTP_PROXY` setting in environment.
+  ([@othiym23](https://github.com/othiym23))
+  - [npm/9d61e96](https://github.com/npm/npm/commit/9d61e96fb1f48687a85c211e4e0cd44c7f95a38e)
+  `npm outdated --long` now includes a column showing the type of dependency.
+  ([@watilde](https://github.com/watilde))
+* **libuv** upgrade to 1.4.0, see [libuv ChangeLog](https://github.com/libuv/libuv/blob/v1.x/ChangeLog)
+* Add new collaborators:
+  - Aleksey Smolenchuk (@lxe)
+  - Shigeki Ohtsu (@shigeki)
+
+### Known issues
+
+* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
+* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774) that should appear in the next patch release.
+
+### Commits
+
+* [7e2235a] - doc: add error documentation (Chris Dickinson)
+* [d832be4] - doc: update AUTHORS list (Rod Vagg)
+* [aea9b89] - doc: add shigeki as collaborator (Shigeki Ohtsu)
+* [e653080] - fs: improve `readFile` performance (Vladimir Kurchatkin)
+* [9681fca] - deps: update libuv to 1.4.0 (Saúl Ibarra Corretgé)
+* [5e825d1] - tracing: add lttng support for tracing on linux (Glen Keane)
+* [b677b84] - events: optimize various functions (Brian White)
+* [c86e383] - test: fix test failure with shared openssl (Shigeki Ohtsu)
+* [1151016] - doc: fix typo in crypto (Haoliang Gao)
+* [7c56868] - doc: change the order of crypto.publicDecrypt (Haoliang Gao)
+* [3f473ef] - assert: introduce `deepStrictEqual` (Vladimir Kurchatkin)
+* [828d19a] - doc: fix dns.lookup options example (Roman Reiss)
+* [90d2b35] - doc: update antiquated process.versions output (Ben Noordhuis)
+* [789bbb9] - doc: update node.js references in api docs (Ben Noordhuis)
+* [c22e5ac] - https: simpler argument check (Michaël Zasso)
+* [b9d3928] - util: simplify `isPrimitive` (Vladimir Kurchatkin)
+* [2c3121c] - benchmark: bump eventemitter number of iterations (Ben Noordhuis)
+* [633a990] - dns: allow dns.lookup() to return all addresses (Roman Reiss)
+* [1cd1d7a] - buffer: don't compare same buffers (Vladimir Kurchatkin)
+* [847b9d2] - benchmark: add more EventEmitter benchmarks (Brian White)
+* [96597bc] - doc: add lxe as collaborator (Aleksey Smolenchuk)
+* [7a301e2] - deps: make node-gyp work again on windows (Bert Belder)
+* [b188a34] - deps: make node-gyp fetch tarballs from iojs.org (Ben Noordhuis)
+* [af1bf49] - deps: upgrade npm to 2.5.1 (Forrest L Norvell)
+* [9dc9ec3] - lib: make debug client connect to 127.0.0.1 (Ben Noordhuis)
+* [e7573f9] - assert: don't compare object `prototype` property (Vladimir Kurchatkin)
+* [8d11799] - asyncwrap: fix nullptr parent check (Trevor Norris)
+* [62512bb] - test: accept EPROTONOSUPPORT ipv6 error (Ben Noordhuis)
+* [05f4dff] - asyncwrap: fix constructor condition for early ret (Trevor Norris)
+* [10277d2] - docs: include mention of new crypto methods (Calvin Metcalf)
+* [9a8f186] - child_process: add debug and error details (Zach Bruggeman)
+* [6f7a978] - crypto: clear error on return in TLS methods (Fedor Indutny)
+* [50daee7] - stream: simpler stream constructon (Sam Newman)
+* [e0730ee] - benchmark: allow compare via fine-grained filters (Brian White)
+* [96ffcb9] - src: reduce cpu profiler overhead (Ben Noordhuis)
+* [3e675e4] - benchmark: don't use template strings (Evan Lucas)
+* [8ac8b76] - doc: simplified pure consensus seeking (Mikeal Rogers)
+* [0a54b6a] - doc: update streams wg charter (Chris Dickinson)
+* [b8ead4a] - Adjusting for feedback in the PR. (Mikeal Rogers)
+* [3af7f30] - Initial documentation for working groups. (Mikeal Rogers)
+* [513724e] - doc: add GPG fingerprint for chrisdickinson (Chris Dickinson)
+* [4168198] - doc: add TC meeting 2015-01-28 minutes (Rod Vagg)
+
+
 ## 2015-02-03, 版本 1.1.0, @chrisdickinson
 
 ### 主要更新
@@ -7,22 +93,22 @@
 * debug: 修复 v8 post-mortem 调试 bug.
 * crypto: publicEncrypt 开始支持受密码保护的私钥.
 * crypto: 哈希方法提速 ~30%.
-* crypto: 添加 privateEncrypt/publicDecrypt 方法.
+* crypto: 新增 privateEncrypt/publicDecrypt 方法.
 * errors
   - 优化 util.inspect 格式化结果
-  - fs 抛出的错误, 添加更详细的描述. 这需要一个 `NODE_MODULE_VERSION` bump.
-  - http.setHeader 抛出的错误, 添加更详细的描述
+  - fs 抛出的错误, 新增更详细的描述. 这需要一个 `NODE_MODULE_VERSION` bump.
+  - http.setHeader 抛出的错误, 新增更详细的描述
 * 依赖更新:
   - npm: 更新到 2.4.1
   - http-parser: 回滚到 2.3.0
   - libuv: 更新到 1.3.0
   - v8: 更新到 4.1.0.14
 * http.request: 从选项中继承属性
-* buffers 添加可迭代接口 (`for (let byte of buffer.values()) { }`)
+* buffers 新增了可迭代接口 (`for (let byte of buffer.values()) { }`)
 * fs: 修复 `fs.createReadStream` 的 fd 泄露. 详情参看 497fd72.
 * installer: Windows 平台完成安装后, 触发 WM_SETTINGCHANGE 事件,
     用以让其他运行中进程知晓 PATH 的变化
-* 添加贡献者:
+* 新增贡献者:
   - Vladimir Kurchatkin (@vkurchatkin)
   - Micleușanu Nicu (@micnic)
 
@@ -108,7 +194,7 @@
 * 给 V8 打补丁, 用于检测 ARMv6; 使程序又能在 ARMv6 上运行 (Raspberry Pi 等.)
 * V8 小幅更新 4.1.0.7 to 4.1.0.12
 * 'punycode' 核心模块状态, 从不稳定变为稳定
-* 添加贡献者:
+* 新增贡献者:
   - Thorsten Lorenz (@thlorenz)
   - Stephen Belanger (@qard)
   - Jeremiah Senkpiel (@fishrock123)
@@ -256,57 +342,54 @@
 
 --------------------------------------
 
-以下是 io.js v1.0.0 相较于 Node.js 当时稳定版本 v0.10.35 的对用户而言比较明显的变更总结.
-v1.0.0 发布时 Node.js 的开发版本为 v0.11.14, 并正在准备发布 v0.11.15. io.js 继承了 [joyent/node](https://github.com/joyent/node) 项目 v0.11 分支的主要代码,
-因此可以被认为是v0.11 的扩展.
+以下是当前_稳定版_的 Node.js(v0.10.35) 到 io.js(v1.0.0) 的变更概要。v1.0.0 发布时 Node.js 最新的_非稳定版_为 v0.11.14，并正在准备发布 v0.11.15。io.js 的代码是源于 [joyent/node](https://github.com/joyent/node) v0.11 分支，包括其中的大部分变更，因此可视为 v0.11 的扩充。
 
-
-## Summary of changes from Node.js v0.10.35 to io.js v1.0.0
+## Node.js v0.10.35 到 io.js v1.0.0 的变更概要
 
 ### General
 
-- The V8 JavaScript engine bundled with io.js was upgraded dramatically, from version 3.14.5.9 in Node.js v0.10.35 and 3.26.33 in Node.js v0.11.14 to 3.31.74.1 for io.js v1.0.0. This brings along many fixes and performance improvements, as well as additional support for new ES6 language features! For more information on this, check out [the io.js ES6 page](https://iojs.org/es6.html).
-- Other bundled technologies were upgraded:
-  - c-ares: 1.9.0-DEV to 1.10.0-DEV
-  - http_parser: 1.0 to 2.3
-  - libuv: 0.10.30 to 1.2.0
-  - npm: 1.4.28 to 2.1.18
-  - openssl: 1.0.1j to 1.0.1k
-  - punycode: 1.2.0 to 1.3.2.
-- Performance and stability improvements on all platforms.
+- io.js 内置的 V8 引擎升级幅度很大，从 Node.js v0.10.35 的 3.14.5.9 和 Node.js v0.11.14 升级到 io.js v1.0.0 的 3.31.74.1。他修复了很多 bug 且提升了性能，而且额外增加了新的 ES6 特性。获取更多信息请查看 [io.js ES6 页面](https://iojs.org/es6.html)
+- 其他内置的模块也相应升级了：
+  - c-ares: 1.9.0-DEV 升级到 1.10.0-DEV
+  - http_parser: 1.0 升级到 2.3
+  - libuv: 0.10.30 升级到 1.2.0
+  - npm: 1.4.28 升级到 2.1.18
+  - openssl: 1.0.1j 升级到 1.0.1k
+  - punycode: 1.2.0 升级到 1.3.2.
+- 所有平台优化了性能和稳定性
 
 ### buffer
 
 https://iojs.org/api/buffer.html
 
-- Added `buf.writeUIntLE`, `buf.writeUIntBE`, `buf.writeIntLE`, `buf.writeIntBE`, `buf.readUIntLE`, `buf.readUIntBE`, `buf.readIntLE` and `buf.readIntBE` methods that read and write value up to 6 bytes.
-- Added `Buffer.compare()` which does a `memcmp()` on two Buffer instances. Instances themselves also have a `compare()`.
-- Added `buffer.equals()` that checks equality of Buffers by their contents.
-- Added `new Buffer(otherBuffer)` constructor.
-- Tweaked `SlowBuffer`'s semantics.
-- Updated the output of `buffer.toJSON()` to not be the same as an array. Instead it is an object specifically tagged as a buffer, which can be recovered by passing it to (a new overload of) the `Buffer` constructor.
+- 新增 `buf.writeUIntLE`, `buf.writeUIntBE`, `buf.writeIntLE`, `buf.writeIntBE`, `buf.readUIntLE`, `buf.readUIntBE`, `buf.readIntLE` and `buf.readIntBE` 方法，支持6个字节读写。
+- 新增 `Buffer.compare()` 方法，使用 `memcmp()` 对比两个 Buffer 实例的内存区域，实例也有一个 `compare()` 方法。
+- 新增 `buffer.equals()` 方法，对比 Buffer 的内容是否一致。
+- 新增 `new Buffer(otherBuffer)` 构造函数。
+- 调整 `SlowBuffer` 的语义
+- 更新 `buffer.toJSON()` 的输出，不再输出数组而是输出一个对象。此对象可被标记为一个 buffer 并且可以传入到 Buffer 构建函数中重新实例化。
 
 ### child_process
 
 https://iojs.org/api/child_process.html
 
-- Added a `shell` option to `child_process.exec`.
-- Added synchronous counterparts for the child process functions: `child_process.spawnSync`, `child_process.execSync`, and `child_process.execFileSync`.
-- Added the path to any `ENOENT` errors, for easier debugging.
+- `child_process.exec` 新增了一个 `shell` 的参数。
+- 新增一系列同步的方法：`child_process.spawnSync`, `child_process.execSync`, and `child_process.execFileSync`。
+- 给 `ENOENT` 错误新增了路径，方便调试。
 
 ### console
 
 https://iojs.org/api/console.html
 
-- Added an `options` parameter to `console.dir`.
+- `console.dir` 新增了一个 `options` 参数。
 
 ### cluster
 
 https://iojs.org/api/cluster.html
 
-- Updated `cluster` to use round-robin load balancing by default on non-Windows platforms. The scheduling policy is configurable however.
-- `--debug` has been made cluster-aware.
-- Many bug fixes.
+- 更新了 cluster 模块，在非 Windows 平台默认使用 round-robin 负载均衡算法，该项可以配置。
+- 支持了 `--debug` 调试
+- 修复了很多 bug
 
 ### crypto
 
@@ -325,58 +408,58 @@ https://iojs.org/api/crypto.html
 
 https://iojs.org/api/dgram.html
 
-- Added support for receiving empty UDP packets.
+- 新增支持接受 UDP 空包。
 
 ### dns
 
 https://iojs.org/api/dns.html
 
-- Added `dns.resolveSoa`, `dns.getServers`, and `dns.setServers` methods.
-- Added `hostname` on error messages when available.
-- Improved error handling consistency.
+- 新增 `dns.resolveSoa`, `dns.getServers`, and `dns.setServers` 方法。
+- 在错误信息上添加 `hostname`
+- 优化错误处理的一致性
 
 ### events
 
 https://iojs.org/api/events.html
 
-- Added chaining support to `EventEmitter.setMaxListeners`.
-- Updated `require('events')` to return the `EventEmitter` constructor, allowing the module to be used like `var EventEmitter = require('events')` instead of `var EventEmitter = require('events').EventEmitter`.
+- 新增 `EventEmitter.setMaxListeners` 的链式调用
+- `require('events')` 直接返回 `EventEmitter` 构造函数，可直接使用这个模块，如 `var EventEmitter = require('events')` 而不是 `var EventEmitter = require('events').EventEmitter`。
 
 ### fs
 
 https://iojs.org/api/fs.html
 
-- Added `fs.access`, and deprecated `fs.exists`. Please read the documentation carefully.
-- Added more informative errors and method call site details when the `NODE_DEBUG` environment is set to ease debugging.
-- Added option to `fs.watch` for recursive sub-directory support (OS X only).
-- Fixed missing callbacks errors just being printed instead of thrown.
+- 新增 `fs.access`，弃用 `fs.exists`，请仔细阅读文档。
+- NODE_DEBUG 的值非空时显示更多的错误信息以及方法调用的具体位置来优化调试。
+- 新增 `fs.watch` 的参数支持子目录递归（只支持 OS X）。
+- 修复 callback 不存在会异常的情况，只打印错误。
 
 ### http
 
 https://iojs.org/api/http.html
 
-- Added support for `response.write` and `response.end` to receive a callback to know when the operation completes.
-- Added support for 308 status code (see RFC 7238).
-- Added `http.METHODS` array, listing the HTTP methods supported by the parser.
-- Added `request.flush` method.
-- Added `response.getHeader('header')` method that may be used before headers are flushed.
-- Added `response.statusMessage` property.
-- Added Client Keep-Alive behavior.  Set `keepAlive:true` in request options to reuse connections indefinitely.
-- Added `rawHeaders` and `rawTrailers` members on incoming message.
-- Removed default chunked encoding on `DELETE` and `OPTIONS`.
+- 新增支持 `response.write` 和 `response.end` 接受一个 callback，当操作完成后被执行。
+- 新增 308 状态码的支持（详见 RFC 7238）。
+- 新增 `http.METHODS` 数组，列出所有解析器支持的 HTTP 方法。
+- 新增 `request.flush` 方法。
+- 新增 `response.getHeader('header')` 方法，可以在发送响应头之前调用。
+- 新增 `response.statusMessage` 属性。
+- 新增客户端 Keep-Alive 行为，在 request 的 options 设置 `keepAlive:true` 可无限重用连接。
+- 在 incoming message 新增 `rawHeaders` 和 `rawTrailers` 属性。
+- 删除 `DELETE` 和 `OPTIONS` 默认的分块编码。
 
 ### net
 
 https://iojs.org/api/net.html
 
-- Changed `net.Server.listen` such that, when the bind address is omitted, IPv6 is tried first, and IPv4 is used as a fallback.
+- `net.Server.listen` 变更，当绑定的地址被忽略后，先尝试 IPv6，如果失败再尝试 IPv4。
 
 ### os
 
 https://iojs.org/api/os.html
 
-- Added MAC addresses, netmasks and scope IDs for IPv6 addresses to `os.networkInterfaces` method output.
-- Updated `os.tmpdir` on Windows to use the `%SystemRoot%` or `%WINDIR%` environment variables instead of the hard-coded value of `c:\windows` when determining the temporary directory location.
+- `os.networkInterfaces` 方法新增 IPv6 的 MAC 地址，网络掩码和范围 ID。
+- 更新 Windows 平台的 `os.tmpdir`，当定义临时目录的时候，使用 `%SystemRoot%` 或 `%WINDIR%` 环境变量，而不是硬编码的 `c:\windows`。
 
 ### path
 
@@ -454,17 +537,17 @@ https://iojs.org/api/timers.html
 
 https://iojs.org/api/tls.html
 
-- 添加 `detailed` 布尔标志到 `getPeerCertificate` 来返回详细的认证信息 (带有原始 DER 字节).
-- 添加 `renegotiate(options, callback)` 方法用于回话 renegotiation.
-- 添加 `setMaxSendFragment` 方法用以调整 TLS 碎片大小.
-- 添加 `dhparam` 选项 到 DH 密码.
-- 添加 `ticketKeys` 选项到 TLS ticket AES 加密钥匙设置.
-- 添加异步 OCSP-stapling 回调.
-- 添加异步会话存储事件
-- 添加异步 SNI 回调.
-- 添加多 key 服务器支持 (例如, ECDSA+RSA 服务器).
-- 添加可选回调到 `checkServerIdentity` 来让用户手动认证验证
-- 添加对 ECDSA/ECDHE 密码支持.
+- 新增 `detailed` 布尔标志到 `getPeerCertificate` 来返回详细的认证信息 (带有原始 DER 字节).
+- 新增 `renegotiate(options, callback)` 方法用于回话 renegotiation.
+- 新增 `setMaxSendFragment` 方法用以调整 TLS 碎片大小.
+- 新增 `dhparam` 选项 到 DH 密码.
+- 新增 `ticketKeys` 选项到 TLS ticket AES 加密钥匙设置.
+- 新增异步 OCSP-stapling 回调.
+- 新增异步会话存储事件
+- 新增异步 SNI 回调.
+- 新增多 key 服务器支持 (例如, ECDSA+RSA 服务器).
+- 新增可选回调到 `checkServerIdentity` 来让用户手动认证验证
+- 新增对 ECDSA/ECDHE 密码支持.
 - 用 C++ 实现 TLS 流, 从而提升性能.
 - 把 `createCredentials` 移到 `tls` 并重命名为 `createSecureContext`.
 - 移除对 SSLv2 和 SSLv3 的支持.
@@ -480,8 +563,8 @@ https://iojs.org/api/url.html
 
 https://iojs.org/api/util.html
 
-- 添加 `util.debuglog`.
-- 添加多个类型检测方法. 查看[文档](https://iojs.org/api/util.html).
+- 新增 `util.debuglog`.
+- 新增多个类型检测方法. 查看[文档](https://iojs.org/api/util.html).
 - 对 `util.format` 进行了几处更新:
   - `-0` 原样打印, 而不是 `0`.
   - 所有 error 实例 `instanceof Error` 都会被格式化成 error.
@@ -502,8 +585,8 @@ https://iojs.org/api/vm.html
 `vm` 被基于卓越的[Contextify](https://github.com/brianmcd/contextify) native 模块完全重写, 从而工作的更好,
 Contextify 所有的功能被加入到了核心模块中, 并进行了优化.
 
-- 添加 `vm.isContext(object)` 方法来确定一个`object` 是否被 contextified.
-- 添加 `vm.runInDebugContext(code)` 方法用以在 V8 调试环境编译和执行 `code`.
+- 新增 `vm.isContext(object)` 方法来确定一个`object` 是否被 contextified.
+- 新增 `vm.runInDebugContext(code)` 方法用以在 V8 调试环境编译和执行 `code`.
 - 更新 `vm.createContext(sandbox)` 来 "contextify" 沙盒, 使它能够作为 `vm` 脚本的全局环境, 然后返回它. 它不会创建单独的 context 对象
 - 更新 `vm` 和 `vm.Script` 的大部分方法, 能接受一个 `options` 对象, 允许用户为脚本自定义 timeout, 错误的展示方式, 以及文件名 (用户栈追踪).
 - 修改提供的沙盒对象, 从而可直接用做全局环境, 去除提供的沙盒对象和通过运行 `vm` 模块出现在脚本内部的全局对象之间的错误试探性属性拷贝
@@ -513,9 +596,9 @@ Contextify 所有的功能被加入到了核心模块中, 并进行了优化.
 
 https://iojs.org/api/zlib.html
 
-- 添加支持 `zlib.flush` 指定特殊的 flush 方法 (默认为 `Z_FULL_FLUSH`).
-- 添加支持 `zlib.params` 来在压缩时动态更新压缩级别和策略.
-- 添加同步版本的 zlib 方法.
+- 新增支持 `zlib.flush` 指定特殊的 flush 方法 (默认为 `Z_FULL_FLUSH`).
+- 新增支持 `zlib.params` 来在压缩时动态更新压缩级别和策略.
+- 新增同步版本的 zlib 方法.
 
 ### C++ API Changes
 
