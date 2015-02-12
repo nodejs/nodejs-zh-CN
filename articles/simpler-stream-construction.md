@@ -36,7 +36,8 @@ readStream.on('data', function(chunk) { // 当有数据流出时，写入数据
 
 readStream.on('end', function() { // 当没有数据时，关闭数据流
     writeStream.end();
-});```
+});
+```
 
 上面的写法有一些问题，如果写入的速度跟不上读取的速度，有可能导致数据丢失。正常的情况应该是，写完一段，再读取下一段，如果没有写完的话，就让读取流先暂停，等写完再继续，于是代码可以修改为：
 
@@ -211,4 +212,3 @@ liner.on('readable', function () {
   }
 });
 ```
-
