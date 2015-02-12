@@ -77,5 +77,5 @@ iojs-cn
 
   1. 执行 `$ gem install github-pages` 以安装 Jekyll 和相关插件；
   2. 运行网站 `jekyll serve`，jekyll 会自动监控文件的变化
-  3. 访问 http://0.0.0.0:4000/iojs-cn 来查看效果
+  3. 访问 http://0.0.0.0:4000 来查看效果
 
