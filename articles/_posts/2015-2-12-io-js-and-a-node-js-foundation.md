@@ -1,8 +1,8 @@
-# io.js 和 node.js 基金会
-
-- Authors: @iojs
-- Referer: https://medium.com/@iojs/io-js-and-a-node-js-foundation-4e14699fb7be
-
+---
+layout: post
+title: io.js 和 node.js 基金会
+author: iojs
+reference: https://medium.com/@iojs/io-js-and-a-node-js-foundation-4e14699fb7be
 ---
 
 调解的现状。

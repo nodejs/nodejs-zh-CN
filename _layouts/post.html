@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<article class="post">
+  <h1>{{ page.title }}</h1>
+
+  <div class="entry">
+    {% if page.author || page.reference %}
+    <div class="source">
+      {% if page.author %}
+      <p><span>原文作者</span>{{ page.author }}</p>
+      {% endif %}
+      {% if page.reference %}
+      <p><span>内容出处</span><a href="{{ page.reference }}">{{ page.reference }}</a></p>
+      {% endif %}
+    </div>
+    {% endif %}
+    {{ content }}
+  </div>
+
+  <div class="date">
+    发布于 {{ page.date | date: "%Y-%m-%d" }}
+  </div>
+
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="{{ site.url }}{{ page.url }}" data-title="{{ page.title }}" data-url="{{ site.url }}{{ page.url }}"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+var duoshuoQuery = {short_name:"iojs-cn"};
+(function() {
+ var ds = document.createElement('script');
+ ds.type = 'text/javascript';ds.async = true;
+ ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+ ds.charset = 'UTF-8';
+ (document.getElementsByTagName('head')[0] 
+  || document.getElementsByTagName('body')[0]).appendChild(ds);
+ })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</article>
