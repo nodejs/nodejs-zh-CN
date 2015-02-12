@@ -7,8 +7,8 @@ footer-links:
   twitter: iojs_cn
 
 google_analytics:
-url: "http://iojs.github.io/iojs-cn"
-baseurl: "/iojs-cn"
+url: "http://ciojs.org"
+baseurl:
 
 excerpt_separator: "<!--more-->"
 
