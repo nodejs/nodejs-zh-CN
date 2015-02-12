@@ -17,6 +17,15 @@
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/style.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
+    <script>
+    (function(location) {
+      var basePath = '/iojs-cn';
+      if (location.hostname === 'iojs.github.io' && location.pathname.indexOf(basePath) === 0) {
+        location.replace('http://ciojs.org' + location.pathname.slice(basePath.length));
+      }
+    })(window.location);
+    </script>
+
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
   </head>
 

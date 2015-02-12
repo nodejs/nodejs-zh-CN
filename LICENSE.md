@@ -3,7 +3,7 @@ The following directories and their contents are licensed under the Creative Com
 0. weekly
 0. articles
 
-For any use of the contents in the above directories, we require a prominently placed link to http://iojs.github.io/iojs-cn.
+For any use of the contents in the above directories, we require a prominently placed link to http://ciojs.org.
 
 All other directories and files are MIT Licensed.
 
