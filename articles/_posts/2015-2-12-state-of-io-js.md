@@ -1,9 +1,9 @@
-# io.js 的现状
-
-- Authors: @mikeal
-- Referer: https://medium.com/node-js-javascript/state-of-io-js-2b3094e6f923
-
-===
+---
+layout: post
+title: io.js 的现状
+author: mikeal
+reference: https://medium.com/node-js-javascript/state-of-io-js-2b3094e6f923
+---
 
 > 这是我有生之年经历过的最积极与开放的开源项目。
 
