@@ -215,6 +215,10 @@ img {
   margin: 23px 0 0;
   float: left;
   list-style: none;
+
+  @include mobile {
+    float: none;
+  }
 }
 
 .site-category li {
@@ -228,7 +232,6 @@ img {
 
     @include mobile {
       margin: 0 10px;
-      color: $blue;
     }
   }
 
@@ -259,7 +262,6 @@ nav {
 
     @include mobile {
       margin: 0 10px;
-      color: $blue;
     }
 
     &.iojs-site {
@@ -304,11 +306,11 @@ nav {
   }
 
   blockquote {
-    margin: 1.8em .8em;
+    margin: 1.8em 0;
     border-left: 2px solid $gray;
     padding: 0.1em 1em;
     color: $gray;
-    font-size: 22px;
+    font-size: 18px;
     font-style: italic;
   }
 

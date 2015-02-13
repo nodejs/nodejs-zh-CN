@@ -39,7 +39,9 @@
             <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
             <p class="site-description">{{ site.description }}</p>
           </div>
-
+          <nav>
+            <a class="iojs-site" href="https://iojs.org/cn/">io.js 官网</a>
+          </nav>
           <ul class="site-category">
             {% if page.url == '/index.html' %}
               <li class="is-active"><a href="{{ site.baseurl }}/">全部</a></li>
@@ -56,10 +58,6 @@
               </li>
             {% endfor %}
           </ul>
-
-          <nav>
-            <a class="iojs-site" href="https://iojs.org/cn/">io.js 官网</a>
-          </nav>
         </header>
       </div>
     </div>
