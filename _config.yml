@@ -12,6 +12,12 @@ baseurl:
 
 excerpt_separator: "<!--more-->"
 
+navigation:
+- text: 文章
+  url: /articles
+- text: 周报
+  url: /weekly
+
 #
 # !! You don't need to change any of the configuration flags below !!
 #

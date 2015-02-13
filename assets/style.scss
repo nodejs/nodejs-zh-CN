@@ -209,6 +209,34 @@ img {
   }
 }
 
+.site-category {
+  clear: left;
+  padding: 0;
+  margin: 23px 0 0;
+  float: left;
+  list-style: none;
+}
+
+.site-category li {
+  display: inline-block;
+
+  a {
+    color: $darkGray;
+    margin-right: 20px;
+    font-weight: 300;
+    letter-spacing: 1px;
+
+    @include mobile {
+      margin: 0 10px;
+      color: $blue;
+    }
+  }
+
+  &.is-active a {
+    color: $blue;
+  }
+}
+
 nav {
   float: right;
   margin-top: 23px; // @TODO: Vertically middle align
@@ -232,6 +260,12 @@ nav {
     @include mobile {
       margin: 0 10px;
       color: $blue;
+    }
+
+    &.iojs-site {
+      padding-left: 30px;
+      background: url(images/iojs-logo.png) left top no-repeat;
+      background-size: 18px 21px;
     }
   }
 }
