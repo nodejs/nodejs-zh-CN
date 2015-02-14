@@ -10,7 +10,7 @@
   - `lookup()` 增加支持 `'all'` 布尔选项，默认为 `false`，如果设为 true，方法会返回一个 *all* 地址解析过的域名数组，参看[#744](https://github.com/iojs/io.js/pull/744) (@silverwind)
 * **assert**：
   - `deepEqual()` 方法不再对比 `prototype` 属性，这被认为是 bug，参看[#636](https://github.com/iojs/io.js/pull/636) (@vkurchatkin)
-  - 添加方法 `deepStrictEqual()` 功能同 `deepEqual()` 类似，只是在原型比较时进行严格相等比较，参看[#639](https://github.com/iojs/io.js/pull/639) (@vkurchatkin)
+  - 添加方法 `deepStrictEqual()` 功能同 `deepEqual()` 类似，只是在[原型](https://developer.mozilla.org/en-US/docs/Glossary/Primitive)比较时进行严格相等比较，参看[#639](https://github.com/iojs/io.js/pull/639) (@vkurchatkin)
 * **tracing**：
   - 如果编译时开启 `--with-lttng` 选项，则会同时编译 [LTTng](http://lttng.org/) (Linux 下一代 Trace 工具)。Trace 分数同 DTrace 和 ETW 相匹配。[#702](https://github.com/iojs/io.js/pull/702) (@thekemkid)
 * **docs**：
