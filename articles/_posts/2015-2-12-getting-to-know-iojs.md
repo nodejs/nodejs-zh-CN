@@ -23,7 +23,7 @@ io.js 团队主要由 Node.js 的[关键贡献者](https://github.com/iojs/io.js
 
 ## io.js 做了什么新改动？
 
-首先，io.js 引入了真正的[语义版本控制 (semver)](http://semver.org/) by tagging the release 1.0.0 because it's such a divergence from Node.js。jQuery 团队在[近期的博客文章](http://blog.jquery.com/2014/10/29/jquery-3-0-the-next-generations/)中讨论了关于使用 semver 的重要性:
+首先，io.js 发布了 1.0.0 版本，区分开了 Node.js，且引入了真正的[语义版本控制 (semver)](http://semver.org/)。jQuery 团队在[近期的博客文章](http://blog.jquery.com/2014/10/29/jquery-3-0-the-next-generations/)中讨论了关于使用 semver 的重要性:
 
 > 其中一个最好的做法是语义版本，或简单称之 semver 。在实践中，semver 给了开发者（以及构建工具）一个避免切换软件版本风险的一个办法。版本号以 MAJOR.MINOR.PATCH 的形式，其三个组成部分均为整数。在 semver 中，如果 MAJOR 变化了，这表示 API 中有开发者更改需要注意的断层变更。
 
@@ -116,7 +116,7 @@ io.js
 
     `https://xxxxxxxx.ngrok.com/addon/capabilities`
 
-    where `xxxxxxxx.ngrok.com` is the url specified in the shell after the server starts up.
+    其中 `xxxxxxxx.ngrok.com` 是服务器启动之后在 shell 中指定的 url。
 
 如果你可以在聊天框中输入 `/hello` 之后获得 HipChat 扩展回答的 `"Hi"` 那么恭喜! 你现在正在利用如 Generators 的 ES6 新特性运行一个 io.js 应用。
 
