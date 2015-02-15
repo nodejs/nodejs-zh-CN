@@ -10,3 +10,5 @@ Thumbs.db
 _site
 .jekyll
 .sass-cache
+
+*.bak
