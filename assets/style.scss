@@ -336,6 +336,37 @@ footer {
   text-align: center;
 }
 
+code {
+  margin: 0;
+  border: 1px solid #ddd;
+  background-color: rgba(0,0,0,0.04);
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  font-size: 85%;
+
+  &::before,
+  &::after {
+    letter-spacing: -0.2em;
+    content: "\00a0"
+  }
+}
+
+pre code,
+pre > code {
+  background-color: transparent;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+
+  &::before,
+  &::after {
+    content: normal;
+  }
+}
+
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "_highlights";
