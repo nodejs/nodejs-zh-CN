@@ -10,8 +10,6 @@
 ### 已知问题
 
 * REPL 中的代理对会冻结终端 [#690](https://github.com/iojs/io.js/issues/690)
-
-* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
 * 无法将 io.js 编译成静态库 [#686](https://github.com/iojs/io.js/issues/686)
 * `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
 * 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
