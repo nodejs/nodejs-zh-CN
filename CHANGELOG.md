@@ -1,18 +1,20 @@
 # io.js 更新记录
 
-## 2015-02-20, Version 1.3.0, @rvagg
+## [2015-02-20，版本 1.3.0，@rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-02-20-version-130-rvagg)
 
-### Notable changes
+### 主要更新
 
-* **url**: `url.resolve('/path/to/file', '.')` now returns `/path/to/` with the trailing slash, `url.resolve('/', '.')` returns `/`. [#278](https://github.com/iojs/io.js/issues/278) (Amir Saboury)
-* **tls**: The default cipher suite used by `tls` and `https` has been changed to one that achieves Perfect Forward Secrecy with all modern browsers. Additionally, insecure RC4 ciphers have been excluded. If you absolutely require RC4, please specify your own cipher suites. [#826](https://github.com/iojs/io.js/issues/826) (Roman Reiss)
+* **url**: `url.resolve('/path/to/file', '.')` 现在的返回值会以斜杠结尾（如 `/path/to/`），`url.resolve('/', '.')` 会返回 `/`。[#278](https://github.com/iojs/io.js/issues/278) (Amir Saboury)
+* **tls**: `tls` 和 `https` 所使用的默认密码套件被修改成所有现代浏览器已经实现的 `Perfect Forward Secrecy`。除此以外，去除了不安全的 RC4 密码，如果你直接使用了 RC4，请指定你自己的密码套件。 [#826](https://github.com/iojs/io.js/issues/826) (Roman Reiss)
 
-### Known issues
+### 已知问题
+
+* REPL 中的代理对会冻结终端 [#690](https://github.com/iojs/io.js/issues/690)
 
 * Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
-* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
-* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
-* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/iojs/io.js/issues/894)
+* 无法将 io.js 编译成静态库 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
 
 ## [2015-02-10，版本 1.2.0，@rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-02-10-version-120-rvagg)
 
