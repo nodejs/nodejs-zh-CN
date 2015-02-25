@@ -13,7 +13,7 @@ Joyent 公司最近宣布建立一个[新的基金会来管理 Node.js](https://
 
 io.js 的开放式技术治理模型确保了 Node 项目的未来开发计划，将并不是听命于一个大公司或几个大公司的需求，而是由技术委员会的代表们和 Node 使用者和用户们来决定的，假如 Node 基金会能够采用这个建议，[Node.js 和 io.js 还是可以再次合并在一起的](https://medium.com/@iojs/io-js-and-a-node-js-foundation-4e14699fb7be)。
 
-如果你是 Twitter 的用户？点击[这里](https://twitter.com/intent/tweet?text=.+%40Scott_Hammond+I%27m+a+%40no…he+%23nodejs+foundation+adopt+%40official_iojs+technical+governance+model.)来呼吁 **@Scott_Hammond: 我是一个 @nodejs 用户。我希望看到的 #nodejs 基金会采用 @official_iojs 的开放式技术治理模型。**
+如果你是 Twitter 的用户？点击[这里](https://twitter.com/intent/tweet?text=.+%40Scott_Hammond+I%27m+a+%40nodejs+user.+I%27d+like+to+see+the+%23nodejs+foundation+adopt+%40official_iojs+technical+governance+model.)来呼吁 **@Scott_Hammond: 我是一个 @nodejs 用户。我希望看到的 #nodejs 基金会采用 @official\_iojs 的开放式技术治理模型。**
 
 如果你不是 Twitter 的用户？你也可以直接点击[这里](https://www.joyent.com/contact)联系 Joyent 公司。
 
