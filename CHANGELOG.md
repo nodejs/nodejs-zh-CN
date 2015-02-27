@@ -1,6 +1,6 @@
 # io.js 更新记录
 
-## 2015-02-26，版本 1.4.1，@rvagg
+## [2015-02-26，版本 1.4.1，@rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-02-26-version-141-rvagg)
 
 _注意：版本 **1.4.0** 原本进行了标记和构建，但在发布过程中发现一个 libuv bug 所以被放弃了，没有发布。该 tag 在[`a558cd0a61`](https://github.com/iojs/io.js/commit/a558cd0a61) 之后，但是被删除了。为了避免困惑，直接把版本升到了 1.4.1 。_
 
