@@ -2,14 +2,14 @@
 
 ## [2015-02-26，版本 1.4.1，@rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-02-26-version-141-rvagg)
 
-_注意：版本 **1.4.0** 原本进行了标记和构建，但在发布过程中发现一个 libuv bug 所以被放弃了，没有发布。该 tag 在[`a558cd0a61`](https://github.com/iojs/io.js/commit/a558cd0a61) 之后，但是被删除了。为了避免困惑，直接把版本升到了 1.4.1 。_
+_注意：版本 **1.4.0** 原本进行了标记和构建，但在发布过程中发现一个 libuv bug 所以被中止了，没有发布。该 tag 在[`a558cd0a61`](https://github.com/iojs/io.js/commit/a558cd0a61) 之后，但是被删除了。为了避免困惑，直接把版本升到了 1.4.1 。_
 
 ### 主要更新
 
-* **process** / **promises**：如果一个 `Promise` 被拒绝了，并且在一次事件循环之内没有添加错误处理 handler， `process` 会触发一个 `'unhandledRejection'` 事件。如果一个 `Promise` 被拒绝了，并且在一次事件循环之后添加了错误处理 handler，`process` 会触发一个 `'rejectionHandled'` 事件。详情参看文档 [process](https://iojs.org/api/process.html) [#758](https://github.com/iojs/io.js/pull/758) (Petka Antonov)
+* **process** / **promises**：如果一个 `Promise` 被 reject 了，并且在一次事件循环之内没有添加错误处理 handler， `process` 会触发一个 `'unhandledRejection'` 事件。如果一个 `Promise` 被 reject 了，并且在一次事件循环之后添加了错误处理 handler，`process` 会触发一个 `'rejectionHandled'` 事件。详情参看文档 [process](https://iojs.org/api/process.html) [#758](https://github.com/iojs/io.js/pull/758) (Petka Antonov)
 * **streams**：在 `tls.connect()` 时可以将普通 streams 当做 socket 使用 [#926](https://github.com/iojs/io.js/pull/926) (Fedor Indutny)
 * **http**：在客户端中止一个 `http.ClientRequest` 时会触发一个新的 `'abort'` 事件。 [#945](https://github.com/iojs/io.js/pull/945) (Evan Lucas)
-* **V8**：V8 更新到 4.1.0.21。包含一个 embargoed 修复，详情参看 https://code.google.com/p/chromium/issues/detail?id=430201  在 embargo 被 lifted 时。一个大的 ABI 修改在这次升级时被 held back， 大概是在合并 V8 4.2 时被引入的。参看讨论 [#952](https://github.com/iojs/io.js/pull/952)。
+* **V8**：V8 更新到 4.1.0.21，包含一个修复（但被禁止访问），详情参看 https://code.google.com/p/chromium/issues/detail?id=430201。此次更新因一个非兼容的 ABI 更新受阻，可能会在合并 v8 4.2 时支持。参看讨论 [#952](https://github.com/iojs/io.js/pull/952)。
 * **npm**：更新 npm 到 2.6.0. 包含用以支持新 registry 的一些特性，并为 `npm@3` 做准备。详情参看 [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v260-2015-02-12)：
   * [`38c4825`](https://github.com/npm/npm/commit/38c48254d3d217b4babf5027cb39492be4052fc2) [#5068](https://github.com/npm/npm/issues/5068) 添加 logout 命令，该命令对基于 bearer 和 basic 的客户端验证会有帮助。([@othiym23](https://github.com/othiym23))
   * [`c8e08e6`](https://github.com/npm/npm/commit/c8e08e6d91f4016c80f572aac5a2080df0f78098) [#6565](https://github.com/npm/npm/issues/6565) 添加警告：`peerDependency` 的行为正在改变，并在文档中添加声明。 ([@othiym23](https://github.com/othiym23))
