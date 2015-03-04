@@ -1,5 +1,53 @@
 # io.js 更新记录
 
+## [2015-03-02, Version 1.4.3, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-02-version-143-rvagg)
+
+### Notable changes
+
+* **stream**: Fixed problems for platforms without `writev()` support, particularly Windows. Changes introduced in 1.4.1, via [#926](https://github.com/iojs/io.js/pull/926), broke some functionality for these platforms, this has now been addressed. [#1008](https://github.com/iojs/io.js/pull/1008) (Fedor Indutny)
+* **arm**: We have the very beginnings of ARMv8 / ARM64 / AARCH64 support. An upgrade to OpenSSL 1.0.2 is one requirement for full support. [#1028](https://github.com/iojs/io.js/pull/1028) (Ben Noordhuis)
+* Add new collaborator: Julian Duque ([@julianduque](https://github.com/julianduque))
+
+### Known issues
+
+* Windows still reports some minor test failures and we are continuing to address all of these ASAP. See [#1005](https://github.com/iojs/io.js/issues/1005).
+* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
+* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
+* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/iojs/io.js/issues/894)
+
+## [2015-02-28, Version 1.4.2, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-02-28-version-142-rvagg)
+
+### Notable changes
+
+* **tls**: A typo introduced in the TLSWrap changes in [#840](https://github.com/iojs/io.js/pull/840) only encountered as a bug on Windows was not caught by the io.js CI system due to problems with the Windows build script and the Windows CI slave configuration, see Known Issues below. Fixed in [#994](https://github.com/iojs/io.js/pull/994) & [#1004](https://github.com/iojs/io.js/pull/1004). (Fedor Indutny)
+* **npm**: Upgrade npm to 2.6.1. See [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v260-2015-02-12) for details. Summary:
+  * [`8b98f0e`](https://github.com/npm/npm/commit/8b98f0e709d77a8616c944aebd48ab726f726f76)
+    [#4471](https://github.com/npm/npm/issues/4471) `npm outdated` (and only `npm
+    outdated`) now defaults to `--depth=0`. This also has the excellent but unexpected effect of making `npm update -g` work the way almost everyone wants it to. See the [docs for
+    `--depth`](https://github.com/npm/npm/blob/82f484672adb1a3caf526a8a48832789495bb43d/doc/misc/npm-config.md#depth)
+    for the mildly confusing details. ([@smikes](https://github.com/smikes))
+  * [`aa79194`](https://github.com/npm/npm/commit/aa791942a9f3c8af6a650edec72a675deb7a7c6e)
+    [#6565](https://github.com/npm/npm/issues/6565) Tweak `peerDependency`
+    deprecation warning to include which peer dependency on which package is
+    going to need to change. ([@othiym23](https://github.com/othiym23))
+  * [`5fa067f`](https://github.com/npm/npm/commit/5fa067fd47682ac3cdb12a2b009d8ca59b05f992)
+    [#7171](https://github.com/npm/npm/issues/7171) Tweak `engineStrict`
+    deprecation warning to include which `package.json` is using it.
+    ([@othiym23](https://github.com/othiym23))
+* Add new collaborators:
+  - Robert Kowalski ([@robertkowalski](https://github.com/robertkowalski))
+  - Christian Vaagland Tellnes ([@tellnes](https://github.com/tellnes))
+  - Brian White ([@mscdex](https://github.com/mscdex))
+
+### Known issues
+
+* Windows support has some outstanding failures that have not been properly picked up by the io.js CI system due to a combination of factors including human, program and Jenkins errors. See [#1005](https://github.com/iojs/io.js/issues/1005) for details & discussion. Expect these problems to be addressed ASAP.
+* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
+* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
+* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/iojs/io.js/issues/894)
+
 ## [2015-02-26，版本 1.4.1，@rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-02-26-version-141-rvagg)
 
 _注意：版本 **1.4.0** 原本进行了标记和构建，但在发布过程中发现一个 libuv bug 所以被中止了，没有发布。该 tag 在[`a558cd0a61`](https://github.com/iojs/io.js/commit/a558cd0a61) 之后，但是被删除了。为了避免困惑，直接把版本升到了 1.4.1 。_
