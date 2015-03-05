@@ -1,141 +1,79 @@
 ---
 layout: post
-title: io.js Project Governance
-author: iojs
+title: io.js 项目管理守则
+author: iojs team
 reference: https://github.com/iojs/io.js/blob/v1.x/GOVERNANCE.md
-published: false
 ---
 
-## Technical Committee
+## 技术委员会
 
-The io.js project is jointly governed by a Technical Committee (TC)
-which is responsible for high-level guidance of the project.
+io.js 项目将由技术委员会简称 ( TC ) 的成员们共同监督和管理，保持 io.js 的统一性和宏观指导及掌控整个项目。
 
-The TC has final authority over this project including:
+TC 拥有这个项目的最终权威，其中包括：
 
-* Technical direction
-* Project governance and process (including this policy)
-* Contribution policy
-* GitHub repository hosting
-* Conduct guidelines
-* Maintaining the list of additional Collaborators
+* 项目的技术方向
+* 项目管理守则和制定方针
+* 贡献者的权利和义务
+* GitHub 项目库的管理
+* 管理的行为准则
+* 增加或减少项目的合作伙伴
 
-Initial membership invitations to the TC were given to individuals who
-had been active contributors to io.js, and who have significant
-experience with the management of the io.js project. Membership is
-expected to evolve over time according to the needs of the project.
+技术委员会的初期会员来自于一直对 io.js 项目积极和热衷的优秀贡献者，和对于 io.js 项目有显著管理经验的成员。所有技术委员会会员将有资格对 io.js 项目发表自己的意见。
 
-For the current list of TC members, see the project
-[README.md](./README.md#current-project-team-members).
+技术委员会的初期会员列表，请参阅[这里](https://github.com/iojs/io.js/blob/v1.x/README.md#current-project-team-members)。
 
-## Collaborators
+## 优秀贡献者
 
-The [iojs/io.js](https://github.com/iojs/io.js) GitHub repository is
-maintained by the TC and additional Collaborators who are added by the
-TC on an ongoing basis.
+[iojs/io.js](https://github.com/iojs/io.js) GitHub 项目库的管理将由技术委员会会员和热衷的合作伙伴共同完成。技术委员会将有权利增加更多的合作伙伴。
 
-Individuals making significant and valuable contributions are made
-Collaborators and given commit-access to the project. These
-individuals are identified by the TC and their addition as
-Collaborators is discussed during the weekly TC meeting.
+优秀贡献者花费了大量的时间和精力推动了 io.js 项目的成功，技术委员会将回馈及肯定这些优秀贡献者，并给予 GitHub 项目库的初级管理员 (commit-access) 的身份。优秀贡献者并且有权利参加与技术委员会会员会议的权利和讨论议题。
 
-_Note:_ If you make a significant contribution and are not considered
-for commit-access log an issue or contact a TC member directly and it
-will be brought up in the next TC meeting.
+注意事项：假如你贡献了很多有效的代码，但并没有初级管理员的身份，可以开一个 issue 或者直接联系任何一个技术委员会成员，下一次技术委员会会员小组会议将讨论把你加入到 io.js 项目初级管理员成员中。
 
-Modifications of the contents of the iojs/io.js repository are made on
-a collaborative basis. Anybody with a GitHub account may propose a
-modification via pull request and it will be considered by the project
-Collaborators. All pull requests must be reviewed and accepted by a
-Collaborator with sufficient expertise who is able to take full
-responsibility for the change. In the case of pull requests proposed
-by an existing Collaborator, an additional Collaborator is required
-for sign-off. Consensus should be sought if additional Collaborators
-participate and there is disagreement around a particular
-modification. See _Consensus Seeking Process_ below for further detail
-on the consensus model used for governance.
+[iojs/io.js](https://github.com/iojs/io.js) GitHub 项目库的文件及其内容的管理，将在一个共同团队协作的基础上完成。每一个有 GitHub 帐户的会员都可以用过 pull request 提交自己认为对的修改方案，每个 pull request 都会由技术委员会会员及对项目了解的资深优秀贡献者们共同认真及严谨的审核及校对，至少有两个以上的资深管理员批准，才能通过，以保证项目的高质量。如果在审核及校对 pull request 的过程中，资深管理员们不能达成共识，请仔细参照本文下面促进达成共识的守则。
 
-Collaborators may opt to elevate significant or controversial
-modifications, or modifications that have not found consensus to the
-TC for discussion by assigning the ***tc-agenda*** tag to a pull
-request or issue. The TC should serve as the final arbiter where
-required.
+假如某个 pull request 有着显著的争议，而且促进达成共识的守则并没有明确的说明，合作伙伴们可以通过给这个 pull request 加上 ***tc-agenda*** 标签的方式提交这个 pull request 到技术委员会，技术委员会会通过会议方式做出最后的仲裁。
 
-For the current list of Collaborators, see the project
-[README.md](./README.md#current-project-team-members).
+技术委员会的所有会员列表，请参阅[这里](https://github.com/iojs/io.js/blob/v1.x/README.md#current-project-team-members)。
 
-A guide for Collaborators is maintained in
-[COLLABORATOR_GUIDE.md](./COLLABORATOR_GUIDE.md).
+假如你想成为项目的合作伙伴，请参阅[这里](https://github.com/iojs/io.js/blob/v1.x/COLLABORATOR_GUIDE.md)。
 
-## TC Membership
+## 技术委员会成员守则
 
-TC seats are not time-limited.  There is no fixed size of the TC.
-However, the expected target is between 6 and 12, to ensure adequate
-coverage of important areas of expertise, balanced with the ability to
-make decisions efficiently.
+技术委员会会员的任期没有任何时间限制。技术委员会会员人数没有任何数量限制，但是希望控制在6到12人，技术委员会每个会员都有自己的专长和专业课题领域，这样技术委员会能够更有效地做出决策，以保证技术委员会的权威性。
 
-There is no specific set of requirements or qualifications for TC
-membership beyond these rules.
+对于技术委员会的会员资格没有任何具体的要求。
 
-The TC may add additional members to the TC by a standard TC motion.
+技术委员会的现有会员可以通过合理和标准的手续添加额外的会员。
 
-A TC member may be removed from the TC by voluntary resignation, or by
-a standard TC motion.
+技术委员会的现有会员也可以通过合理和标准的手续减少现有的会员，或者自愿请求辞职。
 
-Changes to TC membership should be posted in the agenda, and may be
-suggested as any other agenda item (see "TC Meetings" below).
+对于技术委员会会议章程的任何调整，将会提交技术委员会会议议程，并可能建议任何会议，详细说明请读本文下面的技术委员会会议。
 
-No more than 1/3 of the TC members may be affiliated with the same
-employer.  If removal or resignation of a TC member, or a change of
-employment by a TC member, creates a situation where more than 1/3 of
-the TC membership shares an employer, then the situation must be
-immediately remedied by the resignation or removal of one or more TC
-members affiliated with the over-represented employer(s).
+技术委员会会员中不可以同时有超过1/3的会员就职于同一家公司。假如现有的会员人数变动，或者现有的会员更换了新的工作，出现了超过1/3的会员就职于同一家公司的情况，技术委员会会及时给出处理意见，通过技术委员会会议议程来合理的减少一个或多个技术委员会现有同公司的会员。
 
-## TC Meetings
+## 技术委员会会议
 
-The TC meets weekly on a Google Hangout On Air. The meeting is run by
-a designated moderator approved by the TC. Each meeting should be
-published to YouTube.
+技术委员会每周通过 Google Hangout On Air 举行会议，会议由技术委员会指定的主持人主持，每周的会议都会被录影，之后会发表在 YouTube 官方频道上。
 
-Items are added to the TC agenda which are considered contentious or
-are modifications of governance, contribution policy, TC membership,
-or release process.
+每周会议议程项目，比如说有争议的议题，治理制度的修改，贡献者的权力和义务，技术委员会会员章程，开源码管理等等，都将会添加到技术委员会的议程表上。
 
-The intention of the agenda is not to approve or review all patches,
-that should happen continuously on GitHub and be handled by the larger
-group of Collaborators.
+每周会议议程的目的并不是审批或审查所有修补程序，审查修补程序应该由项目的所有合作伙伴共同在 GitHub 完成。
 
-Any community member or contributor can ask that something be added to
-the next meeting's agenda by logging a GitHub Issue. Any Collaborator,
-TC member or the moderator can add the item to the agenda by adding
-the ***tc-agenda*** tag to the issue.
+任何热心的 GitHub 用户或者合作伙伴都可以把自己关心的问题添加 io.js 项目的问题列表中。然后，由合作伙伴，或者技术委员会会员，或者项目管理团队的工作人员, 通过给这个标签 ***tc-agenda***，从而自动成为下次会议的讨论项目。
 
-Prior to each TC meeting the moderator will share the Agenda with
-members of the TC. TC members can add any items they like to the
-agenda at the beginning of each meeting. The moderator and the TC
-cannot veto or remove items.
+在每周会议开始前，技术委员会指定的主持人会将会议的讨论议程发给每个会员，每个会员也可以添加任何他们想要讨论的项目，项目管理团队的工作人员和会议主持人不能否决或删除任何将要讨论的项目。
 
-The TC may invite persons or representatives from certain projects to
-participate in a non-voting capacity. These invitees currently are:
+技术委员会可以邀请其他项目的专业人士或业界有影响力的个人参与会议讨论，但他们并没有任何投票权。现在的邀请嘉宾有：
 
-* A representative from [build](https://github.com/node-forward/build)
-  chosen by that project.
+* 来自于 [node-forward](https://github.com/node-forward/build) 项目里活跃的优秀贡献者。
 
-The moderator is responsible for summarizing the discussion of each
-agenda item and send it as a pull request after the meeting.
+每周会议主持人负责汇总技术委员会会议的讨论议程项目，并最后总结发表到 GitHub 库中使用 pull request 方式记录及保存。
 
-## Consensus Seeking Process
+## 促进达成共识的守则
 
-The TC follows a
-[Consensus Seeking](http://en.wikipedia.org/wiki/Consensus-seeking_decision-making)
-decision making model.
+技术委员会将遵循[促进达成共识的守则](http://en.wikipedia.org/wiki/Consensus-seeking_decision-making)做最终裁决。
 
-When an agenda item has appeared to reach a consensus the moderator
-will ask "Does anyone object?" as a final call for dissent from the
-consensus.
+当一个议题产生争议，技术委员会会议主持人将会问每一个会员 "有没有人反对?"，如果没有不同意见的话，这个议题将直接以主观的方式同意解决，从而大大加快了开发项目的速度。
 
-If an agenda item cannot reach a consensus a TC member can call for
-either a closing vote or a vote to table the issue to the next
-meeting. The call for a vote must be seconded by a majority of the TC
-or else the discussion will continue. Simple majority wins.
+当一个议题产生极度争议，技术委员会会员始终无法达成共识，或者出现了极度为难的局面，技术委员会可以进行投票式或者延期到下一次会议讨论。如果最终进行投票表决，必须通过大多数会员的同意，以多数获胜的原则作为最后的意见，从而达成共识，否则这个议题将持续讨论下去。
