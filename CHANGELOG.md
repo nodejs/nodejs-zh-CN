@@ -44,21 +44,21 @@
 * `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
 * Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/iojs/io.js/issues/894)
 
-## [2015-03-02, Version 1.4.3, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-02-version-143-rvagg)
+## [2015-03-02, 版本 1.4.3, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-02-version-143-rvagg)
 
-### Notable changes
+### 主要更新
 
-* **stream**: Fixed problems for platforms without `writev()` support, particularly Windows. Changes introduced in 1.4.1, via [#926](https://github.com/iojs/io.js/pull/926), broke some functionality for these platforms, this has now been addressed. [#1008](https://github.com/iojs/io.js/pull/1008) (Fedor Indutny)
-* **arm**: We have the very beginnings of ARMv8 / ARM64 / AARCH64 support. An upgrade to OpenSSL 1.0.2 is one requirement for full support. [#1028](https://github.com/iojs/io.js/pull/1028) (Ben Noordhuis)
-* Add new collaborator: Julian Duque ([@julianduque](https://github.com/julianduque))
+* **stream**: 修复在不支持 `writev()` 的平台（尤其是 Windows）的一些问题。在 1.4.1 中有修改 [#926](https://github.com/iojs/io.js/pull/926)，造成这些平台的一些功能无法使用，现在已经被解决 [#1008](https://github.com/iojs/io.js/pull/1008) (Fedor Indutny)
+* **arm**: 我们已经初步支持 ARMv8 / ARM64 / AARCH64。如果要完全支持需要将 OpenSSL 升级到 1.0.2。[#1028](https://github.com/iojs/io.js/pull/1028) (Ben Noordhuis)
+* 新增合作开发者: Julian Duque ([@julianduque](https://github.com/julianduque))
 
-### Known issues
+### 已知问题
 
-* Windows still reports some minor test failures and we are continuing to address all of these ASAP. See [#1005](https://github.com/iojs/io.js/issues/1005).
-* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
-* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
-* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
-* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/iojs/io.js/issues/894)
+* Windows 支持有一些明显的错误并未被 io.js 持续集成系统识别，由人为、程序和 Jenkins 错误等一系列原因造成。查看 [#1005](https://github.com/iojs/io.js/issues/1005) 的详情和讨论，希望这些错误能被尽快解决。
+* REPL 中的 Surrogate pair 会导致终端僵死 [#690](https://github.com/iojs/io.js/issues/690)
+* 无法将 io.js 编译成静态库 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
 
 ## [2015-02-28, 版本 1.4.2, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-02-28-version-142-rvagg)
 
