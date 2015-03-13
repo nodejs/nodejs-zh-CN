@@ -4,17 +4,17 @@
 
 ### Notable changes
 
-* **tls**: The reported TLS memory leak has been at least partially resolved via various commits in this release. Current testing indicated that there _may_ still be some leak problems. Track complete progress at [#1075](https://github.com/iojs/io.js/issues/1075).
-* **http**: Fixed an error reported at [joyent/node#9348](https://github.com/joyent/node/issues/9348) and [npm/npm#7349](https://github.com/npm/npm/issues/7349). Pending data was not being fully read upon an `'error'` event leading to an assertion failure on `socket.destroy()`. (Fedor Indutny) [#1103](https://github.com/iojs/io.js/pull/1103)
+* **tls**: 被报的 TLS 内存泄漏问题至少已被部分解决，在这次发布中有不少提交。现在的测试表明_可能_依然存在泄漏问题。可在 [#1075](https://github.com/iojs/io.js/issues/1075) 跟进整个过程。
+* **http**: 修复了 [joyent/node#9348](https://github.com/joyent/node/issues/9348) 和 [npm/npm#7349](https://github.com/npm/npm/issues/7349) 所报的错误。当触发 `error` 事件，pending 的数据并未被完全读取，导致 `socket.destroy()` 有一个断言错误。(Fedor Indutny) [#1103](https://github.com/iojs/io.js/pull/1103)
 
 ### Known issues
 
-* Possible remaining TLS-related memory leak(s), details at [#1075](https://github.com/iojs/io.js/issues/1075).
-* Windows still reports some minor test failures and we are continuing to address all of these as a priority. See [#1005](https://github.com/iojs/io.js/issues/1005).
-* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
-* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
-* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
-* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/iojs/io.js/issues/894)
+* 可能与 TLS 相关的内存溢出问题，查看详情 [#1075](https://github.com/iojs/io.js/issues/1075).
+* Windows 支持有一些明显的错误并未被 io.js 持续集成系统识别，由人为、程序和 Jenkins 错误等一系列原因造成。查看 [#1005](https://github.com/iojs/io.js/issues/1005) 的详情和讨论，希望这些错误能被尽快解决。
+* REPL 中的 Surrogate pair 会导致终端僵死 [#690](https://github.com/iojs/io.js/issues/690)
+* 无法将 io.js 编译成静态库 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
 
 ## [2015-03-06, 版本 1.5.0, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-06-version-150-rvagg)
 
