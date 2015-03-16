@@ -1,128 +1,128 @@
 ---
 layout: post
 title: Node.js vs io.js: Why the fork?!?
-author: Ralph Whitbeck
+author: Anand Mani Sankar
 reference: http://anandmanisankar.com/posts/nodejs-iojs-why-the-fork/#.VO82hE60PVw.twitter
 ---
 
-After a hiatus of a couple of months, I’m back with a topic that has invaded many technical discussions in the last months.
+在几个月的沉寂之后，我也回来参与在过去的几个月中已经入侵许多技术讨论区的话题.
 
-**Node.js, the popular server-side JavaScript runtime environment, has been forked!**
+**Node.js，这个流行的服务端 JavaScript 运行环境被 fork 了!**
 
-OK! But then, Node.js has been forked in the past, e.g: [JXcore](http://jxcore.com) which provides a multithreaded flavour of NodeJS. Why is this specific instance of forking so vastly discussed/debated? It was not just forking of the code, but also - so to speak - forking of some of the top contributors to the NodeJS project. Four of [Node’s top 5 contributors](https://github.com/joyent/node/graphs/contributors) are part of the forked project - [io.js](https://iojs.org).
+Node.js 已经在过去被 fork 很多了，比如 [JXcore](http://jxcore.com) 为 NodeJS 提供了多线程特性。不过，为何最近的 fork 会引起极大的讨论/争辩？因为，这可不仅仅是普通的代码 fork，同时也可以说是一些 NodeJS 项目的核心贡献者的 fork。[Node 中最重要的5个贡献者](https://github.com/joyent/node/graphs/contributors)其中4个是 [io.js](https://iojs.org) 项目的成员。
 
-The possibility of forking has been discussed over the last few months, but the official first release of the forked project [io.js](https://iojs.org) came out early January 2015.
+关于被 fork 的可能性已经在过去的几个月里被反复讨论了，不过这个 fork 版本的 [io.js](https://iojs.org) 是在2015年一月正式发布了第一个版本。
 
 ## Why the fork?
 
-Over the last year or so, the number of commits on the Node.js repo has been steadily decreasing.
+在过去一年左右的时间，Node.js 项目的提交数量一直在稳步下降。
 
 ![Node.js commit trend](http://anandmanisankar.com/assets/images/node_commits.png "Node.js commit trend")
 
-Even worse, the number of releases of node drastically reduced in 2014.
+更糟糕的是，node 的新版本发布数在 2014 年大幅下降。
 
 ![Node.js release trend](http://anandmanisankar.com/assets/images/node_releases.png "Node.js release trend")
 
-But, one of the main reasons for the forking was the discontent over the way in which Joyent was handling the project. This [blog post](https://www.joyent.com/blog/the-power-of-a-pronoun) from Bryan Cantrill should throw some perspective.
+但是，fork node.js 的主要原因之一是对于 Joyent 公司处理项目方式的不满。Bryan Cantrill 在他的[博文](https://www.joyent.com/blog/the-power-of-a-pronoun)中阐述了一些观点。
 
-> io.js - the forked version of Node.js, is the result of dissatisfaction over Joyent’s stewardship of the Node.js project.
+> io.js - Node.js 的 fork 版, 就是不满 Joyent 公司在 Node.js 项目管理工作的结果.
 
-Talk of a possible forking started mid 2014, after some developers became discontented with the role of Joyent as the steward of the Node.js project. Some of the core contributors tried working with Joyent to move the project into a structure where the contributors and community could step in to solve the problems facing Node (some indicated by the graphs above). Some independent  efforts were started by contributors to improve Node and its ecosystem, in the name of ‘[Node Forward](http://nodeforward.org/)’.
+2014年中期，在某些开发者对 Joyent 公司作为 Node.js 项目的管家角色感到不满之后，开始讨论 fork 的可能性。一些核心贡献者试图与 Joyent 公司合作构建一个组织结构，使贡献者和社区可以介入解决各种问题（有的表示通过上面的图表）。为了改善 Node 和它的生态系统，一些贡献者们以 ‘[Node Forward](http://nodeforward.org/)’ 的名义做了一些努力。
 
-But [Fedor Indutny](https://github.com/indutny), one of the core team members, got tired of getting nowhere with the discussion and started the fork that is currently called io.js. Other contributors close to Fedor volunteered and jumped in.
+但是 [Fedor Indutny](https://github.com/indutny), 一名 Node.js 团队核心成员，厌倦了无处讨论的情况，并开始了从 Node.js 到 io.js 的 fork 工作。其他与 Fedor 相熟的贡献者也自愿加入其中。
 
-Joyent responded by forming the [Node Advisory Board](https://www.joyent.com/blog/node-js-advisory-board) to set up open governance, but that  seems to have been too little too late.
+Joyent 公司随后通过成立用于开放式管理的 [Node Advisory Board](https://www.joyent.com/blog/node-js-advisory-board) 来应对，不过这似乎有点太晚了。
 
-> We don’t want to have just one person who’s appointed by a company making decisions. We want contributors to have more control, to seek consensus.
+> 我们不希望只有那些被公司指派的人来参与讨论。我们希望贡献者有更多的控制，以寻求共识。
 > 
-> <cite>— Mikeal Rogers, io.js project team member</cite>
+> <cite>— Mikeal Rogers, io.js 项目团队成员</cite>
 
-The forking only highlights the tension between corporate sponsor of an open source project and the community of developers contributing to it.
+其实 fork 只是突出了一个开源项目的“企业赞助商”和“参与贡献的开发者社区”之间的紧张关系。
 
-But for Joyent CTO Bryan Cantrill, Node is alive and well, despite the slower pace of development.
+但对于 Joyent 公司的 CTO Bryan Cantrill 而言，Node 是活跃并且良好的，尽管发展速度放缓。
 
-> You’ve got to look at the quality of contributions, not the quantity.
+> 你得关注贡献者的质量，而不是数量。
 > 
 > <cite>— Bryan Cantrill, CTO, Joyent</cite>
 
-## OK. Let’s talk about the forking facts!
+## 现状
 
-### What you need to know about io.js:
+### io.js 简介
 
-*   Forked out of Joyent’s Node.js v0.12
-*   Fully compatible with the npm ecosystem
-*   Will be taking new V8 releases as fast as possible
+*   从 Joyent 的 Node.js v0.12 版本 fork 而来
+*   与 npm 生态系统完全兼容
+*   将尽可能快的采用新版本的V8
 
-    *   io.js is on V8 v4.1.0.14, while Node is still on V8 v3.28.73
-    *   Newer V8 brings in many performance improvements and fixes
-    *   Also, brings in additional support for [new ES6 language features](https://iojs.org/en/es6.html)
-*   New (experimental) core modules
-    *   [V8](https://iojs.org/api/v8.html): interfacing directly with V8 engine
-    *   [smalloc](https://iojs.org/api/smalloc.html): managing external raw memory allocation/deallocation in JavaScript
-*   Versioning based on semver, starting with v1.0.0
-*   Weekly production releases planned
-*   Bug fixes cherry-picked from Node into io.js as necessary
-*   [Open Governance Model](https://github.com/iojs/io.js/blob/v1.x/GOVERNANCE.md): More power to contributors
+    *   io.js 基于 V8 的 v4.1.0.14 版本，而 Node 依旧是 v3.28.73
+    *   新 V8 带来了许多性能改进和修正
+    *   同时, 也支持了更多 [ES6 新特性](https://iojs.org/en/es6.html)
+*   新的 (实验性质的) 核心 modules
+    *   [V8](https://iojs.org/api/v8.html)：直接与 V8 交互的接口
+    *   [smalloc](https://iojs.org/api/smalloc.html)：允许你在 JavaScript 中手动进行 raw 内存的分配/释放/拷贝。
+*   语义版本控制 ([semver](http://semver.org/)), 从 v1.0.0 开始
+*   每周的生产计划发布
+*   Bug 修复，在需要的情况下有选择的从 Node 加入到 io.js 中
+*   [开放式管理模式](https://github.com/iojs/io.js/blob/v1.x/GOVERNANCE.md)：贡献者享有更多权利
 
-## My take on the fork
+## 我的看法
 
-io.js has clearly proved that a project can grow much faster with open governance. It has made 10 releases since its first release on 13 Jan 2015!
+io.js 显然已经证明，一个项目可以通过开放治理而更快成长。从2015年1月13日开始到现在（注：2015/2/24），io.js 已经有了10个发布版！
 
-![io.js commit trend](http://anandmanisankar.com/assets/images/iojs_commits.png "io.js commit trend")
+![io.js 的 commit 趋势](http://anandmanisankar.com/assets/images/iojs_commits.png "io.js 的 commit 趋势")
 
-But the situation is still a bit of a yin yang! The duality arises from the fact that for every statement that you make supporting the fork, there could be one made opposing it in the same context.
+但是情况依旧存在两面性！同一段代码可能是在支持 io.js 但是同时也能对其产生消极的效果。
 
-### Let’s talk about the positives:
+### 正面性
 
-*   Open governance, distributed control
-*   Faster releases
-*   Newer V8
-*   ES6 goodness
+*   开放式管理，分布式控制
+*   更快的版本发布
+*   更加新的 V8
+*   ES6 优势
 
-### The other perspective:
+### 反面性
 
-*   Node is fairly stable and production ready. Why switch?
-*   The technical delta (newer V8, ES6 support, etc) is not enticing enough for many
-*   Not many corporates are complaining about slow releases from Node
+*   Node 是相当稳定并且部署稳妥。为什么要换？
+*   对于不少人来说，技术集合（更加新的V8、ES6的支持等等）不是足够诱人
+*   不是许多公司都在抱怨 Node 更新慢
 
-If I quote apache web server, hadoop or linux as good examples of foundation driven open source initiatives, someone would respond quoting Ruby on Rails or Docker as successful single corporate driven OSS initiatives. Hence, the yin yang!
+如果我引用 apache web server、hadoop 或者 linux 作为基金会驱动的开源举措的好例子，有人就会以 Ruby on Rails 或者 Docker 这种单独的公司带动OSS的成功举措作为回应。因此，凡事都是有两面性的！
 
-Whether io.js gains traction or not would depend on the consumer adoption. Matt Ranney, Chief Systems Architect at Uber, has already tweeted about putting io.js into production.
+无论 io.js 是否获得收益，都将源于用户的使用。作为 Uber 首席系统架构师, Matt Ranney 早已发推特讨论将 io.js 投入部署使用。
 
-> I’m one of the first people to put io.js into production at scale.
-> — Matt Ranney ([@mranney](https://github.com/mranney)) [December 3, 2014](https://twitter.com/mranney/status/540013975568535553)
+> 我是最早大规模使用 io.js 作为生产环境的人之一。
+> — Matt Ranney ([@mranney](https://github.com/mranney)) [2014/12/3](https://twitter.com/mranney/status/540013975568535553)
 
 <script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-But, I see this fork only as an exploration by some of the key contributors in the Node core community with the following intent:
+不过，我认为 fork 只是由 Node 核心社区的一些核心贡献者进行以下意图的探索:
 
-*   Accelerate release of latest advancements in JavaScript as fast as the community feels necessary
-*   Support an open governance model as against a single corporate stewardship
+*   推动 Javascript 的最新进展（新特性等）在社区觉得必要的情况下尽量快的投入应用
+*   支持一个开放的管理模式是针对单个企业的管理工作
 
-From a consumer point of view, I believe io.js is currently only solving some first-world problems in Node.js. It does not yet warrant a switch from Node. In fact, it only confuses and forces the consumer into additional decision making.
+从用户的角度来看，我相信 io.js 当前 只是解决 Node.js 中的一些 first-world 问题。 它至今还不算是 Node 真正的分支。事实上，它只是在忽悠并且迫使用户去做多余的决定。
 
-But from a community/contributors point of view, **I think this is a push in the right direction - if you look at io.js as an experimental showcase to Joyent on how a good open source project should be governed**. This is one of the reasons I like the ‘OPEN Open Source’ model which [Rod Vagg](https://github.com/rvagg) came up with for the [LevelUp project](https://github.com/rvagg/node-levelup) (a node wrapper for LevelDB).
+但是从社区/贡献者的角度来看， **我认为这是一个在正确方向上的 动作 - 如果你将 io.js 视为一个告诉 joyent 如何良好管理一个开源项目的试验品**。 这也是我喜欢这个“OPEN Open Source”开源模式的原因之一，好比 [Rod Vagg](https://github.com/rvagg) 做的 [LevelUp project](https://github.com/rvagg/node-levelup) 一样 (使用 node 封装的 LevelDB).
 
-> Individuals making significant and valuable contributions are given commit-access to the project to contribute as they see fit. This project is more like an open wiki than a standard guarded open source project.
+> 有显著和宝贵的贡献的个人被给予提交权限，并让他们做他们认为适合的贡献。这比起标准森严的开源项目而言更像是一个开放的维基百科。
 
-## The Future: Node and io.js will unite
+## 展望：Node 和 io.js 将会合并
 
-Some things are fairly clear:
+有些事情是很清楚的：
 
-*   Nobody wants multiple forks of Node to complicate the decision making process
-*   It was never the goal of io.js or node forward to create a second Node.js
-*   The effort required to maintain the fork is tremendous
+*   没有人希望 Node 出现多个 fork 版并使得决策过程更加复杂
+*   不论 io.js 还是 node forward 都不存在“创建第二个 Node.js”这个目标
+*   维护 fork 版本需要的精力是巨大的
 
-io.js - ‘the friendly fork’, is **not** intended to compete with Node. Someday, the io.js faction will reunite with Node, once there is an agreement on the collaborative decision making process. Infact, the [reconciliation process has already begun](https://medium.com/@iojs/io-js-and-a-node-js-foundation-4e14699fb7be). Joyent CEO Scott Hammond had invited the io.js technical committee to a private meeting to discuss about Node Foundation, and bringing io.js back to node.js project.
+io.js - ‘友好的 fork’, **不打算** 与 Node 竞争。日后，一旦协同决策过程达成协议，io.js 一脉将会与 Node 合并。实际上，[和解进程已经开始](https://medium.com/@iojs/io-js-and-a-node-js-foundation-4e14699fb7be)。Joyent 公司 CEO Scott Hammond 已经邀请了 io.js 技术委员会参加私人会议来讨论 Node 基金会，并且正在带 io.js 回到 node.js 项目。
 
-The Node Foundation is expected to have two committees: The Foundation Board and the Technical Committee. The technical committee will operate independent of the foundation board, giving it the required freedom to drive the technical growth of the project. Whether the technical committee will have an open governance model like io.js is still not clear. ([William Bert](https://twitter.com/williamjohnbert) has created a [twitter campaign](http://nodegovernance.io/) to spam (read alert) Scott Hammond about the desire of the community to uses the io.js governance model for Node Foundation). The best thing that can happen is a successful reunion leveraging the best of both worlds.
+Node 基金会预计有两个委员会: 基金会董事和技术会员会。技术委员会将会独立操作 foundation board, 给它所需的自由来驱动项目的技术发展。至于技术委员会是否会享有像 io.js 这样开放式的治理模式，目前还尚未明确。([William Bert](https://twitter.com/williamjohnbert) 创建了一个[推特活动](http://nodegovernance.io/) 艾特 Scott Hammond 以表达社区希望 Node 基金会采用 io.js 治理模式)。可能发生的最好的情况是二者合并成功，两全其美。
 
-The ball is now in Joyent’s court!
+现在球在 Joyent 的主场！
 
 * * *
 
-#### **Update: 27<sup>th</sup> Feb 2015**
+#### **更新: 2015/2/27**
 
-[Mikael](https://github.com/mikeal) has created a work-in-progress [‘Reconciliation Proposal’](https://github.com/iojs/io.js/issues/978) that covers topics like technical governance, long-term support, versioning and WG structuring proposals for a future ‘Node’ which re-unites ‘Node.js’ and ‘io.js’.
+为了未来 ‘Node’ 重组 ‘Node.js’ 和 ‘io.js’，[Mikael](https://github.com/mikeal) 已经在 io.js 的 issue 中发起了一个包括像技术管理、长期支持、版本控制和 WG结构(WG structuring) 的[‘和解建议’](https://github.com/iojs/io.js/issues/978)。
 
 * * *
