@@ -1,52 +1,83 @@
 # io.js 更新记录
 
-## [2015-03-02, Version 1.4.3, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-02-version-143-rvagg)
+## [2015-03-09, Version 1.5.1, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-09-version-151-rvagg)
 
 ### Notable changes
 
-* **stream**: Fixed problems for platforms without `writev()` support, particularly Windows. Changes introduced in 1.4.1, via [#926](https://github.com/iojs/io.js/pull/926), broke some functionality for these platforms, this has now been addressed. [#1008](https://github.com/iojs/io.js/pull/1008) (Fedor Indutny)
-* **arm**: We have the very beginnings of ARMv8 / ARM64 / AARCH64 support. An upgrade to OpenSSL 1.0.2 is one requirement for full support. [#1028](https://github.com/iojs/io.js/pull/1028) (Ben Noordhuis)
-* Add new collaborator: Julian Duque ([@julianduque](https://github.com/julianduque))
+* **tls**: 被报的 TLS 内存泄漏问题至少已被部分解决，在这次发布中有不少提交。现在的测试表明_可能_依然存在泄漏问题。可在 [#1075](https://github.com/iojs/io.js/issues/1075) 跟进整个过程。
+* **http**: 修复了 [joyent/node#9348](https://github.com/joyent/node/issues/9348) 和 [npm/npm#7349](https://github.com/npm/npm/issues/7349) 所报的错误。当触发 `error` 事件，pending 的数据并未被完全读取，导致 `socket.destroy()` 有一个断言错误。(Fedor Indutny) [#1103](https://github.com/iojs/io.js/pull/1103)
 
 ### Known issues
 
-* Windows still reports some minor test failures and we are continuing to address all of these ASAP. See [#1005](https://github.com/iojs/io.js/issues/1005).
-* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
-* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
-* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
-* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/iojs/io.js/issues/894)
+* 可能与 TLS 相关的内存溢出问题，查看详情 [#1075](https://github.com/iojs/io.js/issues/1075).
+* Windows 支持有一些明显的错误并未被 io.js 持续集成系统识别，由人为、程序和 Jenkins 错误等一系列原因造成。查看 [#1005](https://github.com/iojs/io.js/issues/1005) 的详情和讨论，希望这些错误能被尽快解决。
+* REPL 中的 Surrogate pair 会导致终端僵死 [#690](https://github.com/iojs/io.js/issues/690)
+* 无法将 io.js 编译成静态库 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
 
-## [2015-02-28, Version 1.4.2, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-02-28-version-142-rvagg)
+## [2015-03-06, 版本 1.5.0, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-06-version-150-rvagg)
 
-### Notable changes
+### 主要更新
 
-* **tls**: A typo introduced in the TLSWrap changes in [#840](https://github.com/iojs/io.js/pull/840) only encountered as a bug on Windows was not caught by the io.js CI system due to problems with the Windows build script and the Windows CI slave configuration, see Known Issues below. Fixed in [#994](https://github.com/iojs/io.js/pull/994) & [#1004](https://github.com/iojs/io.js/pull/1004). (Fedor Indutny)
-* **npm**: Upgrade npm to 2.6.1. See [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v260-2015-02-12) for details. Summary:
-  * [`8b98f0e`](https://github.com/npm/npm/commit/8b98f0e709d77a8616c944aebd48ab726f726f76)
-    [#4471](https://github.com/npm/npm/issues/4471) `npm outdated` (and only `npm
-    outdated`) now defaults to `--depth=0`. This also has the excellent but unexpected effect of making `npm update -g` work the way almost everyone wants it to. See the [docs for
-    `--depth`](https://github.com/npm/npm/blob/82f484672adb1a3caf526a8a48832789495bb43d/doc/misc/npm-config.md#depth)
-    for the mildly confusing details. ([@smikes](https://github.com/smikes))
-  * [`aa79194`](https://github.com/npm/npm/commit/aa791942a9f3c8af6a650edec72a675deb7a7c6e)
-    [#6565](https://github.com/npm/npm/issues/6565) Tweak `peerDependency`
-    deprecation warning to include which peer dependency on which package is
-    going to need to change. ([@othiym23](https://github.com/othiym23))
-  * [`5fa067f`](https://github.com/npm/npm/commit/5fa067fd47682ac3cdb12a2b009d8ca59b05f992)
-    [#7171](https://github.com/npm/npm/issues/7171) Tweak `engineStrict`
-    deprecation warning to include which `package.json` is using it.
-    ([@othiym23](https://github.com/othiym23))
-* Add new collaborators:
+* **buffer**: 新增 `Buffer#indexOf()` 方法, 模仿 [`Array#indexOf()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf)。接受一个字符串，Buffer 或数值。字符串会使用 UTF8 解析。(Trevor Norris) [#561](https://github.com/iojs/io.js/pull/561)
+* **fs**: `’fs’` 的方法中的 `options` 对象属性将不会做 `hasOwnProperty()` 检测，因此 options 对象允许原型链上的属性。(Jonathan Ong) [#635](https://github.com/iojs/io.js/pull/635)
+* **tls**: PayPal 上报了一个疑似 TLS 内存溢出的问题，可能问题在最近 **stream_wrap** 中的一些修改上。最初修复在 [#1078](https://github.com/iojs/io.js/pull/1078), 你可以关注整个关闭溢出的过程 [#1075](https://github.com/iojs/io.js/issues/1075) (Fedor Indutny).
+* **npm**: 升级 npm 到 2.7.0，查看详情 [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v270-2015-02-26)，从中可以看出为什么这只升级了 minor 而不是 major。以下为摘要：
+  * [`145af65`](https://github.com/npm/npm/commit/145af6587f45de135cc876be2027ed818ed4ca6a) [#4887](https://github.com/npm/npm/issues/4887) 通过传入 `—node-gyp=/path/to/node-gyp` 参数给 npm，可替换 npm 自带的 `node-gyp` 脚本。不用修改 npm 的代码就可使用 `pangyp` 或 一个修改过的 `node-gyp` 版本来支持 io.js！([@ackalker](https://github.com/ackalker))
+  * [`2f6a1df`](https://github.com/npm/npm/commit/2f6a1df3e1e3e0a3bc4abb69e40f59a64204e7aa) [#1999](https://github.com/npm/npm/issues/1999) 当没有定义 restart 脚本，只运行 `stop` 和 `start`（包括 pre- 和 post- 脚本），这样可更简单的让 npm 所管理的服务支持优雅的重启。([@watilde](https://github.com/watilde) / [@scien](https://github.com/scien))
+  * [`448efd0`](https://github.com/npm/npm/commit/448efd0eaa6f97af0889bf47efc543a1ea2f8d7e) [#2853](https://github.com/npm/npm/issues/2853) `npm ls` 新增支持 `--dev` 和 `--prod`，使得只显示生产或开发时的依赖。 ([@watilde](https://github.com/watilde))
+  * [`a0a8777`](https://github.com/npm/npm/commit/a0a87777af8bee180e4e9321699f050c29ed5ac4) [#7463](https://github.com/npm/npm/issues/7463) 将 `npm run-script` 打印的日志拆分成生命周期的脚本和 `npm run-script` 直接调用的脚本。 ([@watilde](https://github.com/watilde))
+  * [`a5edc17`](https://github.com/npm/npm/commit/a5edc17d5ef1435b468a445156a4a109df80f92b) [#6749](https://github.com/npm/npm/issues/6749) `init-package-json@1.3.1`:
+支持传递作用域给 `npm init`，所以包可以被初始化成 scope / organization / team 的一部分。 ([@watilde](https://github.com/watilde))
+* **TC**: Colin Ihrig (@cjihrig) 离开 TC，因为想更多的贡献代码，而少参加会议。
+
+### 已知问题
+
+* 可能与 TLS 相关的内存溢出问题，查看详情 [#1075](https://github.com/iojs/io.js/issues/1075).
+* Windows 支持有一些明显的错误并未被 io.js 持续集成系统识别，由人为、程序和 Jenkins 错误等一系列原因造成。查看 [#1005](https://github.com/iojs/io.js/issues/1005) 的详情和讨论，希望这些错误能被尽快解决。
+* REPL 中的 Surrogate pair 会导致终端僵死 [#690](https://github.com/iojs/io.js/issues/690)
+* 无法将 io.js 编译成静态库 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
+
+## [2015-03-02, 版本 1.4.3, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-02-version-143-rvagg)
+
+### 主要更新
+
+* **stream**: 修复在不支持 `writev()` 的平台（尤其是 Windows）的一些问题。在 1.4.1 中有修改 [#926](https://github.com/iojs/io.js/pull/926)，造成这些平台的一些功能无法使用，现在已经被解决 [#1008](https://github.com/iojs/io.js/pull/1008) (Fedor Indutny)
+* **arm**: 我们已经初步支持 ARMv8 / ARM64 / AARCH64。如果要完全支持需要将 OpenSSL 升级到 1.0.2。[#1028](https://github.com/iojs/io.js/pull/1028) (Ben Noordhuis)
+* 新增合作开发者: Julian Duque ([@julianduque](https://github.com/julianduque))
+
+### 已知问题
+
+* Windows 支持有一些明显的错误并未被 io.js 持续集成系统识别，由人为、程序和 Jenkins 错误等一系列原因造成。查看 [#1005](https://github.com/iojs/io.js/issues/1005) 的详情和讨论，希望这些错误能被尽快解决。
+* REPL 中的 Surrogate pair 会导致终端僵死 [#690](https://github.com/iojs/io.js/issues/690)
+* 无法将 io.js 编译成静态库 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
+
+## [2015-02-28, 版本 1.4.2, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-02-28-version-142-rvagg)
+
+### 主要更新
+
+* **tls**: 在 [#840](https://github.com/iojs/io.js/pull/840) 中修改 TLSWrap 时引入了一个拼写错误导致报错，这个错误只会在 Windows 上出现。并没有在 io.js 的持续集成系统发现，因为 Windows 编译脚本和 slave 配置有问题，见「已知问题」。已在 [#994](https://github.com/iojs/io.js/pull/994) 和 [#1004](https://github.com/iojs/io.js/pull/1004) 修复. (Fedor Indutny)
+* **npm**: 更新 npm 到 2.6.1。查看详情 [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v260-2015-02-12)，主要变更：
+  * [`8b98f0e`](https://github.com/npm/npm/commit/8b98f0e709d77a8616c944aebd48ab726f726f76) [#4471](https://github.com/npm/npm/issues/4471) `npm outdated` (只是 `npm outdated`) 默认值改为 `--depth=0`。而且 `npm update -g` 能像人们预期的那样工作，这之前是没想到的。查看 [`--depth` 的文档](https://github.com/npm/npm/blob/82f484672adb1a3caf526a8a48832789495bb43d/doc/misc/npm-config.md#depth)，细节有点略有混淆。([@smikes](https://github.com/smikes))
+  * [`aa79194`](https://github.com/npm/npm/commit/aa791942a9f3c8af6a650edec72a675deb7a7c6e) [#6565](https://github.com/npm/npm/issues/6565) 调整 `peerDependency` 废弃警告，提示哪个包依赖的哪个 peerDependency 需要修改。 ([@othiym23](https://github.com/othiym23))
+  * [`5fa067f`](https://github.com/npm/npm/commit/5fa067fd47682ac3cdb12a2b009d8ca59b05f992) [#7171](https://github.com/npm/npm/issues/7171) 调整 `engineStrict` 废弃警告，提示哪个 `package.json` 正在使用。([@othiym23](https://github.com/othiym23))
+* 新增合作开发者：
   - Robert Kowalski ([@robertkowalski](https://github.com/robertkowalski))
   - Christian Vaagland Tellnes ([@tellnes](https://github.com/tellnes))
   - Brian White ([@mscdex](https://github.com/mscdex))
 
-### Known issues
+### 已知问题
 
-* Windows support has some outstanding failures that have not been properly picked up by the io.js CI system due to a combination of factors including human, program and Jenkins errors. See [#1005](https://github.com/iojs/io.js/issues/1005) for details & discussion. Expect these problems to be addressed ASAP.
-* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
-* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
-* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
-* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/iojs/io.js/issues/894)
+* Windows 支持有一些明显的错误并未被 io.js 持续集成系统识别，由人为、程序和 Jenkins 错误等一系列原因造成。查看 [#1005](https://github.com/iojs/io.js/issues/1005) 的详情和讨论，希望这些错误能被尽快解决。
+* REPL 中的 Surrogate pair 会导致终端僵死 [#690](https://github.com/iojs/io.js/issues/690)
+* 无法将 io.js 编译成静态库 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
 
 ## [2015-02-26，版本 1.4.1，@rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-02-26-version-141-rvagg)
 
