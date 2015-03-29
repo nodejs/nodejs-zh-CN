@@ -17,6 +17,7 @@
 | module  | 模块 |
 | add-on  | 扩展 |
 | Cipher suite | 加密组件 |
+| pipe    | 管道 |
 
 ## 其他词
 
@@ -38,6 +39,8 @@
 * bug
 * stream
 * pull request / PR
+* fork
+* API
 
 
 # 特定词书写方式
