@@ -26,9 +26,14 @@
 | governance          | 管理       |
 | Technical Committee | 技术委员会 |
 | Evangelism          | 布道       |
+| roadmap             | 路线图     |
+| tracing             | 跟踪       |
+| build               | 构建       |
+| semver              | 语义版本   |
 
 # 不翻译的词
 
+* npm
 * callback
 * bug
 * stream
@@ -39,3 +44,5 @@
 
 * io.js
 * Node.js
+* JavaScript
+* GitHub
