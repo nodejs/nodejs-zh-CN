@@ -1,5 +1,45 @@
 # io.js 更新记录
 
+## [2015-03-20, Version 1.6.1, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-20-version-161-rvagg)
+
+### 主要更新
+
+* **path**: path.resolve() 使用了新的类型检查, [#1153](https://github.com/iojs/io.js/pull/1153) 发现了一些边缘案例依赖它，最显著的是 path.dirname(undefined)。放宽了对 path.dirname()，path.basename()，path.extname() 的类型检查。(Colin Ihrig) [#1216](https://github.com/iojs/io.js/pull/1216)
+* **querystring**: querystring.parse() 和 querystring.stringify() 方法进行了内部优化，查看 [#847](https://github.com/iojs/io.js/pull/847)，querystring.escape() 阻止了数字字面量被正确的转化，查看 [#1208](https://github.com/iojs/io.js/issues/1208)，暴露了一个测试盲点。这个 bug 和测试现在已被修复。(Jeremiah Senkpiel) [#1213](https://github.com/iojs/io.js/pull/1213)
+
+### 已知问题
+
+* 可能依然存在与 TLS 相关内存泄露问题，查看 [#1075](https://github.com/iojs/io.js/issues/1075)
+* REPL 中的 Surrogate pair 会导致终端僵死，查看 [#690](https://github.com/iojs/io.js/issues/690)
+* 无法将 io.js 编译成静态库 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
+
+## [2015-03-19, Version 1.6.0, @chrisdickinson](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-19-version-160-chrisdickinson)
+
+### 主要更新
+
+* **node**: 新增一个命令行参数 -r 或者 --require，可以用来在启动的时候预加载模块。(Ali Ijaz Sheikh) [#881](https://github.com/iojs/io.js/pull/881)
+* **querystring**: parse() and stringify() 现在更快了。(Brian White) [#847](https://github.com/iojs/io.js/pull/847)
+* **http**: http.ClientRequest#flush() 方法已经被弃用并且替换为 http.ClientRequest#flushHeaders()，为了匹配 [joyent/node#9048](https://github.com/joyent/node/pull/9048) 中相同的改变。(Yosuke Furukawa) [#1156](https://github.com/iojs/io.js/pull/1156)
+* **net**: 允许 server.listen() 的 port 参数接受 String 类型的选项，例如：{ port: "1234" }，为了匹配 [joyent/node#9268](https://github.com/joyent/node/pull/9268) 中 net.connect() 可以接受相同的选项。(Ben Noordhuis) [#1116](https://github.com/iojs/io.js/pull/1116)
+* **tls**: 已报告的内存泄露有了进一步工作，虽然在一些尚未明确的使用情况下还有轻微的泄露，在 [#1075](https://github.com/iojs/io.js/issues/1075) 跟踪进度。
+* **v8**: Backport 了一个补丁，当 --max_old_space_size 超过 4096 时会发生整数溢出。(Ben Noordhuis) [#1166](https://github.com/iojs/io.js/pull/1166)
+* **platforms**: io.js CI 系统在 FreeBSD 和 SmartOS (Solaris) 报告通过。
+* **npm**: 升级 npm 到 2.7.1。查看详情 [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v270-2015-02-26)。主要变更：
+  * [`6823807`](https://github.com/npm/npm/commit/6823807bba) [#7121](https://github.com/npm/npm/issues/7121) npm install --save 的 Git 依赖保存传递进来的 URL 而不是用来缓存远程仓库的目录。修复在 shrinkwwapping 中使用 Git 依赖。正在重写缓存 Git 依赖的代码。重申。不会再有 single-letter 变量名字，工作流程更清晰了。([@othiym23](https://github.com/othiym23))
+  * [`abdd040`](https://github.com/npm/npm/commit/abdd040da9) read-package-json@1.3.2: 当解析 JSON 出错时，使用更宽容的 JSON 解析器替代 JSON.parse 提供更有用的出错信息。([@smikes](https://github.com/smikes))
+  * [`c56cfcd`](https://github.com/npm/npm/commit/c56cfcd79c) [#7525](https://github.com/npm/npm/issues/7525) npm dedupe 能够处理 scoped packages。 ([@KidkArolis](https://github.com/KidkArolis))
+  * [`4ef1412`](https://github.com/npm/npm/commit/4ef1412d00) [#7075](https://github.com/npm/npm/issues/7075) 当尝试使用一个无效的 semver 范围标记 release 时，npm publish 和 npm tag 将会在处理之前报错。([@smikes](https://github.com/smikes))
+
+### 已知问题
+
+* 可能依然存在与 TLS 相关内存泄露问题，查看 [#1075](https://github.com/iojs/io.js/issues/1075)
+* REPL 中的 Surrogate pair 会导致终端僵死，查看 [#690](https://github.com/iojs/io.js/issues/690)
+* 无法将 io.js 编译成静态库，查看 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
+
 ## [2015-03-09, Version 1.5.1, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-09-version-151-rvagg)
 
 ### Notable changes
