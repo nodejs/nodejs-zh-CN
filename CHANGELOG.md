@@ -33,7 +33,7 @@
 
 ### 主要更新
 
-* **Windows**: 正在进行的改善 Windows 支持状况的工作让完整的测试用例再次通过。正如 v1.4.2 的发布说明指出的，CI 系统和配置问题阻止了 Windows 下的测试问题被正确的报告，现在 CI 和代码库的问题似乎被完全解决了。
+* **Windows**: 正在进行的改善 Windows 支持状况的工作让完整的测试用例再次通过。正如 v1.4.2 的发布说明指出的，CI 系统和它的配置问题导致无法正确报告 Windows 下的测试问题，现在 CI 和代码库的问题似乎被完全解决了。
 * **FreeBSD**: [发现](https://github.com/joyent/node/issues/9326)了一个影响 io.js/Node.js 的[内核bug](](https://lists.freebsd.org/pipermail/freebsd-current/2015-March/055043.html)，io.js 已经引入了一个补丁来阻止它引发问题。(Fedor Indutny) [#1218](https://github.com/iojs/io.js/pull/1218)
 * **module**: 你现在可以使用 `require('.')` 代替 `require('./')`，这被认定为一个 bug 修复。(Michaël Zasso) [#1185](https://github.com/iojs/io.js/pull/1185)
 * **v8**: 升级到 4.1.0.25，包括了 `--max_old_space_size` 值超过 `4096` 和 Solaris 支持的补丁，两个已经被包含在 io.js 中。
