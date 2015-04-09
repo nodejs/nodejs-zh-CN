@@ -1,5 +1,42 @@
 # io.js 更新记录
 
+## [2015-04-06, Version 1.6.4, @Fishrock123](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-04-06-version-164-fishrock123)
+
+### Notable changes
+
+* **npm**: upgrade npm to 2.7.5. See [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v275-2015-03-26) for details. Includes two important security fixes. Summary:
+  * [`300834e`](https://github.com/npm/npm/commit/300834e91a4e2a95fb7fb59c309e7c3fc91d2312)
+  `tar@2.0.0`: Normalize symbolic links that point to targets outside the
+  extraction root. This prevents packages containing symbolic links from
+  overwriting targets outside the expected paths for a package. Thanks to [Tim
+  Cuthbertson](http://gfxmonk.net/) and the team at [Lift
+  Security](https://liftsecurity.io/) for working with the npm team to identify
+  this issue. ([@othiym23](https://github.com/othiym23))
+  * [`0dc6875`](https://github.com/npm/npm/commit/0dc68757cffd5397c280bc71365d106523a5a052)
+  `semver@4.3.2`: Package versions can be no more than 256 characters long.
+  This prevents a situation in which parsing the version number can use
+  exponentially more time and memory to parse, leading to a potential denial of
+  service. Thanks to Adam Baldwin at Lift Security for bringing this to our
+  attention.  ([@isaacs](https://github.com/isaacs))
+  * [`eab6184`](https://github.com/npm/npm/commit/eab618425c51e3aa4416da28dcd8ca4ba63aec41)
+  [#7766](https://github.com/npm/npm/issues/7766) One last tweak to ensure that
+  GitHub shortcuts work with private repositories.
+  ([@iarna](https://github.com/iarna))
+  * [`a840a13`](https://github.com/npm/npm/commit/a840a13bbf0330157536381ea8e58d0bd93b4c05)
+  [#7746](https://github.com/npm/npm/issues/7746) Only fix up git URL paths when
+  there are paths to fix up. ([@othiym23](https://github.com/othiym23))
+* **openssl**: preliminary work has been done for an upcoming upgrade to OpenSSL 1.0.2a [#1325](https://github.com/iojs/io.js/pull/1325) (Shigeki Ohtsu). See [#589](https://github.com/iojs/io.js/issues/589) for additional details.
+* **timers**: a minor memory leak when timers are unreferenced was fixed, alongside some related timers issues [#1330](https://github.com/iojs/io.js/pull/1330) (Fedor Indutny). This appears to have fixed the remaining leak reported in [#1075](https://github.com/iojs/io.js/issues/1075).
+* **android**: it is now possible to compile io.js for Android and related devices [#1307](https://github.com/iojs/io.js/pull/1307) (Giovanny Andres Gongora Granada).
+
+### Known issues
+
+* Some problems with unreferenced timers running during `beforeExit` are still to be resolved. See [#1264](https://github.com/iojs/io.js/issues/1264).
+* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
+* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
+* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/iojs/io.js/issues/894)
+
 ## [2015-03-31, Version 1.6.3, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-31-version-163-rvagg)
 
 ### 主要更新
