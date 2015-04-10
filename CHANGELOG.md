@@ -2,40 +2,32 @@
 
 ## [2015-04-06, Version 1.6.4, @Fishrock123](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-04-06-version-164-fishrock123)
 
-### Notable changes
+### 主要更新
 
-* **npm**: upgrade npm to 2.7.5. See [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v275-2015-03-26) for details. Includes two important security fixes. Summary:
+* **npm**: 更新 npm 到 2.7.5 版本。查看详情 [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v275-2015-03-26)。包括修复两个重要的安全问题，概要：
   * [`300834e`](https://github.com/npm/npm/commit/300834e91a4e2a95fb7fb59c309e7c3fc91d2312)
-  `tar@2.0.0`: Normalize symbolic links that point to targets outside the
-  extraction root. This prevents packages containing symbolic links from
-  overwriting targets outside the expected paths for a package. Thanks to [Tim
-  Cuthbertson](http://gfxmonk.net/) and the team at [Lift
-  Security](https://liftsecurity.io/) for working with the npm team to identify
-  this issue. ([@othiym23](https://github.com/othiym23))
+  `tar@2.0.0`: 标准化软链接，这些链接会指向在根目录之外的目标。防止那些含有软链接的包覆盖在期望路径以外的目录。非常感谢 [Tim
+  Cuthbertson](http://gfxmonk.net/) 和 [Lift
+  Security](https://liftsecurity.io/) 团队与 npm 团队一起识别出这个问题。([@othiym23](https://github.com/othiym23))
   * [`0dc6875`](https://github.com/npm/npm/commit/0dc68757cffd5397c280bc71365d106523a5a052)
-  `semver@4.3.2`: Package versions can be no more than 256 characters long.
-  This prevents a situation in which parsing the version number can use
-  exponentially more time and memory to parse, leading to a potential denial of
-  service. Thanks to Adam Baldwin at Lift Security for bringing this to our
-  attention.  ([@isaacs](https://github.com/isaacs))
+  `semver@4.3.2`: 包版本号不能大于 256 个字符，为了防止解析一个版本时所消耗的时间和内存指数级的增长，会导致[阻断服务攻击](http://zh.wikipedia.org/wiki/%E9%98%BB%E6%96%B7%E6%9C%8D%E5%8B%99%E6%94%BB%E6%93%8A)。感谢 Lift Security 的 Adam Baldwin 给我们的提醒 ([@isaacs](https://github.com/isaacs))
   * [`eab6184`](https://github.com/npm/npm/commit/eab618425c51e3aa4416da28dcd8ca4ba63aec41)
-  [#7766](https://github.com/npm/npm/issues/7766) One last tweak to ensure that
-  GitHub shortcuts work with private repositories.
+  [#7766](https://github.com/npm/npm/issues/7766) 进行微调使 Github 的快捷方式也支持私库。
   ([@iarna](https://github.com/iarna))
   * [`a840a13`](https://github.com/npm/npm/commit/a840a13bbf0330157536381ea8e58d0bd93b4c05)
-  [#7746](https://github.com/npm/npm/issues/7746) Only fix up git URL paths when
-  there are paths to fix up. ([@othiym23](https://github.com/othiym23))
-* **openssl**: preliminary work has been done for an upcoming upgrade to OpenSSL 1.0.2a [#1325](https://github.com/iojs/io.js/pull/1325) (Shigeki Ohtsu). See [#589](https://github.com/iojs/io.js/issues/589) for additional details.
-* **timers**: a minor memory leak when timers are unreferenced was fixed, alongside some related timers issues [#1330](https://github.com/iojs/io.js/pull/1330) (Fedor Indutny). This appears to have fixed the remaining leak reported in [#1075](https://github.com/iojs/io.js/issues/1075).
-* **android**: it is now possible to compile io.js for Android and related devices [#1307](https://github.com/iojs/io.js/pull/1307) (Giovanny Andres Gongora Granada).
+  [#7746](https://github.com/npm/npm/issues/7746) 只有当 git URL 存在时处理 ([@othiym23](https://github.com/othiym23))
+* **openssl**: 将 OpenSSL 升级到 1.0.2a [#1325](https://github.com/iojs/io.js/pull/1325) (Shigeki Ohtsu)，为即将到来的升级做了准备工作，查看附加信息 [#589](https://github.com/iojs/io.js/issues/589)。
+* **timers**: 修复了一个小的内存泄漏问题，在 timers 未被引用时发生，还有一些相关的 timers 问题 [#1330](https://github.com/iojs/io.js/pull/1330) (Fedor Indutny)。这也似乎修复了 [#1075](https://github.com/iojs/io.js/issues/1075) 中提交的内存问题。
+* **android**: 现在已经可以在 Android 和相关设备上编译 io.js [#1307](https://github.com/iojs/io.js/pull/1307) (Giovanny Andres Gongora Granada).
 
-### Known issues
+### 已知问题
 
-* Some problems with unreferenced timers running during `beforeExit` are still to be resolved. See [#1264](https://github.com/iojs/io.js/issues/1264).
-* Surrogate pair in REPL can freeze terminal [#690](https://github.com/iojs/io.js/issues/690)
-* Not possible to build io.js as a static library [#686](https://github.com/iojs/io.js/issues/686)
-* `process.send()` is not synchronous as the docs suggest, a regression introduced in 1.0.2, see [#760](https://github.com/iojs/io.js/issues/760) and fix in [#774](https://github.com/iojs/io.js/issues/774)
-* Calling `dns.setServers()` while a DNS query is in progress can cause the process to crash on a failed assertion [#894](https://github.com/iojs/io.js/issues/894)
+* 需要解决当 `beforeExit` 时未引用的 timers 还会运行的问题，查看 [#1264](https://github.com/iojs/io.js/issues/1264).
+* REPL 中的 Surrogate pair 会导致终端僵死，查看 [#690](https://github.com/iojs/io.js/issues/690)
+* 无法将 io.js 编译成静态库，查看 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
+
 
 ## [2015-03-31, Version 1.6.3, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-31-version-163-rvagg)
 
