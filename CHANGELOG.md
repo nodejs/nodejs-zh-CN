@@ -17,12 +17,12 @@
   * [`a840a13`](https://github.com/npm/npm/commit/a840a13bbf0330157536381ea8e58d0bd93b4c05)
   [#7746](https://github.com/npm/npm/issues/7746) 只有当 git URL 存在时处理 ([@othiym23](https://github.com/othiym23))
 * **openssl**: 将 OpenSSL 升级到 1.0.2a [#1325](https://github.com/iojs/io.js/pull/1325) (Shigeki Ohtsu)，为即将到来的升级做了准备工作，查看附加信息 [#589](https://github.com/iojs/io.js/issues/589)。
-* **timers**: 修复了一个小的内存泄漏问题，在 timers 未被引用时发生，还有一些相关的 timers 问题 [#1330](https://github.com/iojs/io.js/pull/1330) (Fedor Indutny)。这也似乎修复了 [#1075](https://github.com/iojs/io.js/issues/1075) 种提交的内存问题。
+* **timers**: 修复了一个小的内存泄漏问题，在 timers 未被引用时发生，还有一些相关的 timers 问题 [#1330](https://github.com/iojs/io.js/pull/1330) (Fedor Indutny)。这也似乎修复了 [#1075](https://github.com/iojs/io.js/issues/1075) 中提交的内存问题。
 * **android**: 现在已经可以在 Android 和相关设备上编译 io.js [#1307](https://github.com/iojs/io.js/pull/1307) (Giovanny Andres Gongora Granada).
 
 ### 已知问题
 
-* 需要解决当 `beforeExit` 时为引用的 timers 还会运行的问题，查看 [#1264](https://github.com/iojs/io.js/issues/1264).
+* 需要解决当 `beforeExit` 时未引用的 timers 还会运行的问题，查看 [#1264](https://github.com/iojs/io.js/issues/1264).
 * REPL 中的 Surrogate pair 会导致终端僵死，查看 [#690](https://github.com/iojs/io.js/issues/690)
 * 无法将 io.js 编译成静态库，查看 [#686](https://github.com/iojs/io.js/issues/686)
 * `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
