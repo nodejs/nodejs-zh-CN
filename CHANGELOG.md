@@ -1,24 +1,24 @@
 # io.js 更新记录
 
-## 2015-04-14, Version 1.7.1, @rvagg
+## [2015-04-14, Version 1.7.1, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-04-14-version-171-rvagg)
 
-### Notable changes
+### 主要更新
 
-* **build**: A syntax error in the Makefile for release builds caused 1.7.0 to be DOA and unreleased. (Rod Vagg) [#1421](https://github.com/iojs/io.js/pull/1421).
+* **build**: 发布脚本中的一个语法错误导致了 1.7.0 版本被 DOA 和未发布。(Rod Vagg) [#1421](https://github.com/iojs/io.js/pull/1421).
 
-## 2015-04-14, Version 1.7.0, @rvagg
+## [2015-04-14, Version 1.7.0, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-04-14-version-170-rvagg)
 
-### Notable changes
+### 主要更新
 
-* **C++ API**: Fedor Indutny contributed a feature to V8 which has been backported to the V8 bundled in io.js. `SealHandleScope` allows a C++ add-on author to _seal_ a `HandleScope` to prevent further, unintended allocations within it. Currently only enabled for debug builds of io.js. This feature helped detect the leak in [#1075](https://github.com/iojs/io.js/issues/1075) and is now activated on the root `HandleScope` in io.js. (Fedor Indutny) [#1395](https://github.com/iojs/io.js/pull/1395).
-* **ARM**: This release includes significant work to improve the state of ARM support for builds and tests. The io.js CI cluster's ARMv6, ARMv7 and ARMv8 build servers are now all (mostly) reporting passing builds and tests.
-  * ARMv8 64-bit (AARCH64) is now properly supported, including a backported fix in libuv that was mistakenly detecting the existence of `epoll_wait()`. (Ben Noordhuis) [#1365](https://github.com/iojs/io.js/pull/1365).
-  * ARMv6: [#1376](https://github.com/iojs/io.js/issues/1376) reported a problem with `Math.exp()` on ARMv6 (incl Raspberry Pi). The culprit is erroneous codegen for ARMv6 when using the "fast math" feature of V8. `--nofast_math` has been turned on for all ARMv6 variants by default to avoid this, fast math can be turned back on with `--fast_math`. (Ben Noordhuis) [#1398](https://github.com/iojs/io.js/pull/1398).
-  * Tests: timeouts have been tuned specifically for slower platforms, detected as ARMv6 and ARMv7. (Roman Reiss) [#1366](https://github.com/iojs/io.js/pull/1366).
-* **npm**: Upgrade npm to 2.7.6. See the [release notes](https://github.com/npm/npm/releases/tag/v2.7.6) for details. Summary:
-  * [`b747593`](https://github.com/npm/npm/commit/b7475936f473f029e6a027ba1b16277523747d0b)[#7630](https://github.com/npm/npm/issues/7630) Don't automatically log all git failures as errors. `maybeGithub` needs to be able to fail without logging to support its fallback logic. ([@othiym23](https://github.com/othiym23))
-  * [`78005eb`](https://github.com/npm/npm/commit/78005ebb6f4103c20f077669c3929b7ea46a4c0d)[#7743](https://github.com/npm/npm/issues/7743) Always quote arguments passed to `npm run-script`. This allows build systems and the like to safely escape glob patterns passed as arguments to `run-scripts` with `npm run-script <script> -- <arguments>`. This is a tricky change to test, and may be reverted or moved to `npm@3` if it turns out it breaks things for users. ([@mantoni](https://github.com/mantoni))
-  * [`da015ee`](https://github.com/npm/npm/commit/da015eee45f6daf384598151d06a9b57ffce136e)[#7074](https://github.com/npm/npm/issues/7074) `read-package-json@1.3.3`: `read-package-json` no longer caches `package.json` files, which trades a very small performance loss for the elimination of a large class of really annoying race conditions. See [#7074](https://github.com/npm/npm/issues/7074) for the grisly details. ([@othiym23](https://github.com/othiym23))
+* **C++ API**: Fedor Indutny 向 V8 贡献了一个功能，已经被移植到和 io.js 捆绑的 V8 中。`SealHandleScope` 允许 C++ 附件组建开发者_密封_一个 `HandleScope` 来防止更多的和意想不到的内存分配。目前只在测试版本的 io.js 中启用。这个功能帮助检测 [#1075](https://github.com/iojs/io.js/issues/1075) 中的内存泄漏，现在已经在 io.js 根 `HandleScope` 被激活。(Fedor Indutny) [#1395](https://github.com/iojs/io.js/pull/1395)
+* **ARM**: 这个发布包含显著的工作，改善了 ARM 平台上构建和测试状况。io.js CI 集群的 ARMv6，ARMv7 和 ARMv8 构建服务器现在全都（大部分）报告通过构建和测试。
+  * ARMv8 64-bit (AARCH64) 现在被正确的支持，包括向后移植了一个修复到 libuv 中，解决了错误地检测到 `epoll_wait()` 存在的问题。(Ben Noordhuis) [#1365](https://github.com/iojs/io.js/pull/1365)
+  * ARMv6: [#1376](https://github.com/iojs/io.js/issues/1376) 报告了一个 ARMv6 上关于 `Math.exp()` 的问题（包括 Raspberry Pi）。罪魁祸首是 ARMv6 上使用 V8 的 “fast math” 造成错误的代码生成。为了避免这个问题所有的 ARMv6 变种已经默认开启了 `--nofast_math`，fast math 可以使用 `--fast_math` 重新打开。(Ben Noordhuis) [#1398](https://github.com/iojs/io.js/pull/1398)
+  * Tests: 专门为较慢的平台调整了超时，被检测到有 ARMv6 and ARMv7。(Roman Reiss) [#1366](https://github.com/iojs/io.js/pull/1366)
+* **npm**: 升级 npm 到 2.7.6. 查看详情 [release notes](https://github.com/npm/npm/releases/tag/v2.7.6)。概要：
+  * [`b747593`](https://github.com/npm/npm/commit/b7475936f473f029e6a027ba1b16277523747d0b)[#7630](https://github.com/npm/npm/issues/7630) 不自动的将所有 git 失败输出为错误日志。也许 `Github` 需要能够在失败时不输出日志来支持这个回退逻辑。([@othiym23](https://github.com/othiym23))
+  * [`78005eb`](https://github.com/npm/npm/commit/78005ebb6f4103c20f077669c3929b7ea46a4c0d)[#7743](https://github.com/npm/npm/issues/7743) `npm run-script` 的参数总是需要引号. 这个改动允许构建系统能够安全地编码使用 `npm run-script <script> -- <arguments>` 传递给 `run-scripts` 的 glod 模式的参数。这是一个针对测试做出的棘手的改变, 如果它被证实会破坏用户的东西也许会被还原或者移动到 `npm@3` ([@mantoni](https://github.com/mantoni))
+  * [`da015ee`](https://github.com/npm/npm/commit/da015eee45f6daf384598151d06a9b57ffce136e)[#7074](https://github.com/npm/npm/issues/7074) `read-package-json@1.3.3`: `read-package-json` 不再缓存 `package.json` 文件, 这造成了微小的性能损失却消除了一大类烦人的竞争条件。在 [#7074](https://github.com/npm/npm/issues/7074) 查看这个可怕的问题。([@othiym23](https://github.com/othiym23))
 
 ## [2015-04-06, Version 1.6.4, @Fishrock123](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-04-06-version-164-fishrock123)
 
