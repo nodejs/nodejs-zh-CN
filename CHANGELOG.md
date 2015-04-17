@@ -1,5 +1,100 @@
 # io.js 更新记录
 
+## [2015-04-14, Version 1.7.1, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-04-14-version-171-rvagg)
+
+### 主要更新
+
+* **build**: 发布脚本中的一个语法错误导致了 1.7.0 版本被 DOA 和未发布。(Rod Vagg) [#1421](https://github.com/iojs/io.js/pull/1421).
+
+## [2015-04-14, Version 1.7.0, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-04-14-version-170-rvagg)
+
+### 主要更新
+
+* **C++ API**: Fedor Indutny 向 V8 贡献了一个功能，已经被移植到和 io.js 捆绑的 V8 中。`SealHandleScope` 允许 C++ 附件组建开发者_密封_一个 `HandleScope` 来防止更多的和意想不到的内存分配。目前只在测试版本的 io.js 中启用。这个功能帮助检测 [#1075](https://github.com/iojs/io.js/issues/1075) 中的内存泄漏，现在已经在 io.js 根 `HandleScope` 被激活。(Fedor Indutny) [#1395](https://github.com/iojs/io.js/pull/1395)
+* **ARM**: 这个发布包含显著的工作，改善了 ARM 平台上构建和测试状况。io.js CI 集群的 ARMv6，ARMv7 和 ARMv8 构建服务器现在全都（大部分）报告通过构建和测试。
+  * ARMv8 64-bit (AARCH64) 现在被正确的支持，包括向后移植了一个修复到 libuv 中，解决了错误地检测到 `epoll_wait()` 存在的问题。(Ben Noordhuis) [#1365](https://github.com/iojs/io.js/pull/1365)
+  * ARMv6: [#1376](https://github.com/iojs/io.js/issues/1376) 报告了一个 ARMv6 上关于 `Math.exp()` 的问题（包括 Raspberry Pi）。罪魁祸首是 ARMv6 上使用 V8 的 “fast math” 造成错误的代码生成。为了避免这个问题所有的 ARMv6 变种已经默认开启了 `--nofast_math`，fast math 可以使用 `--fast_math` 重新打开。(Ben Noordhuis) [#1398](https://github.com/iojs/io.js/pull/1398)
+  * Tests: 专门为较慢的平台调整了超时，被检测到有 ARMv6 and ARMv7。(Roman Reiss) [#1366](https://github.com/iojs/io.js/pull/1366)
+* **npm**: 升级 npm 到 2.7.6. 查看详情 [release notes](https://github.com/npm/npm/releases/tag/v2.7.6)。概要：
+  * [`b747593`](https://github.com/npm/npm/commit/b7475936f473f029e6a027ba1b16277523747d0b)[#7630](https://github.com/npm/npm/issues/7630) 不自动的将所有 git 失败输出为错误日志。也许 `Github` 需要能够在失败时不输出日志来支持这个回退逻辑。([@othiym23](https://github.com/othiym23))
+  * [`78005eb`](https://github.com/npm/npm/commit/78005ebb6f4103c20f077669c3929b7ea46a4c0d)[#7743](https://github.com/npm/npm/issues/7743) `npm run-script` 的参数总是需要引号. 这个改动允许构建系统能够安全地编码使用 `npm run-script <script> -- <arguments>` 传递给 `run-scripts` 的 glod 模式的参数。这是一个针对测试做出的棘手的改变, 如果它被证实会破坏用户的东西也许会被还原或者移动到 `npm@3` ([@mantoni](https://github.com/mantoni))
+  * [`da015ee`](https://github.com/npm/npm/commit/da015eee45f6daf384598151d06a9b57ffce136e)[#7074](https://github.com/npm/npm/issues/7074) `read-package-json@1.3.3`: `read-package-json` 不再缓存 `package.json` 文件, 这造成了微小的性能损失却消除了一大类烦人的竞争条件。在 [#7074](https://github.com/npm/npm/issues/7074) 查看这个可怕的问题。([@othiym23](https://github.com/othiym23))
+
+## [2015-04-06, Version 1.6.4, @Fishrock123](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-04-06-version-164-fishrock123)
+
+### 主要更新
+
+* **npm**: 更新 npm 到 2.7.5 版本。查看详情 [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v275-2015-03-26)。包括修复两个重要的安全问题，概要：
+  * [`300834e`](https://github.com/npm/npm/commit/300834e91a4e2a95fb7fb59c309e7c3fc91d2312)
+  `tar@2.0.0`: 标准化软链接，这些链接会指向在根目录之外的目标。防止那些含有软链接的包覆盖在期望路径以外的目录。非常感谢 [Tim
+  Cuthbertson](http://gfxmonk.net/) 和 [Lift
+  Security](https://liftsecurity.io/) 团队与 npm 团队一起识别出这个问题。([@othiym23](https://github.com/othiym23))
+  * [`0dc6875`](https://github.com/npm/npm/commit/0dc68757cffd5397c280bc71365d106523a5a052)
+  `semver@4.3.2`: 包版本号不能大于 256 个字符，为了防止解析一个版本时所消耗的时间和内存指数级的增长，会导致[阻断服务攻击](http://zh.wikipedia.org/wiki/%E9%98%BB%E6%96%B7%E6%9C%8D%E5%8B%99%E6%94%BB%E6%93%8A)。感谢 Lift Security 的 Adam Baldwin 给我们的提醒 ([@isaacs](https://github.com/isaacs))
+  * [`eab6184`](https://github.com/npm/npm/commit/eab618425c51e3aa4416da28dcd8ca4ba63aec41)
+  [#7766](https://github.com/npm/npm/issues/7766) 进行微调使 Github 的快捷方式也支持私库。
+  ([@iarna](https://github.com/iarna))
+  * [`a840a13`](https://github.com/npm/npm/commit/a840a13bbf0330157536381ea8e58d0bd93b4c05)
+  [#7746](https://github.com/npm/npm/issues/7746) 只有当 git URL 存在时处理 ([@othiym23](https://github.com/othiym23))
+* **openssl**: 将 OpenSSL 升级到 1.0.2a [#1325](https://github.com/iojs/io.js/pull/1325) (Shigeki Ohtsu)，为即将到来的升级做了准备工作，查看附加信息 [#589](https://github.com/iojs/io.js/issues/589)。
+* **timers**: 修复了一个小的内存泄漏问题，在 timers 未被引用时发生，还有一些相关的 timers 问题 [#1330](https://github.com/iojs/io.js/pull/1330) (Fedor Indutny)。这也似乎修复了 [#1075](https://github.com/iojs/io.js/issues/1075) 中提交的内存问题。
+* **android**: 现在已经可以在 Android 和相关设备上编译 io.js [#1307](https://github.com/iojs/io.js/pull/1307) (Giovanny Andres Gongora Granada).
+
+### 已知问题
+
+* 需要解决当 `beforeExit` 时未引用的 timers 还会运行的问题，查看 [#1264](https://github.com/iojs/io.js/issues/1264).
+* REPL 中的 Surrogate pair 会导致终端僵死，查看 [#690](https://github.com/iojs/io.js/issues/690)
+* 无法将 io.js 编译成静态库，查看 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
+
+
+## [2015-03-31, Version 1.6.3, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-31-version-163-rvagg)
+
+### 主要更新
+
+* **fs**: `fs.writeFileSync()` 以及特定情况下处于追加模式的 `fs.writeFile()` 和 `fs.writeFileSync()` 会造成文件损坏，查看 [#1058](https://github.com/iojs/io.js/issues/1058)，已在 [#1063](https://github.com/iojs/io.js/pull/1063) 中修复。(Olov Lassus)
+* **iojs**: 引入了一个 "internal modules" API，允许核心代码共享 JavaScript 模块而不需要将它们暴露成公共的 API，这个特性是 core-only 的，查看 [#848](https://github.com/iojs/io.js/pull/848)。(Vladimir Kurchatkin)
+* **timers**: 修复了两个关于定时器的小问题：
+  - `Timer#close()` 现在是正确幂等的，查看 [#1288](https://github.com/iojs/io.js/issues/1288)。(Petka Antonov)
+  - `setTimeout()` 在调用 `unref()` 后只会执行一次回调函数，查看 [#1231](https://github.com/iojs/io.js/pull/1231)。(Roman Reiss)
+  - 注意：依然有其他定时器相关的问题没有被解决，例如 [#1152](https://github.com/iojs/io.js/pull/1152)。
+* **Windows**: 为 Windows 平台上编译过的附加组件增加了一个 "delay-load hook"，这应该能减少一些 Windows 用户使用 io.js 附加组件的问题，查看 [#1251](https://github.com/iojs/io.js/pull/1251)。(Bert Belder)
+* **V8**: V8 升级至 4.1.0.27，修复了一些小 bug。
+* **npm**: 升级 npm 到 2.7.4。查看详情 [npm CHANGELOG.md](https://github.com/npm/npm/blob/master/CHANGELOG.md#v274-2015-03-20)。主要变更：
+  * [`1549106`](https://github.com/npm/npm/commit/1549106f518000633915686f5f1ccc6afcf77f8f) [#7641](https://github.com/npm/npm/issues/7641) 因为 448efd0，执行 `npm shrinkwrap --dev` 不会再将 production 依赖包含到 `npm-shrinkwrap.json` 中。Whoopsie! ([@othiym23](https://github.com/othiym23))
+  * [`fb0ac26`](https://github.com/npm/npm/commit/fb0ac26eecdd76f6eaa4a96a865b7c6f52ce5aa5) [#7579](https://github.com/npm/npm/issues/7579) 只有在我们确信 npm 不对它们负责时才阻止删除文件和链接。这个改变很难总结，因为如果一切正常你应该永远不会看到它，如果你想了解更多的情况，可以[看一看 commit 信息](https://github.com/npm/npm/commit/fb0ac26eecdd76f6eaa4a96a865b7c6f52ce5aa5)，这里做了详细的说明。([@othiym23](https://github.com/othiym23))
+  * [`051c473`](https://github.com/npm/npm/commit/051c4738486a826300f205b71590781ce7744f01) [#7552](https://github.com/npm/npm/issues/7552) `bundledDependencies` 现在被正确的包含在安装上下文中了。这是另一个非常难以总结的 bug，再次，如果你对细节好奇我鼓励你[看一看 commit 信息](https://github.com/npm/npm/commit/051c4738486a826300f205b71590781ce7744f01)。好的总结是它修补了很多 `ember-cli` 的用例。([@othiym23](https://github.com/othiym23))
+  * [`fe1bc38`](https://github.com/npm/npm/commit/fe1bc387a14475e373557de669e03d9d006d3173)[#7672](https://github.com/npm/npm/issues/7672) `npm-registry-client@3.1.2`: 通过纠正属性名修复了客户端证书处理。([@atamon](https://github.com/atamon))
+  * [`89ce829`](https://github.com/npm/npm/commit/89ce829a00b526d0518f5cd855c323bffe182af0)[#7630](https://github.com/npm/npm/issues/7630) `hosted-git-info@1.5.3`: 确保 GitHub 简写被一致的处理，第三部分。([@othiym23](https://github.com/othiym23))
+  * [`63313eb`](https://github.com/npm/npm/commit/63313eb0c37891c355546fd1093010c8a0c3cd81)[#7630](https://github.com/npm/npm/issues/7630) `realize-package-specifier@2.2.0`: 确保 GitHub 简写被一致的处理，第二部分。([@othiym23](https://github.com/othiym23))
+  * [`3ed41bf`](https://github.com/npm/npm/commit/3ed41bf64a1bb752bb3155c74dd6ffbbd28c89c9)[#7630](https://github.com/npm/npm/issues/7630) `npm-package-arg@3.1.1`: 确保 GitHub 简写被一致的处理，第一部分。([@othiym23](https://github.com/othiym23))
+
+### 已知问题
+
+* 依然存在一些定时器和 `unref()` 待被解决。查看 [#1152](https://github.com/iojs/io.js/pull/1152)
+* 可能还存在一些小的内存泄露，但是依然没有确定，查看 [#1075](https://github.com/iojs/io.js/issues/1075)
+* REPL 中的 Surrogate pair 会导致终端僵死，查看 [#690](https://github.com/iojs/io.js/issues/690)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
+
+## [2015-03-23, Version 1.6.2, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-23-version-162-rvagg)
+
+### 主要更新
+
+* **Windows**: 正在进行的改善 Windows 支持状况的工作让完整的测试用例再次通过。正如 v1.4.2 的发布说明指出的，CI 系统和它的配置问题导致无法正确报告 Windows 下的测试问题，现在 CI 和代码库的问题似乎被完全解决了。
+* **FreeBSD**: [发现](https://github.com/joyent/node/issues/9326)了一个影响 io.js/Node.js 的[内核bug](](https://lists.freebsd.org/pipermail/freebsd-current/2015-March/055043.html)，io.js 已经引入了一个补丁来阻止它引发问题。(Fedor Indutny) [#1218](https://github.com/iojs/io.js/pull/1218)
+* **module**: 你现在可以使用 `require('.')` 代替 `require('./')`，这被认定为一个 bug 修复。(Michaël Zasso) [#1185](https://github.com/iojs/io.js/pull/1185)
+* **v8**: 升级到 4.1.0.25，包括了 `--max_old_space_size` 值超过 `4096` 和 Solaris 支持的补丁，两个已经被包含在 io.js 中。
+
+### 已知问题
+
+* 可能还存在一些小的内存泄露，但是依然没有确定，查看 [#1075](https://github.com/iojs/io.js/issues/1075)
+* REPL 中的 Surrogate pair 会导致终端僵死，查看 [#690](https://github.com/iojs/io.js/issues/690)
+* 无法将 io.js 编译成静态库 [#686](https://github.com/iojs/io.js/issues/686)
+* `process.send()` 并非如文档所述是同步的，1.0.2 引入的问题，查看 [#760](https://github.com/iojs/io.js/issues/760)，解决 [#774](https://github.com/iojs/io.js/issues/774)
+* 当 DNS 查询正在进行中时调用 `dns.setServers()` 会造成 process 崩溃，原因是断言错误 [#894](https://github.com/iojs/io.js/issues/894)
+
 ## [2015-03-20, Version 1.6.1, @rvagg](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md#2015-03-20-version-161-rvagg)
 
 ### 主要更新
