@@ -3,16 +3,16 @@ iojs-cn
 
 参加 Slack 上的实时讨论：[![Join the chat at https://iojs-cn.slack.com](https://iojs-cn.herokuapp.com/badge.svg)](https://iojs-cn.herokuapp.com)
 
-> iojs-cn 组织成立的目的是为了推进 [io.js](https://iojs.org/) 在中国的普及，并及时同步英文社区的最新资讯。
+> iojs-cn 组织成立的目的是为了推进 [io.js / Node.js](https://iojs.org/) 在中国的普及，并及时同步英文社区的最新资讯。
 
 ## 主要内容
 
-- [io.js 官方网站翻译](https://github.com/iojs/website/tree/master/content/cn)
+- [io.js 官方网站翻译](https://github.com/nodejs/website/tree/master/content/cn)
 - [官方 io.js Tweets 的转发](https://twitter.com/official_iojs)
-- [io.js CHANGELOG](https://github.com/iojs/io.js/blob/v1.x/CHANGELOG.md) [翻译](https://github.com/iojs/iojs-cn/blob/gh-pages/CHANGELOG.md)
-- [io.js Weekly](https://medium.com/@iojs) [翻译](https://github.com/iojs/iojs-cn/tree/gh-pages/articles)
-- [io.js 相关文章翻译](https://github.com/iojs/iojs-cn/tree/gh-pages/articles)
-- [更多讨论...](https://github.com/iojs/iojs-cn/issues)
+- [io.js CHANGELOG](https://github.com/nodejs/io.js/blob/v1.x/CHANGELOG.md) [翻译](https://github.com/iojs/iojs-cn/blob/gh-pages/CHANGELOG.md)
+- [io.js Weekly](https://medium.com/@iojs) [翻译](https://github.com/nodejs/iojs-cn/tree/gh-pages/articles)
+- [io.js 相关文章翻译](https://github.com/nodejs/iojs-cn/tree/gh-pages/articles)
+- [更多讨论...](https://github.com/nodejs/iojs-cn/issues)
 
 ## 社交媒体帐号
 
@@ -23,13 +23,13 @@ iojs-cn
 
 ## 如何参与
 
-请直接前往 [Issue 列表](https://github.com/iojs/iojs-cn/issues)找到你感兴趣的 Issue 参与讨论，也可申请指派翻译任务。为了保持一致性，提升文档的质量，在翻译之前建议先查阅下[中英文排版规范](https://github.com/sparanoid/chinese-copywriting-guidelines)。请按照以下流程执行，避免浪费人力做相同的事情。
+请直接前往 [Issue 列表](https://github.com/nodejs/iojs-cn/issues)找到你感兴趣的 Issue 参与讨论，也可申请指派翻译任务。为了保持一致性，提升文档的质量，在翻译之前建议先查阅下[中英文排版规范](https://github.com/sparanoid/chinese-copywriting-guidelines)。请按照以下流程执行，避免浪费人力做相同的事情。
 
 ### 提交原文
 
 当找到一篇需要翻译的文章时，新建 issue（标记为 `help wanted`）并提交 PR 添加原文，这样方便以后校译。
 
-可提交到 [articles](https://github.com/iojs/iojs-cn/tree/gh-pages/articles/_posts) 或 [weekly](https://github.com/iojs/iojs-cn/tree/gh-pages/weekly/_posts)，文件名的格式为 `YYYY-m-d-title.md`（如 `2012-12-2-how-to-contribute.md`），内容格式为：
+可提交到 [articles](https://github.com/nodejs/iojs-cn/tree/gh-pages/articles/_posts) 或 [weekly](https://github.com/nodejs/iojs-cn/tree/gh-pages/weekly/_posts)，文件名的格式为 `YYYY-m-d-title.md`（如 `2012-12-2-how-to-contribute.md`），内容格式为：
 
 ```
 ---
@@ -61,4 +61,4 @@ published: false
 
 ## 贡献者
 
-见[贡献者列表](https://github.com/iojs/iojs-cn/graphs/contributors)
+见[贡献者列表](https://github.com/nodejs/iojs-cn/graphs/contributors)

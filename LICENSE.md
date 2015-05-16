@@ -9,7 +9,8 @@ All other directories and files are MIT Licensed.
 
 > The MIT License (MIT)
 >
-> Copyright (c) 2014 Barry Clark, 2014 - 2015 iojs/iojs-cn and other contributors
+> Copyright (c) 2014 Barry Clark
+> Copyright (c) 2014 - 2015 nodejs/iojs-cn and other contributors
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy of
 > this software and associated documentation files (the "Software"), to deal in
