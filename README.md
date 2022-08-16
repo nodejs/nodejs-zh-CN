@@ -1,8 +1,6 @@
 iojs-cn
 ----------
 
-参加 Slack 上的实时讨论：[![Join the chat at https://iojs-cn.slack.com](https://iojs-cn.herokuapp.com/badge.svg)](https://iojs-cn.herokuapp.com)
-
 > iojs-cn 组织成立的目的是为了推进 [io.js / Node.js](https://iojs.org/) 在中国的普及，并及时同步英文社区的最新资讯。
 
 ## 主要内容
